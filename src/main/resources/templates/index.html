@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="10">
+    <title>title</title>
+    <link rel="stylesheet" href="amuzi-ui/assets/css/index.css"/>
+    <link rel="stylesheet" href="amuzi-ui/assets/css/amazeui.css"/>
+    <link rel="stylesheet" href="amuzi-ui/assets/css/core.css"/>
+    <link rel="stylesheet" href="amuzi-ui/assets/css/menu.css"/>
+    <link rel="stylesheet" href="amuzi-ui/assets/css/admin.css"/>
+    <link rel="stylesheet" href="amuzi-ui/assets/css/page/typography.css"/>
+    <link rel="stylesheet" href="amuzi-ui/assets/css/page/form.css"/>
+    <link rel="stylesheet" href="amuzi-ui/assets/css/component.css"/>
+</head>
+<body onload="loadChart()">
+<div class="content-bg">
+    <div class="header-title" style="height: 15%;">
+        <h1 style="color: #ffffff;text-align: center;font-size: 5vw">台风气象</h1>
+    </div>
+    <table class="am-table am-table-bordered am-table-centered" style="height: 85%;border: none">
+        <tr style="height: 50%;">
+            <td class="content-table " style="width: 33.33333333%;">
+                <table class="am-table am-table-bordered am-table-centered" style="height: 95%;border: none">
+                    <tr >
+                        <td colspan="3">
+                            <h3 style="color: #ffffff;font-size: 1.5vw">海沧大桥</h3>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td class="content-td" style="width: 33.33333333%;">
+                            <div >风力</div>
+                        </td>
+                        <td class="content-td" style="width: 33.33333333%;">
+                            <div >风向</div>
+                        </td>
+                        <td class="content-td" style="width: 33.33333333%;">
+                            <div >空气湿度</div>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td >
+                            <div style="text-align: center">
+                                <img src="amuzi-ui/assets/img/icon_weather_speed.png" th:width="50px" th:height="50px">
+                            </div>
+                        </td>
+                        <td >
+                            <div style="text-align: center">
+                                <img src="amuzi-ui/assets/img/icon_weather_direct.png" th:width="50px" th:height="50px">
+                            </div>
+                        </td>
+                        <td >
+                            <div id="container_haicang" style="height: 100%"></div>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td >
+                            <div style="color: #ffffff;" ><p th:text="${xmdq.windSpeed}">4级</p></div>
+                        </td>
+                        <td >
+                            <div style="color: #ffffff;" ><p th:text="${xmdq?.wind}">东南</p></div>
+                        </td>
+                        <td >
+                            <div  style="color: #ffffff;font-size: 1vw"><span>能见度&nbsp;&nbsp;</span><span th:text="${xmdq?.visibility}">1421米</span></div>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td >
+                            <div style="color: #ffffff;font-size: 1vw">
+                                <span>风速&nbsp;&nbsp;</span><span th:text="${xmdq?.windSpeed}" >5km/h</span>
+                            </div>
+                        </td>
+                        <td >
+                            <div ></div>
+                        </td>
+                        <td >
+                            <div style="color: #ffffff;font-size: 1vw"><span>雨量&nbsp;&nbsp;</span><span th:text="${xmdq?.rainfall}">5毫米/时</span></div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="content-table " style="width: 33.33333333%;">
+                <table class="am-table am-table-bordered am-table-centered" style="height: 95%;border: none">
+                    <tr >
+                        <td colspan="3">
+                            <h3 style="color: #ffffff;font-size: 1.5vw">翔安隧道</h3>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td class="content-td" style="width: 33.33333333%;">
+                            <div >风力</div>
+                        </td>
+                        <td class="content-td" style="width: 33.33333333%;">
+                            <div >风向</div>
+                        </td>
+                        <td class="content-td" style="width: 33.33333333%;">
+                            <div >空气湿度</div>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td >
+                            <div style="text-align: center">
+                                <img src="amuzi-ui/assets/img/icon_weather_speed.png" th:width="50px" th:height="50px">
+                            </div>
+                        </td>
+                        <td >
+                            <div style="text-align: center">
+                                <img src="amuzi-ui/assets/img/icon_weather_direct.png" th:width="50px" th:height="50px">
+                            </div>
+                        </td>
+                        <td >
+                            <div id="container_xiangan" style="height: 100%"></div>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td >
+                            <div style="color: #ffffff;" th:text="${xasd?.windSpeed}">4级</div>
+                        </td>
+                        <td >
+                            <div style="color: #ffffff;" th:text="${xasd?.wind}">东南</div>
+                        </td>
+                        <td >
+                            <div  style="color: #ffffff;font-size: 1vw"><span>能见度&nbsp;&nbsp;</span><span th:text="${xasd?.visibility}">1421米</span></div>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td >
+                            <div style="color: #ffffff;font-size: 1vw">
+                                <span>风速&nbsp;&nbsp;</span><span th:text="${xasd?.windSpeed}" >5km/h</span>
+                            </div>
+                        </td>
+                        <td >
+                            <div ></div>
+                        </td>
+                        <td >
+                            <div style="color: #ffffff;font-size: 1vw"><span>雨量&nbsp;&nbsp;</span><span th:text="${xasd?.rainfall}">5毫米/时</span></div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td rowspan="2" class="content-table ">
+                <table class="am-table am-table-bordered am-table-centered" style="height: 95%;border: none">
+                    <tr >
+                        <td colspan="2">
+                            <h3 style="color: #ffffff;font-size: 4vw">台风信息</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><hr data-am-widget="divider" style="" class="am-divider am-divider-white"/></td>
+                    </tr>
+                    <tr >
+                        <td class="content-td" style="width: 50%;">
+                            <div  ><span class="content-position-left">台风名称</span></div>
+                        </td>
+                        <td class="content-td" style="width: 50%;">
+                            <div ><span class="content-position-right">萨瓦迪卡台风</span></div>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td class="content-td" style="width: 50%;">
+                            <div  ><span class="content-position-left">位置</span></div>
+                        </td>
+                        <td class="content-td" style="width: 50%;">
+                            <div ><span class="content-position-right">离厦门3000米</span></div>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td class="content-td" style="width: 50%;">
+                            <div  ><span class="content-position-left">中心风力</span></div>
+                        </td>
+                        <td class="content-td" style="width: 50%;">
+                            <div ><span class="content-position-right">14级</span></div>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td class="content-td" style="width: 50%;">
+                            <div  ><span class="content-position-left">最大风速</span></div>
+                        </td>
+                        <td class="content-td" style="width: 50%;">
+                            <div ><span class="content-position-right">20米/秒</span></div>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td class="content-td" style="width: 50%;">
+                            <div  ><span class="content-position-left">中心气压</span></div>
+                        </td>
+                        <td class="content-td" style="width: 50%;">
+                            <div ><span class="content-position-right">180千帕</span></div>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td class="content-td" style="width: 50%;">
+                            <div  ><span class="content-position-left">移动速度</span></div>
+                        </td>
+                        <td class="content-td" style="width: 50%;">
+                            <div ><span class="content-position-right">52公里/小时</span></div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr style="height: 50%;">
+            <td class="content-table ">
+                <table class="am-table am-table-bordered am-table-centered" style="height: 95%;border: none">
+                    <tr >
+                        <td colspan="3">
+                            <h3 style="color: #ffffff;font-size: 1.5vw">厦门大桥</h3>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td class="content-td" style="width: 33.33333333%;">
+                            <div >风力</div>
+                        </td>
+                        <td class="content-td" style="width: 33.33333333%;">
+                            <div >风向</div>
+                        </td>
+                        <td class="content-td" style="width: 33.33333333%;">
+                            <div >空气湿度</div>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td >
+                            <div style="text-align: center">
+                                <img src="amuzi-ui/assets/img/icon_weather_speed.png" th:width="50px" th:height="50px">
+                            </div>
+                        </td>
+                        <td >
+                            <div style="text-align: center">
+                                <img src="amuzi-ui/assets/img/icon_weather_direct.png" th:width="50px" th:height="50px">
+                            </div>
+                        </td>
+                        <td >
+                            <div id="container_xiamen" style="height: 100%"></div>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td >
+                            <div style="color: #ffffff;" th:text="${xmdq?.windSpeed}">4级</div>
+                        </td>
+                        <td >
+                            <div style="color: #ffffff;" th:text="${xmdq?.wind}">东南</div>
+                        </td>
+                        <td >
+                            <div  style="color: #ffffff;font-size: 1vw"><span>能见度&nbsp;&nbsp;</span><span th:text="${xmdq?.visibility}">1421米</span></div>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td >
+                            <div style="color: #ffffff;font-size: 1vw">
+                                <span>风速&nbsp;&nbsp;</span><span th:text="${xmdq?.windSpeed}" >5km/h</span>
+                            </div>
+                        </td>
+                        <td >
+                            <div ></div>
+                        </td>
+                        <td >
+                            <div style="color: #ffffff;font-size: 1vw"><span>雨量&nbsp;&nbsp;</span><span th:text="${xmdq?.rainfall}">5毫米/时</span></div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="content-table ">
+                <table class="am-table am-table-bordered am-table-centered" style="height: 95%;border: none">
+                    <tr >
+                        <td colspan="3">
+                            <h3 style="color: #ffffff;font-size: 1.5vw">集美大桥</h3>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td class="content-td" style="width: 33.33333333%;">
+                            <div >风力</div>
+                        </td>
+                        <td class="content-td" style="width: 33.33333333%;">
+                            <div >风向</div>
+                        </td>
+                        <td class="content-td" style="width: 33.33333333%;">
+                            <div >空气湿度</div>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td >
+                            <div style="text-align: center">
+                                <img src="amuzi-ui/assets/img/icon_weather_speed.png" th:width="50px" th:height="50px">
+                            </div>
+                        </td>
+                        <td >
+                            <div style="text-align: center">
+                                <img src="amuzi-ui/assets/img/icon_weather_direct.png" th:width="50px" th:height="50px">
+                            </div>
+                        </td>
+                        <td >
+                            <div id="container_jimei" style="height: 100%"></div>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td >
+                            <div style="color: #ffffff;" th:text="${jmdq?.windSpeed}">4级</div>
+                        </td>
+                        <td >
+                            <div style="color: #ffffff;" th:text="${jmdq?.wind}">东南</div>
+                        </td>
+                        <td >
+                            <div  style="color: #ffffff;font-size: 1vw"><span>能见度&nbsp;&nbsp;</span><span th:text="${jmdq?.visibility}">1421米</span></div>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td >
+                            <div style="color: #ffffff;font-size: 1vw">
+                                <span>风速&nbsp;&nbsp;</span><span th:text="${jmdq?.windSpeed}" >5km/h</span>
+                            </div>
+                        </td>
+                        <td >
+                            <div ></div>
+                        </td>
+                        <td >
+                            <div style="color: #ffffff;font-size: 1vw"><span>雨量&nbsp;&nbsp;</span><span th:text="${jmdq?.rainfall}">5毫米/时</span></div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript" src="amuzi-ui/assets/js/jquery-2.1.0.js"></script>
+<script type="text/javascript" src="amuzi-ui/assets/js/amazeui.min.js"></script>
+<script type="text/javascript" src="amuzi-ui/assets/js/app.js"></script>
+<script type="text/javascript" src="amuzi-ui/assets/js/blockUI.js"></script>
+<script type="text/javascript" src="amuzi-ui/assets/js/charts/echarts.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    var v1 = 100;
+    var v2 = 200;
+
+    function asyHttp() {
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+            // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {
+            // IE6, IE5 浏览器执行代码
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                if (xmlhttp.responseText != null) {
+                    v1 = v1 + 20;
+                    v2 = v2 - 10;
+                    loadChart(v1, v2);
+                }
+            }
+        };
+        xmlhttp.open("POST", "test2", true);
+        xmlhttp.send();
+        setTimeout("asyHttp()", 5000);
+    }
+
+    function loadChart() {
+
+        var humidity_xmdq = [[${xmdq.humidity}]];
+        var humidity_jmdq = [[${jmdq.humidity}]];
+        var humidity_hcdq = [[${hcdq.humidity}]];
+        var humidity_xasd = [[${xasd.humidity}]];
+        var dom_haicang = document.getElementById("container_haicang");
+        var dom_xiangan = document.getElementById("container_xiangan");
+        var dom_jimei = document.getElementById("container_jimei");
+        var dom_xiamen = document.getElementById("container_xiamen");
+        var myChart_xmdq = echarts.init(dom_xiamen);
+        var myChart_xiangan = echarts.init(dom_xiangan);
+        var myChart_jimei = echarts.init(dom_jimei);
+        var myChart_haicang = echarts.init(dom_haicang);
+        var app = {};
+        var option_xmdq = getOption(humidity_xmdq);
+        if (option_xmdq && typeof option_xmdq === "object") {
+            myChart_xmdq.setOption(option_xmdq, true);
+        }
+        var option_xiangan = getOption(humidity_xasd);
+        if (option_xiangan && typeof option_xiangan === "object") {
+            myChart_xiangan.setOption(option_xiangan, true);
+        }
+        var option_jimei = getOption(humidity_jmdq);
+        if (option_jimei && typeof option_jimei === "object") {
+            myChart_jimei.setOption(option_jimei, true);
+        }
+        var option_haicang = getOption(humidity_hcdq);
+        if (option_haicang && typeof option_haicang === "object") {
+            myChart_haicang.setOption(option_haicang, true);
+        }
+    }
+    
+    function getOption(humidity) {
+        var app = {};
+        option = null;
+        app.title = '环形图';
+        option = {
+            title: {
+                text: humidity + "%",
+                textStyle: {
+                    color: "#ffffff"
+                },
+                x: 'center',
+                y: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+            }, color: ["#ffffff", "#cccccc"],
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: ['60%', '70%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center',
+                            formatter: '{d}%',
+                        },
+                        emphasis: {
+                            show: false,
+                            textStyle: {
+                                fontSize: '12',
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data: [
+                        {value: humidity, name: '湿度'},
+                        {value: 100-humidity, name: '干度'},
+                    ]
+                }
+            ]
+        };
+        return option;
+    }
+</script>
+</body>
+</html>
