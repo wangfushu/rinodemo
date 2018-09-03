@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="10">
+    <!--<meta http-equiv="refresh" content="10">-->
     <title>title</title>
     <link rel="stylesheet" href="amuzi-ui/assets/css/index.css"/>
     <link rel="stylesheet" href="amuzi-ui/assets/css/amazeui.css"/>
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="amuzi-ui/assets/css/page/form.css"/>
     <link rel="stylesheet" href="amuzi-ui/assets/css/component.css"/>
 </head>
-<body onload="loadChart()">
+<body onload="asyHttp()">
 <div class="content-bg">
     <div class="header-title" style="height: 15%;">
         <h1 style="color: #ffffff;text-align: center;font-size: 5vw">台风气象</h1>
@@ -42,12 +42,12 @@
                     <tr >
                         <td >
                             <div style="text-align: center">
-                                <img src="amuzi-ui/assets/img/icon_weather_speed.png" th:width="50px" th:height="50px">
+                                <img src="amuzi-ui/assets/img/icon_weather_speed.gif" th:width="50px" th:height="50px">
                             </div>
                         </td>
                         <td >
                             <div style="text-align: center">
-                                <img src="amuzi-ui/assets/img/icon_weather_direct.png" th:width="50px" th:height="50px">
+                                <img src="amuzi-ui/assets/img/icon_weather_direct.gif" id="hcdq_direct_gif" th:width="50px" th:height="50px">
                             </div>
                         </td>
                         <td >
@@ -56,26 +56,26 @@
                     </tr>
                     <tr >
                         <td >
-                            <div style="color: #ffffff;" ><p th:text="${xmdq.windSpeed}">4级</p></div>
+                            <div style="color: #ffffff;" ><span id="hcdq_wind_value" ></span>级</div>
                         </td>
                         <td >
-                            <div style="color: #ffffff;" ><p th:text="${xmdq?.wind}">东南</p></div>
+                            <div style="color: #ffffff;" ><span id="hcdq_wind" ></span></div>
                         </td>
                         <td >
-                            <div  style="color: #ffffff;font-size: 1vw"><span>能见度&nbsp;&nbsp;</span><span th:text="${xmdq?.visibility}">1421米</span></div>
+                            <div  style="color: #ffffff;font-size: 1vw"><span>能见度&nbsp;&nbsp;</span><span id="hcdq_visibility" >1421</span>米</div>
                         </td>
                     </tr>
                     <tr >
                         <td >
                             <div style="color: #ffffff;font-size: 1vw">
-                                <span>风速&nbsp;&nbsp;</span><span th:text="${xmdq?.windSpeed}" >5km/h</span>
+                                <span>风速&nbsp;&nbsp;</span><span id="hcdq_wind_speed" >5</span>km/h
                             </div>
                         </td>
                         <td >
                             <div ></div>
                         </td>
                         <td >
-                            <div style="color: #ffffff;font-size: 1vw"><span>雨量&nbsp;&nbsp;</span><span th:text="${xmdq?.rainfall}">5毫米/时</span></div>
+                            <div style="color: #ffffff;font-size: 1vw"><span>雨量&nbsp;&nbsp;</span><span id="hcdq_rainfall" >5</span>毫米/时</div>
                         </td>
                     </tr>
                 </table>
@@ -101,12 +101,12 @@
                     <tr >
                         <td >
                             <div style="text-align: center">
-                                <img src="amuzi-ui/assets/img/icon_weather_speed.png" th:width="50px" th:height="50px">
+                                <img src="amuzi-ui/assets/img/icon_weather_speed.gif" th:width="50px" th:height="50px">
                             </div>
                         </td>
                         <td >
                             <div style="text-align: center">
-                                <img src="amuzi-ui/assets/img/icon_weather_direct.png" th:width="50px" th:height="50px">
+                                <img src="amuzi-ui/assets/img/icon_weather_direct.gif" id="xasd_direct_gif" th:width="50px" th:height="50px">
                             </div>
                         </td>
                         <td >
@@ -115,26 +115,26 @@
                     </tr>
                     <tr >
                         <td >
-                            <div style="color: #ffffff;" th:text="${xasd?.windSpeed}">4级</div>
+                            <div style="color: #ffffff;" ><span id="xasd_wind_value" ></span>级</div>
                         </td>
                         <td >
-                            <div style="color: #ffffff;" th:text="${xasd?.wind}">东南</div>
+                            <div style="color: #ffffff;" ><span id="xasd_wind" ></span></div>
                         </td>
                         <td >
-                            <div  style="color: #ffffff;font-size: 1vw"><span>能见度&nbsp;&nbsp;</span><span th:text="${xasd?.visibility}">1421米</span></div>
+                            <div  style="color: #ffffff;font-size: 1vw"><span>能见度&nbsp;&nbsp;</span><span id="xasd_visibility" >1421</span>米</div>
                         </td>
                     </tr>
                     <tr >
                         <td >
                             <div style="color: #ffffff;font-size: 1vw">
-                                <span>风速&nbsp;&nbsp;</span><span th:text="${xasd?.windSpeed}" >5km/h</span>
+                                <span>风速&nbsp;&nbsp;</span><span id="xasd_wind_speed" >5</span>km/h
                             </div>
                         </td>
                         <td >
                             <div ></div>
                         </td>
                         <td >
-                            <div style="color: #ffffff;font-size: 1vw"><span>雨量&nbsp;&nbsp;</span><span th:text="${xasd?.rainfall}">5毫米/时</span></div>
+                            <div style="color: #ffffff;font-size: 1vw"><span>雨量&nbsp;&nbsp;</span><span id="xasd_rainfall" >5</span>毫米/时</div>
                         </td>
                     </tr>
                 </table>
@@ -154,7 +154,7 @@
                             <div  ><span class="content-position-left">台风名称</span></div>
                         </td>
                         <td class="content-td" style="width: 50%;">
-                            <div ><span class="content-position-right">萨瓦迪卡台风</span></div>
+                            <div ><span class="content-position-right" id="typhoon_name">萨瓦迪卡台风</span></div>
                         </td>
                     </tr>
                     <tr >
@@ -162,7 +162,7 @@
                             <div  ><span class="content-position-left">位置</span></div>
                         </td>
                         <td class="content-td" style="width: 50%;">
-                            <div ><span class="content-position-right">离厦门3000米</span></div>
+                            <div ><span class="content-position-right" id="typhoon_position">离厦门3000米</span></div>
                         </td>
                     </tr>
                     <tr >
@@ -170,7 +170,7 @@
                             <div  ><span class="content-position-left">中心风力</span></div>
                         </td>
                         <td class="content-td" style="width: 50%;">
-                            <div ><span class="content-position-right">14级</span></div>
+                            <div ><span class="content-position-right" id="typhoon_central_wind">14级</span></div>
                         </td>
                     </tr>
                     <tr >
@@ -178,7 +178,7 @@
                             <div  ><span class="content-position-left">最大风速</span></div>
                         </td>
                         <td class="content-td" style="width: 50%;">
-                            <div ><span class="content-position-right">20米/秒</span></div>
+                            <div ><span class="content-position-right" id="typhoon_max_speed">20米/秒</span></div>
                         </td>
                     </tr>
                     <tr >
@@ -186,7 +186,7 @@
                             <div  ><span class="content-position-left">中心气压</span></div>
                         </td>
                         <td class="content-td" style="width: 50%;">
-                            <div ><span class="content-position-right">180千帕</span></div>
+                            <div ><span class="content-position-right" id="typhoon_central_pressure">180千帕</span></div>
                         </td>
                     </tr>
                     <tr >
@@ -194,7 +194,7 @@
                             <div  ><span class="content-position-left">移动速度</span></div>
                         </td>
                         <td class="content-td" style="width: 50%;">
-                            <div ><span class="content-position-right">52公里/小时</span></div>
+                            <div ><span class="content-position-right" id="typhoon_travel_rate">52公里/小时</span></div>
                         </td>
                     </tr>
                 </table>
@@ -222,12 +222,12 @@
                     <tr >
                         <td >
                             <div style="text-align: center">
-                                <img src="amuzi-ui/assets/img/icon_weather_speed.png" th:width="50px" th:height="50px">
+                                <img src="amuzi-ui/assets/img/icon_weather_speed.gif" th:width="50px" th:height="50px">
                             </div>
                         </td>
                         <td >
                             <div style="text-align: center">
-                                <img src="amuzi-ui/assets/img/icon_weather_direct.png" th:width="50px" th:height="50px">
+                                <img src="amuzi-ui/assets/img/icon_weather_direct.gif" id="xmdq_direct_gif" th:width="50px" th:height="50px">
                             </div>
                         </td>
                         <td >
@@ -236,26 +236,26 @@
                     </tr>
                     <tr >
                         <td >
-                            <div style="color: #ffffff;" th:text="${xmdq?.windSpeed}">4级</div>
+                            <div style="color: #ffffff;" ><span id="xmdq_wind_value" ></span>级</div>
                         </td>
                         <td >
-                            <div style="color: #ffffff;" th:text="${xmdq?.wind}">东南</div>
+                            <div style="color: #ffffff;" ><span id="xmdq_wind" ></span></div>
                         </td>
                         <td >
-                            <div  style="color: #ffffff;font-size: 1vw"><span>能见度&nbsp;&nbsp;</span><span th:text="${xmdq?.visibility}">1421米</span></div>
+                            <div  style="color: #ffffff;font-size: 1vw"><span>能见度&nbsp;&nbsp;</span><span id="xmdq_visibility" >1421</span>米</div>
                         </td>
                     </tr>
                     <tr >
                         <td >
                             <div style="color: #ffffff;font-size: 1vw">
-                                <span>风速&nbsp;&nbsp;</span><span th:text="${xmdq?.windSpeed}" >5km/h</span>
+                                <span>风速&nbsp;&nbsp;</span><span id="xmdq_wind_speed" >5</span>km/h
                             </div>
                         </td>
                         <td >
                             <div ></div>
                         </td>
                         <td >
-                            <div style="color: #ffffff;font-size: 1vw"><span>雨量&nbsp;&nbsp;</span><span th:text="${xmdq?.rainfall}">5毫米/时</span></div>
+                            <div style="color: #ffffff;font-size: 1vw"><span>雨量&nbsp;&nbsp;</span><span id="xmdq_rainfall" >5</span>毫米/时</div>
                         </td>
                     </tr>
                 </table>
@@ -281,12 +281,12 @@
                     <tr >
                         <td >
                             <div style="text-align: center">
-                                <img src="amuzi-ui/assets/img/icon_weather_speed.png" th:width="50px" th:height="50px">
+                                <img src="amuzi-ui/assets/img/icon_weather_speed.gif"  th:width="50px" th:height="50px">
                             </div>
                         </td>
                         <td >
                             <div style="text-align: center">
-                                <img src="amuzi-ui/assets/img/icon_weather_direct.png" th:width="50px" th:height="50px">
+                                <img src="amuzi-ui/assets/img/icon_weather_direct.gif" id="jmdq_direct_gif" th:width="50px" th:height="50px">
                             </div>
                         </td>
                         <td >
@@ -295,26 +295,26 @@
                     </tr>
                     <tr >
                         <td >
-                            <div style="color: #ffffff;" th:text="${jmdq?.windSpeed}">4级</div>
+                            <div style="color: #ffffff;" ><span id="jmdq_wind_value" ></span>级</div>
                         </td>
                         <td >
-                            <div style="color: #ffffff;" th:text="${jmdq?.wind}">东南</div>
+                            <div style="color: #ffffff;" ><span id="jmdq_wind" ></span></div>
                         </td>
                         <td >
-                            <div  style="color: #ffffff;font-size: 1vw"><span>能见度&nbsp;&nbsp;</span><span th:text="${jmdq?.visibility}">1421米</span></div>
+                            <div  style="color: #ffffff;font-size: 1vw"><span>能见度&nbsp;&nbsp;</span><span id="jmdq_visibility" >1421</span>米</div>
                         </td>
                     </tr>
                     <tr >
                         <td >
                             <div style="color: #ffffff;font-size: 1vw">
-                                <span>风速&nbsp;&nbsp;</span><span th:text="${jmdq?.windSpeed}" >5km/h</span>
+                                <span>风速&nbsp;&nbsp;</span><span id="jmdq_wind_speed" >5</span>km/h
                             </div>
                         </td>
                         <td >
                             <div ></div>
                         </td>
                         <td >
-                            <div style="color: #ffffff;font-size: 1vw"><span>雨量&nbsp;&nbsp;</span><span th:text="${jmdq?.rainfall}">5毫米/时</span></div>
+                            <div style="color: #ffffff;font-size: 1vw"><span>雨量&nbsp;&nbsp;</span><span id="jmdq_rainfall" >5</span>毫米/时</div>
                         </td>
                     </tr>
                 </table>
@@ -328,9 +328,10 @@
 <script type="text/javascript" src="amuzi-ui/assets/js/blockUI.js"></script>
 <script type="text/javascript" src="amuzi-ui/assets/js/charts/echarts.js"></script>
 <script type="text/javascript" th:inline="javascript">
-    var v1 = 100;
-    var v2 = 200;
-
+    var humidity_xmdq;
+    var humidity_jmdq;
+    var humidity_hcdq;
+    var humidity_xasd;
     function asyHttp() {
         var xmlhttp;
         if (window.XMLHttpRequest) {
@@ -345,47 +346,127 @@
 
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 if (xmlhttp.responseText != null) {
-                    v1 = v1 + 20;
-                    v2 = v2 - 10;
-                    loadChart(v1, v2);
+                    initData(xmlhttp);
                 }
             }
         };
         xmlhttp.open("POST", "test2", true);
         xmlhttp.send();
-        setTimeout("asyHttp()", 5000);
+        setTimeout("asyHttp()", 10000);
     }
 
-    function loadChart() {
+    function initData(xmlhttp) {
+        var maps = JSON.parse(xmlhttp.responseText);
+        var xmdq = maps.xmdq;
+        var jmdq = maps.jmdq;
+        var hcdq = maps.hcdq;
+        var xasd = maps.xasd;
+        var typhoon_info = maps.typhoon_info;
+        document.getElementById("jmdq_wind_speed").innerText = jmdq.windSpeed;
+        document.getElementById("jmdq_wind_value").innerText = jmdq.windValue;
+        document.getElementById("jmdq_wind").innerText = jmdq.wind;
+        document.getElementById("jmdq_visibility").innerText = jmdq.visibility;
+        document.getElementById("jmdq_rainfall").innerText = jmdq.rainFall;
 
-        var humidity_xmdq = [[${xmdq.humidity}]];
-        var humidity_jmdq = [[${jmdq.humidity}]];
-        var humidity_hcdq = [[${hcdq.humidity}]];
-        var humidity_xasd = [[${xasd.humidity}]];
-        var dom_haicang = document.getElementById("container_haicang");
-        var dom_xiangan = document.getElementById("container_xiangan");
-        var dom_jimei = document.getElementById("container_jimei");
-        var dom_xiamen = document.getElementById("container_xiamen");
-        var myChart_xmdq = echarts.init(dom_xiamen);
-        var myChart_xiangan = echarts.init(dom_xiangan);
-        var myChart_jimei = echarts.init(dom_jimei);
-        var myChart_haicang = echarts.init(dom_haicang);
-        var app = {};
-        var option_xmdq = getOption(humidity_xmdq);
-        if (option_xmdq && typeof option_xmdq === "object") {
-            myChart_xmdq.setOption(option_xmdq, true);
+        document.getElementById("hcdq_wind_speed").innerText = hcdq.windSpeed;
+        document.getElementById("hcdq_wind_value").innerText = hcdq.windValue;
+        document.getElementById("hcdq_wind").innerText = hcdq.wind;
+        document.getElementById("hcdq_visibility").innerText = hcdq.visibility;
+        document.getElementById("hcdq_rainfall").innerText = hcdq.rainFall;
+
+        document.getElementById("xasd_wind_speed").innerText = xasd.windSpeed;
+        document.getElementById("xasd_wind_value").innerText = xasd.windValue;
+        document.getElementById("xasd_wind").innerText = xasd.wind;
+        document.getElementById("xasd_visibility").innerText = xasd.visibility;
+        document.getElementById("xasd_rainfall").innerText = xasd.rainFall;
+
+        document.getElementById("xmdq_wind_speed").innerText = xmdq.windSpeed;
+        document.getElementById("xmdq_wind_value").innerText = xmdq.windValue;
+        document.getElementById("xmdq_wind").innerText = xmdq.wind;
+        document.getElementById("xmdq_visibility").innerText = xmdq.visibility;
+        document.getElementById("xmdq_rainfall").innerText = xmdq.rainFall;
+
+        document.getElementById("typhoon_travel_rate").innerText = typhoon_info.travelRate;
+        document.getElementById("typhoon_central_pressure").innerText = typhoon_info.centralPressure;
+        document.getElementById("typhoon_max_speed").innerText = typhoon_info.maxSpeed;
+        document.getElementById("typhoon_central_wind").innerText = typhoon_info.centralWind;
+        document.getElementById("typhoon_position").innerText = typhoon_info.position;
+        document.getElementById("typhoon_name").innerText = typhoon_info.typhoonName;
+        changeTyphoonGif(xmdq.wind,jmdq.wind,hcdq.wind,xasd.wind);
+        loadChart(xmdq.humidity,jmdq.humidity,hcdq.humidity,xasd.humidity);
+    }
+
+    function changeTyphoonGif(xmdq_wind,jmdq_wind,hcdq_wind,xasd_wind) {
+        if(xmdq_wind != null){
+            do_gif("xmdq_direct_gif",xmdq_wind);
+            do_gif("jmdq_direct_gif",jmdq_wind);
+            do_gif("hcdq_direct_gif",hcdq_wind);
+            do_gif("xasd_direct_gif",xasd_wind);
         }
-        var option_xiangan = getOption(humidity_xasd);
-        if (option_xiangan && typeof option_xiangan === "object") {
-            myChart_xiangan.setOption(option_xiangan, true);
+    }
+
+    function do_gif(name,direction) {
+        var img = document.getElementById(name);
+        if(direction === "南"){
+            img.src = "amuzi-ui/assets/img/icon_weather_direct.gif";
+        }else if(direction === "东南"){
+            img.src = "amuzi-ui/assets/img/icon_weather_speed.gif";
+        }else if(direction === "北"){
+            img.src = "amuzi-ui/assets/img/icon_weather_direct.gif";
+        }else if(direction === "西北"){
+            img.src = "amuzi-ui/assets/img/icon_weather_direct.gif";
+        }else if(direction === "东"){
+            img.src = "amuzi-ui/assets/img/icon_weather_direct.gif";
+        }else if(direction === "东北"){
+            img.src = "amuzi-ui/assets/img/icon_weather_direct.gif";
+        }else if(direction === "西"){
+            img.src = "amuzi-ui/assets/img/icon_weather_direct.gif";
+        }else if(direction === "西南"){
+            img.src = "amuzi-ui/assets/img/icon_weather_direct.gif";
         }
-        var option_jimei = getOption(humidity_jmdq);
-        if (option_jimei && typeof option_jimei === "object") {
-            myChart_jimei.setOption(option_jimei, true);
+    }
+
+    function loadChart(xmdq_humidity,jmdq_humidity,hcdq_humidity,xasd_humidity) {
+
+        var humidity_temp_xmdq = xmdq_humidity;
+        var humidity_temp_jmdq = jmdq_humidity;
+        var humidity_temp_hcdq = hcdq_humidity;
+        var humidity_temp_xasd = xasd_humidity;
+        if(humidity_temp_xmdq != null && humidity_temp_xmdq != humidity_xmdq){
+            humidity_xmdq = humidity_temp_xmdq;
+            var dom_xiamen = document.getElementById("container_xiamen");
+            var myChart_xmdq = echarts.init(dom_xiamen);
+            var option_xmdq = getOption(humidity_xmdq);
+            if (option_xmdq && typeof option_xmdq === "object") {
+                myChart_xmdq.setOption(option_xmdq, true);
+            }
         }
-        var option_haicang = getOption(humidity_hcdq);
-        if (option_haicang && typeof option_haicang === "object") {
-            myChart_haicang.setOption(option_haicang, true);
+        if(humidity_temp_xasd != null && humidity_temp_xasd != humidity_xasd){
+            humidity_xasd = humidity_temp_xasd;
+            var dom_xiangan = document.getElementById("container_xiangan");
+            var myChart_xiangan = echarts.init(dom_xiangan);
+            var option_xiangan = getOption(humidity_xasd);
+            if (option_xiangan && typeof option_xiangan === "object") {
+                myChart_xiangan.setOption(option_xiangan, true);
+            }
+        }
+        if(humidity_temp_jmdq != null && humidity_temp_jmdq != humidity_jmdq){
+            humidity_jmdq = humidity_temp_jmdq;
+            var dom_jimei = document.getElementById("container_jimei");
+            var myChart_jimei = echarts.init(dom_jimei);
+            var option_jimei = getOption(humidity_jmdq);
+            if (option_jimei && typeof option_jimei === "object") {
+                myChart_jimei.setOption(option_jimei, true);
+            }
+        }
+        if(humidity_temp_hcdq != null && humidity_temp_hcdq != humidity_hcdq){
+            humidity_hcdq = humidity_temp_hcdq;
+            var dom_haicang = document.getElementById("container_haicang");
+            var myChart_haicang = echarts.init(dom_haicang);
+            var option_haicang = getOption(humidity_hcdq);
+            if (option_haicang && typeof option_haicang === "object") {
+                myChart_haicang.setOption(option_haicang, true);
+            }
         }
     }
     
