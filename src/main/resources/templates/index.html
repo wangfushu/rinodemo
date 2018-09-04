@@ -16,15 +16,15 @@
 </head>
 <body onload="asyHttp()">
 <div class="content-bg">
-    <div class="header-title" style="height: 15%;">
-        <h1 style="color: #ffffff;text-align: center;font-size: 5vw">台风气象</h1>
+    <div class="header-title" style="height: 15%;" >
+        <p style="color: #ffffff;text-align: center;font-size: 5vw;">台风气象</p>
     </div>
     <table class="am-table am-table-bordered am-table-centered" style="height: 85%;border: none">
         <tr style="height: 50%;">
             <td class="content-table " style="width: 33.33333333%;">
-                <table class="am-table am-table-bordered am-table-centered" style="height: 95%;border: none">
+                <table class="am-table am-table-bordered am-table-centered" style="height: 100%;border: none">
                     <tr >
-                        <td colspan="3">
+                        <td colspan="3" >
                             <h3 style="color: #ffffff;font-size: 1.5vw">海沧大桥</h3>
                         </td>
                     </tr>
@@ -81,7 +81,7 @@
                 </table>
             </td>
             <td class="content-table " style="width: 33.33333333%;">
-                <table class="am-table am-table-bordered am-table-centered" style="height: 95%;border: none">
+                <table class="am-table am-table-bordered am-table-centered" style="height: 100%;border: none">
                     <tr >
                         <td colspan="3">
                             <h3 style="color: #ffffff;font-size: 1.5vw">翔安隧道</h3>
@@ -392,22 +392,29 @@
         document.getElementById("typhoon_central_wind").innerText = typhoon_info.centralWind;
         document.getElementById("typhoon_position").innerText = typhoon_info.position;
         document.getElementById("typhoon_name").innerText = typhoon_info.typhoonName;
-        changeTyphoonGif(xmdq.wind,jmdq.wind,hcdq.wind,xasd.wind);
+        changeTyphoonGif(xmdq.windValue,jmdq.windValue,hcdq.windValue,xasd.windValue);
         loadChart(xmdq.humidity,jmdq.humidity,hcdq.humidity,xasd.humidity);
     }
 
     function changeTyphoonGif(xmdq_wind,jmdq_wind,hcdq_wind,xasd_wind) {
-        if(xmdq_wind != null){
+        if(xmdq_wind != null ){
             do_gif("xmdq_direct_gif",xmdq_wind);
+        }
+        if(jmdq_wind != null ){
             do_gif("jmdq_direct_gif",jmdq_wind);
+        }
+        if(hcdq_wind != null ){
             do_gif("hcdq_direct_gif",hcdq_wind);
+        }
+        if(xasd_wind != null ){
             do_gif("xasd_direct_gif",xasd_wind);
         }
     }
 
     function do_gif(name,direction) {
-        var img = document.getElementById(name);
-        if(direction === "南"){
+        var imgStyle = document.getElementById(name).style;
+        imgStyle.transform = 'rotate('+direction+'deg)';
+        /*if(direction === "南"){
             img.src = "amuzi-ui/assets/img/icon_weather_direct.gif";
         }else if(direction === "东南"){
             img.src = "amuzi-ui/assets/img/icon_weather_speed.gif";
@@ -423,7 +430,7 @@
             img.src = "amuzi-ui/assets/img/icon_weather_direct.gif";
         }else if(direction === "西南"){
             img.src = "amuzi-ui/assets/img/icon_weather_direct.gif";
-        }
+        }*/
     }
 
     function loadChart(xmdq_humidity,jmdq_humidity,hcdq_humidity,xasd_humidity) {
