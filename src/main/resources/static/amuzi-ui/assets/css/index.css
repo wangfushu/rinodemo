@@ -11,6 +11,10 @@
     /*opacity: 0.2;*/
 }
 
+.content-td{
+    color: #fff
+}
+
 .content-position-left{
    float: left;
 }

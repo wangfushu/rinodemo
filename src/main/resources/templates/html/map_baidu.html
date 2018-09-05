@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="amuzi-ui/assets/css/amazeui.css" />
+    <link rel="stylesheet" href="amuzi-ui/assets/css/core.css" />
+    <link rel="stylesheet" href="amuzi-ui/assets/css/menu.css" />
+    <link rel="stylesheet" href="amuzi-ui/assets/css/index.css" />
+    <link rel="stylesheet" href="amuzi-ui/assets/css/admin.css" />
+    <link rel="stylesheet" href="amuzi-ui/assets/css/page/typography.css" />
+    <link rel="stylesheet" href="amuzi-ui/assets/css/page/form.css" />
+    <link rel="stylesheet" href="amuzi-ui/assets/css/component.css" />
     <style type="text/css">
         body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
     </style>
@@ -11,7 +19,67 @@
     <title>地图展示</title>
 </head>
 <body>
-<div id="allmap"></div>
+    <div id="allmap">
+    </div>
+    <div class="content-table " style="position: fixed;top:0px;right:0px;width:30%;">
+        <table class="am-table am-table-bordered am-table-centered" style="border: none">
+            <tr >
+                <td colspan="2">
+                    <h3 style="color: #ffffff;font-size: 4vw">台风信息</h3>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><hr data-am-widget="divider" style="" class="am-divider am-divider-white"/></td>
+            </tr>
+            <tr >
+                <td class="content-td" style="width: 50%;">
+                    <div  ><span class="content-position-left">台风名称</span></div>
+                </td>
+                <td class="content-td" style="width: 50%;">
+                </td>
+            </tr>
+            <tr >
+                <td class="content-td" style="width: 50%;">
+                    <div  ><span class="content-position-left">位置</span></div>
+                </td>
+                <td class="content-td" style="width: 50%;">
+                    <div ><span class="content-position-right" >离厦门3000米</span></div>
+                </td>
+            </tr>
+            <tr >
+                <td class="content-td" style="width: 50%;">
+                    <div  ><span class="content-position-left">中心风力</span></div>
+                </td>
+                <td class="content-td" style="width: 50%;">
+                    <div ><span class="content-position-right" >14级</span></div>
+                </td>
+            </tr>
+            <tr >
+                <td class="content-td" style="width: 50%;">
+                    <div  ><span class="content-position-left">最大风速</span></div>
+                </td>
+                <td class="content-td" style="width: 50%;">
+                    <div ><span class="content-position-right" >20米/秒</span></div>
+                </td>
+            </tr>
+            <tr >
+                <td class="content-td" style="width: 50%;">
+                    <div  ><span class="content-position-left">中心气压</span></div>
+                </td>
+                <td class="content-td" style="width: 50%;">
+                    <div ><span class="content-position-right" >180千帕</span></div>
+                </td>
+            </tr>
+            <tr >
+                <td class="content-td" style="width: 50%;">
+                    <div  ><span class="content-position-left">移动速度</span></div>
+                </td>
+                <td class="content-td" style="width: 50%;">
+                    <div ><span class="content-position-right" >52公里/小时</span></div>
+                </td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>
 <script type="text/javascript">
@@ -27,7 +95,14 @@
             BMAP_NORMAL_MAP,
             BMAP_HYBRID_MAP
         ]}));
+    map.setMapType(BMAP_HYBRID_MAP);
     map.setCurrentCity("厦门");          // 设置地图显示的城市 此项是必须设置的
     map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
 </script>
+<script type="text/javascript" src="amuzi-ui/assets/js/jquery-2.1.0.js" ></script>
+<script type="text/javascript" src="amuzi-ui/assets/js/amazeui.min.js"></script>
+<script type="text/javascript" src="amuzi-ui/assets/js/app.js" ></script>
+<script type="text/javascript" src="amuzi-ui/assets/js/blockUI.js" ></script>
+<script type="text/javascript" src="amuzi-ui/assets/js/charts/echarts.min.js" ></script>
+<script type="text/javascript" src="amuzi-ui/assets/js/charts/indexChart.js" ></script>
 </html>

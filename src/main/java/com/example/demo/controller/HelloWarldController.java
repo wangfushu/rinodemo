@@ -78,4 +78,10 @@ public class HelloWarldController {
         return map;
     }
 
+    @RequestMapping("/frame_weather")
+    public ModelAndView frameWeather(HttpServletRequest request) {
+        ModelAndView model = new ModelAndView("html/frame_weather");
+        return model;
+    }
+
 }

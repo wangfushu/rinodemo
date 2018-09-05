@@ -3,8 +3,10 @@ package com.example.demo.service;
 
 import com.example.demo.dao.MonWeatherInfoDao;
 import com.example.demo.dao.SysPlazaDao;
+import com.example.demo.dao.TyphoonInfoDao;
 import com.example.demo.domain.MonWeatherInfo;
 import com.example.demo.domain.SysPlaza;
+import com.example.demo.domain.TyphoonInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +24,15 @@ public class WeatherInfoService {
     private SysPlazaDao sysPlazaDao;
     @Autowired
     private MonWeatherInfoDao monWeatherInfoDao;
+    @Autowired
+    private TyphoonInfoDao typhoonInfoDao;
 
     public SysPlaza findSysPlaza(String plazaNo) {
         return sysPlazaDao.findByPlaNo(plazaNo);
+    }
+
+    public TyphoonInfo findTyphoonInfo(String name){
+        return typhoonInfoDao.findByTyphoonName(name);
     }
 
     public MonWeatherInfo findMonWeatherInfolist(String plano) {
@@ -37,6 +45,5 @@ public class WeatherInfoService {
         }
         return monWeatherInfo;
     }
-
 
 }
