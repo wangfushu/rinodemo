@@ -65,7 +65,7 @@ public class WeatherInfoController {
         map.put("hcdq",weatherInfoService.findMonWeatherInfolist("0002"));
         map.put("jmdq",weatherInfoService.findMonWeatherInfolist("0003"));
         map.put("xasd",weatherInfoService.findMonWeatherInfolist("0005"));
-        //map.put("typhoon_info",weatherInfoService.findTyphoonInfo("莫兰蒂"));
+        map.put("typhoon_info",weatherInfoService.findTyphoonInfo("莫兰蒂"));
         /*model.addAttribute("xmdq",weatherInfoService.findMonWeatherInfolist("0001"));
         model.addAttribute("hcdq",weatherInfoService.findMonWeatherInfolist("0002"));
         model.addAttribute("jmdq",weatherInfoService.findMonWeatherInfolist("0003"));
