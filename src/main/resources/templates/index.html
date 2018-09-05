@@ -440,7 +440,7 @@
         };
         xmlhttp.open("POST", "test2", true);
         xmlhttp.send();
-        setTimeout("asyHttp()", 10000);
+        setTimeout("asyHttp()", 50000);
     }
 
     function initData(xmlhttp) {
@@ -475,6 +475,7 @@
         document.getElementById("xmdq_rainfall").innerText = xmdq.rainfall;
 
         document.getElementById("typhoon_travel_rate").innerText = typhoon_info.travelRate;
+        alert(typhoon_info.travelRate);
         document.getElementById("typhoon_central_pressure").innerText = typhoon_info.centralPressure;
         document.getElementById("typhoon_max_speed").innerText = typhoon_info.maxSpeed;
         document.getElementById("typhoon_central_wind").innerText = typhoon_info.centralWind;
