@@ -1,22 +1,23 @@
 package com.xmrbi.rinoWeb.domain;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class HighRptStationPK implements Serializable {
+public class FeePassCountTotalPK implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "stationid")
-    private String stationID;//收费站编号
+    @Column(name = "plano")
+    private String plaNo;//路段
 
     @Id
     @Column(name = "totaltime")
     private Date totalTime;//统计时间
 
-    public HighRptStationPK(String stationID, Date totalTime) {
-        this.stationID = stationID;
+    public FeePassCountTotalPK(String plaNo, Date totalTime) {
+        this.plaNo = plaNo;
         this.totalTime = totalTime;
     }
 }

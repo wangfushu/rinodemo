@@ -5,25 +5,23 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "high_feemonth")
+@IdClass(HighFeeMonthPK.class)
 public class HighFeeMonth {
-   /* @Id
+    @Id
     @Column(name = "stationid")
-    private String stationID;//收费站编号*/
+    private String stationID;//收费站编号
 
-   @EmbeddedId
-   private HighFeeMonthPK id;
+    @Id
+    @Column(name = "fyear")
+    private String fYear;//统计年份
+
+    @Id
+    @Column(name = "fmonth")
+    private String fMonth;//统计月份
 
     @Basic
     @Column(name = "stationname")
     private String stationName;//收费站名称
-
-    /*@Basic
-    @Column(name = "fyear")
-    private String fYear;//统计年份
-
-    @Basic
-    @Column(name = "fmonth")
-    private String fMonth;//统计月份*/
 
     @Basic
     @Column(name = "MTCFEE")
@@ -81,11 +79,27 @@ public class HighFeeMonth {
         this.upDateTime = upDateTime;
     }
 
-    public HighFeeMonthPK getId() {
-        return id;
+    public String getStationID() {
+        return stationID;
     }
 
-    public void setId(HighFeeMonthPK id) {
-        this.id = id;
+    public void setStationID(String stationID) {
+        this.stationID = stationID;
+    }
+
+    public String getfYear() {
+        return fYear;
+    }
+
+    public void setfYear(String fYear) {
+        this.fYear = fYear;
+    }
+
+    public String getfMonth() {
+        return fMonth;
+    }
+
+    public void setfMonth(String fMonth) {
+        this.fMonth = fMonth;
     }
 }

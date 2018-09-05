@@ -5,20 +5,23 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "FEE_ETCFEE")
+@IdClass(FeeETCFeePK.class)
 public class FeeETCFee {
 
-    @EmbeddedId
-    private FeeETCFeePK id;//联合主键
-
-    /*@Id
+    @Id
     @Column(name = "plano")
     private String plaNo;//路段
-*/
+
+    @Id
+    @Column(name = "laneno")
+    private String laneNo;//车道号
+
+    @Id
+    @Column(name = "TOllDATE")
+    private Date tollDate;//统计时间
+
     @Column(name = "planame")
     private String plaName;//路段名称
-
-    /*@Column(name = "laneno")
-    private String laneNo;//车道号*/
 
     @Column(name = "paytype")
     private String payType;//收费说明
@@ -37,9 +40,6 @@ public class FeeETCFee {
 
     @Column(name = "passfee")
     private double passFee;//收费额
-
-    /*@Column(name = "TOllDATE")
-    private Date tollDate;//统计时间*/
 
     @Column(name = "updatetime")
     private Date upDateTime;//更新时间
@@ -106,5 +106,29 @@ public class FeeETCFee {
 
     public void setUpDateTime(Date upDateTime) {
         this.upDateTime = upDateTime;
+    }
+
+    public String getPlaNo() {
+        return plaNo;
+    }
+
+    public void setPlaNo(String plaNo) {
+        this.plaNo = plaNo;
+    }
+
+    public String getLaneNo() {
+        return laneNo;
+    }
+
+    public void setLaneNo(String laneNo) {
+        this.laneNo = laneNo;
+    }
+
+    public Date getTollDate() {
+        return tollDate;
+    }
+
+    public void setTollDate(Date tollDate) {
+        this.tollDate = tollDate;
     }
 }

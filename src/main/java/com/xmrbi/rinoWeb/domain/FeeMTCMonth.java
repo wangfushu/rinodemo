@@ -5,23 +5,23 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "fee_mtcmonth")
+@IdClass(FeeMTCMonthPK.class)
 public class FeeMTCMonth {
 
-    /*@Id
+    @Id
     @Column(name = "plano")
-    private String plaNo;//路段*/
+    private String plaNo;//路段
 
-    @EmbeddedId
-    private FeeMTCMonthPK id;
+    @Id
+    @Column(name = "fyear")
+    private String fYear;//统计年份
+
+    @Id
+    @Column(name = "fmonth")
+    private String fMonth;//统计月份
 
     @Column(name = "planame")
     private String plaName;//路段名称
-
-   /* @Column(name = "fyear")
-    private String fYear;//统计年份
-
-    @Column(name = "fmonth")
-    private String fMonth;//统计月份*/
 
     @Column(name = "MTCFEE")
     private double mtcFee;//MTC收费金额
@@ -62,5 +62,29 @@ public class FeeMTCMonth {
 
     public void setUpDateTime(Date upDateTime) {
         this.upDateTime = upDateTime;
+    }
+
+    public String getPlaNo() {
+        return plaNo;
+    }
+
+    public void setPlaNo(String plaNo) {
+        this.plaNo = plaNo;
+    }
+
+    public String getfYear() {
+        return fYear;
+    }
+
+    public void setfYear(String fYear) {
+        this.fYear = fYear;
+    }
+
+    public String getfMonth() {
+        return fMonth;
+    }
+
+    public void setfMonth(String fMonth) {
+        this.fMonth = fMonth;
     }
 }

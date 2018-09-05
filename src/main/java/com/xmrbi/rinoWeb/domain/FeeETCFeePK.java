@@ -1,44 +1,28 @@
 package com.xmrbi.rinoWeb.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 
-@Embeddable
-public class FeeETCFeePK {
+public class FeeETCFeePK implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    @Id
     @Column(name = "plano")
     private String plaNo;//路段
 
+    @Id
     @Column(name = "laneno")
     private String laneNo;//车道号
 
+    @Id
     @Column(name = "TOllDATE")
     private Date tollDate;//统计时间
 
-    public String getPlaNo() {
-        return plaNo;
-    }
-
-    public void setPlaNo(String plaNo) {
+    public FeeETCFeePK(String plaNo, String laneNo, Date tollDate) {
         this.plaNo = plaNo;
-    }
-
-
-    public String getLaneNo() {
-        return laneNo;
-    }
-
-    public void setLaneNo(String laneNo) {
         this.laneNo = laneNo;
-    }
-
-
-    public Date getTollDate() {
-        return tollDate;
-    }
-
-    public void setTollDate(Date tollDate) {
         this.tollDate = tollDate;
     }
-
 }

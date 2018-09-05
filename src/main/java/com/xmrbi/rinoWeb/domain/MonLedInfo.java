@@ -10,7 +10,7 @@ import java.sql.Date;
  */
 
 @Entity
-@Table(name = "Mon_LedInfo")
+@Table(name = "mon_ledinfo")
 @IdClass(MonLedInfoPK.class)
 public class MonLedInfo {
 

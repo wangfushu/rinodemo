@@ -5,12 +5,15 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "high_rptstation")
+@IdClass(HighRptStationPK.class)
 public class HighRptStation {
-    /*@Id
+    @Id
     @Column(name = "stationid")
-    private String stationID;//收费站编号*/
-    @EmbeddedId
-    private HighRptStationPK id;//联合主键
+    private String stationID;//收费站编号
+
+    @Id
+    @Column(name = "totaltime")
+    private Date totalTime;//统计时间
 
     @Basic
     @Column(name = "stationname")
@@ -35,10 +38,6 @@ public class HighRptStation {
     @Basic
     @Column(name = "entpasscoutn")
     private int entPassCoutn;//累计收费金额
-
-    /*@Basic
-    @Column(name = "totaltime")
-    private Date totalTime;//统计时间*/
 
     @Basic
     @Column(name = "updatetime")
@@ -100,11 +99,19 @@ public class HighRptStation {
         this.upDateTime = upDateTime;
     }
 
-    public HighRptStationPK getId() {
-        return id;
+    public String getStationID() {
+        return stationID;
     }
 
-    public void setId(HighRptStationPK id) {
-        this.id = id;
+    public void setStationID(String stationID) {
+        this.stationID = stationID;
+    }
+
+    public Date getTotalTime() {
+        return totalTime;
+    }
+
+    public void setTotalTime(Date totalTime) {
+        this.totalTime = totalTime;
     }
 }

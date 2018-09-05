@@ -14,7 +14,6 @@ import java.sql.Date;
 @IdClass(MonRoadLampPK.class)
 public class MonRoadLamp {
 
-
     @Id
     @Column(name = "kid")
     private Date detectTime;

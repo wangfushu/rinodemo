@@ -5,21 +5,23 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "high_rptfee")
+@IdClass(HighRptFeePK.class)
 public class HighRptFee {
-    /*@Id
+    @Id
     @Column(name = "stationid")
-    private String stationID;//收费站编号*/
+    private String stationID;//收费站编号
 
-    @EmbeddedId
-    private HighRptFeePK id;
+    @Id
+    @Column(name = "fyear")
+    private String fYear;//统计年份
+
+    @Id
+    @Column(name = "totaltime")
+    private Date totalTime;//统计时间
 
     @Basic
     @Column(name = "stationname")
     private String stationName;//收费站名称
-
-   /* @Basic
-    @Column(name = "fyear")
-    private String fYear;//统计年份*/
 
     @Basic
     @Column(name = "MTCFEE")
@@ -29,21 +31,9 @@ public class HighRptFee {
     @Column(name = "ETCFEE")
     private double etcFee;//ETC收费金额
 
-    /*@Basic
-    @Column(name = "totaltime")
-    private Date totalTime;//统计时间*/
-
     @Basic
     @Column(name = "updatetime")
     private Date upDateTime;//更新时间
-
-    public HighRptFeePK getId() {
-        return id;
-    }
-
-    public void setId(HighRptFeePK id) {
-        this.id = id;
-    }
 
     public String getStationName() {
         return stationName;
@@ -75,5 +65,29 @@ public class HighRptFee {
 
     public void setUpDateTime(Date upDateTime) {
         this.upDateTime = upDateTime;
+    }
+
+    public String getStationID() {
+        return stationID;
+    }
+
+    public void setStationID(String stationID) {
+        this.stationID = stationID;
+    }
+
+    public String getfYear() {
+        return fYear;
+    }
+
+    public void setfYear(String fYear) {
+        this.fYear = fYear;
+    }
+
+    public Date getTotalTime() {
+        return totalTime;
+    }
+
+    public void setTotalTime(Date totalTime) {
+        this.totalTime = totalTime;
     }
 }
