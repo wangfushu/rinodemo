@@ -3,8 +3,10 @@ package com.xmrbi.rinoWeb.service;
 
 import com.xmrbi.rinoWeb.dao.MonWeatherInfoDao;
 import com.xmrbi.rinoWeb.dao.SysPlazaDao;
+import com.xmrbi.rinoWeb.dao.TyphoonInfoDao;
 import com.xmrbi.rinoWeb.domain.MonWeatherInfo;
 import com.xmrbi.rinoWeb.domain.SysPlaza;
+import com.xmrbi.rinoWeb.domain.TyphoonInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

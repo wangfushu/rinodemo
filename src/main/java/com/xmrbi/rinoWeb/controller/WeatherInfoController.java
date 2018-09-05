@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-public class HelloWarldController {
+public class WeatherInfoController {
 
     @Autowired
     private WeatherInfoService weatherInfoService;
