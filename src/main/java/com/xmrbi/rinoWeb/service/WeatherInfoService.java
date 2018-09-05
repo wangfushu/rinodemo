@@ -1,12 +1,10 @@
-package com.example.demo.service;
+package com.xmrbi.rinoWeb.service;
 
 
-import com.example.demo.dao.MonWeatherInfoDao;
-import com.example.demo.dao.SysPlazaDao;
-import com.example.demo.dao.TyphoonInfoDao;
-import com.example.demo.domain.MonWeatherInfo;
-import com.example.demo.domain.SysPlaza;
-import com.example.demo.domain.TyphoonInfo;
+import com.xmrbi.rinoWeb.dao.MonWeatherInfoDao;
+import com.xmrbi.rinoWeb.dao.SysPlazaDao;
+import com.xmrbi.rinoWeb.domain.MonWeatherInfo;
+import com.xmrbi.rinoWeb.domain.SysPlaza;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +43,6 @@ public class WeatherInfoService {
         }
         return monWeatherInfo;
     }
+
 
 }

@@ -1,8 +1,6 @@
-package com.example.demo.controller;
+package com.xmrbi.rinoWeb.controller;
 
-import com.example.demo.domain.MonWeatherInfo;
-import com.example.demo.domain.SysDictionary;
-import com.example.demo.service.WeatherInfoService;
+import com.xmrbi.rinoWeb.service.WeatherInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,9 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -69,7 +65,7 @@ public class HelloWarldController {
         map.put("hcdq",weatherInfoService.findMonWeatherInfolist("0002"));
         map.put("jmdq",weatherInfoService.findMonWeatherInfolist("0003"));
         map.put("xasd",weatherInfoService.findMonWeatherInfolist("0005"));
-        map.put("typhoon_info",weatherInfoService.findTyphoonInfo("莫兰蒂"));
+        //map.put("typhoon_info",weatherInfoService.findTyphoonInfo("莫兰蒂"));
         /*model.addAttribute("xmdq",weatherInfoService.findMonWeatherInfolist("0001"));
         model.addAttribute("hcdq",weatherInfoService.findMonWeatherInfolist("0002"));
         model.addAttribute("jmdq",weatherInfoService.findMonWeatherInfolist("0003"));

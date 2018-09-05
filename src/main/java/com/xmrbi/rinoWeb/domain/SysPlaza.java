@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.xmrbi.rinoWeb.domain;
 
 import javax.persistence.*;
 

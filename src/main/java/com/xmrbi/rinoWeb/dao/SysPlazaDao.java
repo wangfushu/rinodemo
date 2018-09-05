@@ -1,7 +1,7 @@
-package com.example.demo.dao;
+package com.xmrbi.rinoWeb.dao;
 
 
-import com.example.demo.domain.SysPlaza;
+import com.xmrbi.rinoWeb.domain.SysPlaza;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

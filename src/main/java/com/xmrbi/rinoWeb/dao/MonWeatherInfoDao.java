@@ -1,7 +1,7 @@
-package com.example.demo.dao;
+package com.xmrbi.rinoWeb.dao;
 
 
-import com.example.demo.domain.MonWeatherInfo;
+import com.xmrbi.rinoWeb.domain.MonWeatherInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
