@@ -183,66 +183,6 @@
                     </tr>
                 </table>
             </td>
-            <td rowspan="2" class="content-table ">
-                <table class="am-table am-table-bordered am-table-centered" style="height: 95%;border: none">
-                    <tr >
-                        <td colspan="2">
-                            <h3 style="color: #ffffff;font-size: 4vw">台风信息</h3>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><hr data-am-widget="divider" style="" class="am-divider am-divider-white"/></td>
-                    </tr>
-                    <tr >
-                        <td class="content-td" style="width: 50%;">
-                            <div  style="font-size: 2vw;font-weight: bold" ><span class="content-position-left">台风名称</span></div>
-                        </td>
-                        <td class="content-td" style="width: 50%;">
-                            <div  style="font-size: 2vw;font-weight: bold"><span class="content-position-right" id="typhoon_name" >萨瓦迪卡台风</span></div>
-                        </td>
-                    </tr>
-                    <tr >
-                        <td class="content-td" style="width: 50%;">
-                            <div  style="font-size: 2vw;font-weight: bold" ><span class="content-position-left">位置</span></div>
-                        </td>
-                        <td class="content-td" style="width: 50%;">
-                            <div  style="font-size: 2vw;font-weight: bold"><span class="content-position-right" id="typhoon_position">离厦门3000米</span></div>
-                        </td>
-                    </tr>
-                    <tr >
-                        <td class="content-td" style="width: 50%;">
-                            <div   style="font-size: 2vw;font-weight: bold"><span class="content-position-left" >中心风力</span></div>
-                        </td>
-                        <td class="content-td" style="width: 50%;">
-                            <div  style="font-size: 2vw;font-weight: bold"><span class="content-position-right" id="typhoon_central_wind" >14级</span></div>
-                        </td>
-                    </tr>
-                    <tr >
-                        <td class="content-td" style="width: 50%;">
-                            <div   style="font-size: 2vw;font-weight: bold"><span class="content-position-left" >最大风速</span></div>
-                        </td>
-                        <td class="content-td" style="width: 50%;">
-                            <div  style="font-size: 2vw;font-weight: bold"><span class="content-position-right" id="typhoon_max_speed" >20米/秒</span></div>
-                        </td>
-                    </tr>
-                    <tr >
-                        <td class="content-td" style="width: 50%;">
-                            <div   style="font-size: 2vw;font-weight: bold"><span class="content-position-left" >中心气压</span></div>
-                        </td>
-                        <td class="content-td" style="width: 50%;">
-                            <div  style="font-size: 2vw;font-weight: bold"><span class="content-position-right" id="typhoon_central_pressure" >180千帕</span></div>
-                        </td>
-                    </tr>
-                    <tr >
-                        <td class="content-td" style="width: 50%;">
-                            <div   style="font-size: 2vw;font-weight: bold"><span class="content-position-left" >移动速度</span></div>
-                        </td>
-                        <td class="content-td" style="width: 50%;">
-                            <div  style="font-size: 2vw;font-weight: bold"><span class="content-position-right" id="typhoon_travel_rate" >52公里/小时</span></div>
-                        </td>
-                    </tr>
-                </table>
-            </td>
         </tr>
         <tr style="height: 50%;">
             <td class="content-table ">
@@ -414,8 +354,8 @@
 <script type="text/javascript" src="amuzi-ui/assets/js/amazeui.min.js"></script>
 <script type="text/javascript" src="amuzi-ui/assets/js/app.js"></script>
 <script type="text/javascript" src="amuzi-ui/assets/js/blockUI.js"></script>
-<script type="text/javascript" src="amuzi-ui/assets/js/charts/echarts.js"></script>
 <script type="text/javascript" src="amuzi-ui/assets/js/tool-utils.js"></script>
+<script type="text/javascript" src="amuzi-ui/assets/js/charts/echarts.js"></script>
 <script type="text/javascript" th:inline="javascript">
     var humidity_xmdq;
     var humidity_jmdq;
@@ -452,35 +392,29 @@
         var xasd = maps.xasd;
         var typhoon_info = maps.typhoon_info;
         document.getElementById("jmdq_wind_speed").innerText = jmdq.windSpeed;
-        document.getElementById("jmdq_wind_value").innerText = getWindGrade(jmdq.windValue);
+        document.getElementById("jmdq_wind_value").innerText = getWindGrade(jmdq.windSpeed);
         document.getElementById("jmdq_wind").innerText = jmdq.wind;
         document.getElementById("jmdq_visibility").innerText = jmdq.visibility;
         document.getElementById("jmdq_rainfall").innerText = jmdq.rainfall;
 
         document.getElementById("hcdq_wind_speed").innerText = hcdq.windSpeed;
-        document.getElementById("hcdq_wind_value").innerText = getWindGrade(hcdq.windValue);
+        document.getElementById("hcdq_wind_value").innerText = getWindGrade(hcdq.windSpeed);
         document.getElementById("hcdq_wind").innerText = hcdq.wind;
         document.getElementById("hcdq_visibility").innerText = hcdq.visibility;
         document.getElementById("hcdq_rainfall").innerText = hcdq.rainfall;
 
         document.getElementById("xasd_wind_speed").innerText = xasd.windSpeed;
-        document.getElementById("xasd_wind_value").innerText = getWindGrade(xasd.windValue);
+        document.getElementById("xasd_wind_value").innerText = getWindGrade(xasd.windSpeed);
         document.getElementById("xasd_wind").innerText = xasd.wind;
         document.getElementById("xasd_visibility").innerText = xasd.visibility;
         document.getElementById("xasd_rainfall").innerText = xasd.rainfall;
 
         document.getElementById("xmdq_wind_speed").innerText = xmdq.windSpeed;
-        document.getElementById("xmdq_wind_value").innerText = getWindGrade(xmdq.windValue);
+        document.getElementById("xmdq_wind_value").innerText = getWindGrade(xmdq.windSpeed);
         document.getElementById("xmdq_wind").innerText = xmdq.wind;
         document.getElementById("xmdq_visibility").innerText = xmdq.visibility;
         document.getElementById("xmdq_rainfall").innerText = xmdq.rainfall;
 
-        document.getElementById("typhoon_travel_rate").innerText = typhoon_info.travelRate;
-        document.getElementById("typhoon_central_pressure").innerText = typhoon_info.centralPressure;
-        document.getElementById("typhoon_max_speed").innerText = typhoon_info.maxSpeed;
-        document.getElementById("typhoon_central_wind").innerText = typhoon_info.centralWind;
-        document.getElementById("typhoon_position").innerText = typhoon_info.position;
-        document.getElementById("typhoon_name").innerText = typhoon_info.typhoonName;
         changeTyphoonGif(xmdq.windValue,jmdq.windValue,hcdq.windValue,xasd.windValue);
         loadChart(xmdq.humidity,jmdq.humidity,hcdq.humidity,xasd.humidity);
     }

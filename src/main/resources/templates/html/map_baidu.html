@@ -21,64 +21,8 @@
 <body>
     <div id="allmap">
     </div>
-    <div class="content-table " style="position: fixed;top:0px;right:0px;width:30%;">
-        <table class="am-table am-table-bordered am-table-centered" style="border: none">
-            <tr >
-                <td colspan="2">
-                    <h3 style="color: #ffffff;font-size: 4vw">台风信息</h3>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2"><hr data-am-widget="divider" style="" class="am-divider am-divider-white"/></td>
-            </tr>
-            <tr >
-                <td class="content-td" style="width: 50%;">
-                    <div  ><span class="content-position-left">台风名称</span></div>
-                </td>
-                <td class="content-td" style="width: 50%;">
-                </td>
-            </tr>
-            <tr >
-                <td class="content-td" style="width: 50%;">
-                    <div  ><span class="content-position-left">位置</span></div>
-                </td>
-                <td class="content-td" style="width: 50%;">
-                    <div ><span class="content-position-right" >离厦门3000米</span></div>
-                </td>
-            </tr>
-            <tr >
-                <td class="content-td" style="width: 50%;">
-                    <div  ><span class="content-position-left">中心风力</span></div>
-                </td>
-                <td class="content-td" style="width: 50%;">
-                    <div ><span class="content-position-right" >14级</span></div>
-                </td>
-            </tr>
-            <tr >
-                <td class="content-td" style="width: 50%;">
-                    <div  ><span class="content-position-left">最大风速</span></div>
-                </td>
-                <td class="content-td" style="width: 50%;">
-                    <div ><span class="content-position-right" >20米/秒</span></div>
-                </td>
-            </tr>
-            <tr >
-                <td class="content-td" style="width: 50%;">
-                    <div  ><span class="content-position-left">中心气压</span></div>
-                </td>
-                <td class="content-td" style="width: 50%;">
-                    <div ><span class="content-position-right" >180千帕</span></div>
-                </td>
-            </tr>
-            <tr >
-                <td class="content-td" style="width: 50%;">
-                    <div  ><span class="content-position-left">移动速度</span></div>
-                </td>
-                <td class="content-td" style="width: 50%;">
-                    <div ><span class="content-position-right" >52公里/小时</span></div>
-                </td>
-            </tr>
-        </table>
+    <div class="content-table " style="position: fixed;top:0px;right:0px;width:30%;height: 200px">
+        测试
     </div>
 </body>
 </html>
@@ -98,6 +42,32 @@
     map.setMapType(BMAP_HYBRID_MAP);
     map.setCurrentCity("厦门");          // 设置地图显示的城市 此项是必须设置的
     map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+    var xmdqline = new BMap.Polyline([
+        new BMap.Point(118.101178,24.569434),
+        new BMap.Point(118.117132,24.5555),
+    ], {strokeColor:"yellow", strokeWeight:5, strokeOpacity:0.5});   //创建折线
+    var xasdline = new BMap.Polyline([
+        new BMap.Point(118.195177,24.527626),
+        new BMap.Point(118.225072,24.558655),
+    ], {strokeColor:"yellow", strokeWeight:5, strokeOpacity:0.5});   //创建折线
+    var hcdqline = new BMap.Polyline([
+        new BMap.Point(118.062371,24.503428),
+        new BMap.Point(118.089392,24.499219),
+    ], {strokeColor:"yellow", strokeWeight:5, strokeOpacity:0.5});   //创建折线
+    var xldqline = new BMap.Polyline([
+        new BMap.Point(118.065102,24.575087),
+        new BMap.Point(118.11512,24.553791),
+    ], {strokeColor:"yellow", strokeWeight:5, strokeOpacity:0.5});   //创建折线
+    var jmdqline = new BMap.Polyline([
+        new BMap.Point(118.118138,24.588888),
+        new BMap.Point(118.149758,24.560232),
+    ], {strokeColor:"yellow", strokeWeight:5, strokeOpacity:0.5});   //创建折线
+    map.addOverlay(xasdline);          //增加折线
+    map.addOverlay(xmdqline);
+    map.addOverlay(jmdqline);
+    map.addOverlay(hcdqline);
+    map.addOverlay(xldqline);
 </script>
 <script type="text/javascript" src="amuzi-ui/assets/js/jquery-2.1.0.js" ></script>
 <script type="text/javascript" src="amuzi-ui/assets/js/amazeui.min.js"></script>

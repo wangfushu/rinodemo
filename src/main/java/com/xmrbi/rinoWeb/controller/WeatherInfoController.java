@@ -30,24 +30,28 @@ public class WeatherInfoController {
         return "test";
     }
 
-    @RequestMapping("/myThymeleaf")
+    @RequestMapping("/rescue_force")
     public ModelAndView myThymeleaf(HttpServletRequest request){
-        ModelAndView model = new ModelAndView("/test");
-        model.addObject("model","Thymeleaf模板引擎");
+        ModelAndView model = new ModelAndView("html/rescue_force");
         return model;
     }
 
     @RequestMapping("/index")
     public ModelAndView index(HttpServletRequest request) {
-        //ModelAndView model = new ModelAndView("index");
-       /* List<SysDictionary> sysDictionaryList = sysDictionaryRepository.findByDictName("aa1");
-        model.addObject("sysDictionary",sysDictionaryList.get(0));*/
-
         ModelAndView model = new ModelAndView("index");
         model.addObject("xmdq",weatherInfoService.findMonWeatherInfolist("0001"));
         model.addObject("hcdq",weatherInfoService.findMonWeatherInfolist("0002"));
         model.addObject("jmdq",weatherInfoService.findMonWeatherInfolist("0003"));
-/*        model.addObject("xldq",weatherInfoService.findMonWeatherInfolist("0004"));*/
+        model.addObject("xasd",weatherInfoService.findMonWeatherInfolist("0005"));
+        return model;
+    }
+
+    @RequestMapping("/index_weather")
+    public ModelAndView indexWeather(HttpServletRequest request) {
+        ModelAndView model = new ModelAndView("html/index_weather");
+        model.addObject("xmdq",weatherInfoService.findMonWeatherInfolist("0001"));
+        model.addObject("hcdq",weatherInfoService.findMonWeatherInfolist("0002"));
+        model.addObject("jmdq",weatherInfoService.findMonWeatherInfolist("0003"));
         model.addObject("xasd",weatherInfoService.findMonWeatherInfolist("0005"));
         return model;
     }
