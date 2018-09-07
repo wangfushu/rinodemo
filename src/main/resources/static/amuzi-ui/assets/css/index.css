@@ -11,6 +11,12 @@
     /*opacity: 0.2;*/
 }
 
+.content-map{
+    background: url(/amuzi-ui/assets/img/daily_info.png);
+    color: #ffffff;
+    /*opacity: 0.2;*/
+}
+
 .content-td{
     color: #fff
 }
