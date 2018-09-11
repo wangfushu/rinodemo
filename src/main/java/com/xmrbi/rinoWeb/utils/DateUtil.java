@@ -532,9 +532,6 @@ public final class DateUtil {
 	}
 
 	public static Date fromDateStringToDate(String textTime) {
-		if (StringUtil.isEmpty(textTime)) {
-			return null;
-		}
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		Date date = new Date();
 		try {
@@ -550,9 +547,6 @@ public final class DateUtil {
 
 
 	public static Date fromDateStringToYMDDate(String textTime) {
-		if (StringUtil.isEmpty(textTime)) {
-			return null;
-		}
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		try {

@@ -39,7 +39,7 @@ public class HighRptStation {
     private int outPassCount;//出口数量
 
     @Basic
-    @Column(name = "entpasscoutn")
+    @Column(name = "entpasscount")
     private int entPassCoutn;//进口数量
 
     @Basic
@@ -118,11 +118,15 @@ public class HighRptStation {
         this.totalTime = totalTime;
     }
 
-
+    @Transient
     private String mtcFeeString;//MTC收费金额
+    @Transient
     private String etcFeeString;//ETC收费金额
+    @Transient
     private String getFeeString;//累计收费金额
+    @Transient
     private String outPassCountString;//出口数量
+    @Transient
     private String entPassCoutnString;//进口数量
 
     public void setMtcFeeString(String mtcFeeString) {
@@ -144,23 +148,20 @@ public class HighRptStation {
     public void setEntPassCoutnString(String entPassCoutnString) {
         this.entPassCoutnString = StringUtil.getFormat(6,this.entPassCoutn);
     }
-    @Transient
+
     public String getMtcFeeString() {
         return mtcFeeString;
     }
-    @Transient
     public String getEtcFeeString() {
         return etcFeeString;
     }
-    @Transient
     public String getGetFeeString() {
         return getFeeString;
     }
-    @Transient
     public String getOutPassCountString() {
         return outPassCountString;
     }
-    @Transient
+
     public String getEntPassCoutnString() {
         return entPassCoutnString;
     }

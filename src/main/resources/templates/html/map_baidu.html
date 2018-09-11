@@ -18,7 +18,7 @@
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=dvn7vZYoUmALgo7Q9nTEMmqXUGbK9tHa"></script>
     <title>地图展示</title>
 </head>
-<body>
+<body onload="asyHttp()">
     <div id="allmap">
     </div>
     <div class="content-map" style="position: fixed;top:0px;left:0px;">
@@ -173,7 +173,7 @@
             </tr>
             </tbody>
         </table>
-        <!--<table class="am-table am-table-bordered am-table-centered" style="height: 100%;border: none">
+        <table class="am-table am-table-bordered am-table-centered" style="height: 100%;border: none">
             <thead>
             <tr >
                 <th colspan="7" class="content-map-bg">
@@ -323,7 +323,7 @@
                 </td>
             </tr>
             </tbody>
-        </table>-->
+        </table>
         <table class="am-table am-table-bordered am-table-centered" style="height: 100%;border: none;">
             <thead>
                 <tr >
@@ -600,20 +600,42 @@
 <script type="text/javascript" src="amuzi-ui/assets/js/charts/echarts.js"></script>
 <script type="text/javascript" src="amuzi-ui/assets/js/tool-utils.js"></script>
 <script>
-    var fee_pay_bar = getId("fee_pay_bar");
-    //var high_fee_pay_bar = getId("high_fee_pay_bar");
+    //var fee_pay_bar = getId("fee_pay_bar");
+    var high_fee_pay_bar = getId("high_fee_pay_bar");
     var weixin_total_bar = getId("weixin_total_bar");
     var lqt_total_bar = getId("lqt_total_bar");
-    var myChart_fee_pay_bar = echarts.init(fee_pay_bar);
-    //var myChart_high_fee_pay_bar = echarts.init(high_fee_pay_bar);
+    //var myChart_fee_pay_bar = echarts.init(fee_pay_bar);
+    var myChart_high_fee_pay_bar = echarts.init(high_fee_pay_bar);
     var myChart_lqt_total_bar = echarts.init(lqt_total_bar);
     var myChart_weixin_total_bar = echarts.init(weixin_total_bar);
-    var option_fee_pay_bar = getOption();
-    myChart_fee_pay_bar.setOption(option_fee_pay_bar);
     //myChart_high_fee_pay_bar.setOption(option_fee_pay_bar);
     myChart_weixin_total_bar.setOption(getUserOption(34491,29331,10022));
     myChart_lqt_total_bar.setOption(getUserOption(25000,28000,16000));
-    function getOption() {
+
+    function asyHttp() {
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+            // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {
+            // IE6, IE5 浏览器执行代码
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                if (xmlhttp.responseText != null) {
+                    initHighSpeedData(xmlhttp);
+                }
+            }
+        };
+        xmlhttp.open("POST", "dailyInfo/highRptlist", true);
+        xmlhttp.send();
+        setTimeout("asyHttp()", 50000);
+    }
+
+    function getOption(num1,num2,num3,num4,str1,str2) {
         var app = {};
         option = null;
         app.title = '条形图';
@@ -629,29 +651,30 @@
             },
             legend:{
                 data : [ '年费', '次费' ],
-                position:'bottom',
+                color:["#fff"],
+                top: 'bottom',
             },
             series: [{
-                name:'年费',
+                name:str1,
                 label:{
                     normal:{
                         show:true,
-                        position:'bottom'
+                        position:'top'
                     }
                 },
-                data: [120, 200],
+                data: [num1, num2],
                 type: 'bar',
                 color:["#f7b820"],
             },{
             type: 'bar',
                 z: 10,
-                name:'次费',
-                data: [45, 60],
+                name:str2,
+                data: [num3, num4],
                 color:["#00aff0"],
                 label:{
                     normal:{
                         show:true,
-                        position:'bottom'
+                        position:'top'
                     }
                 },
             }]
@@ -703,48 +726,61 @@
         getId("total_total_now_pay").innerText = "";
     }
 
-    function initHighSpeedData() {
-        getId("xmxz_in_last_pay").innerText = "";
-        getId("xyz_in_last_pay").innerText = "";
-        getId("hcz_in_last_pay").innerText = "";
-        getId("xlz_in_last_pay").innerText = "";
-        getId("xzzx_in_last_pay").innerText = "";
-        getId("total_high_in_last_pay").innerText = "";
+    function initHighSpeedData(xmlhttp) {
+        var maps = JSON.parse(xmlhttp.responseText);
+        var xzzx = maps.xzzx;
+        var xzzx_yd = maps.xzzx_yd;
+        var xl = maps.xl;
+        var xl_yd = maps.xl_yd;
+        var hc = maps.hc;
+        var hc_yd = maps.hc_yd;
+        var xy = maps.xy;
+        var xy_yd = maps.xy_yd;
+        var xmx = maps.xmx;
+        var xmx_yd = maps.xmx_yd;
+        getId("xmxz_in_last_pay").innerText = xmx_yd.entPassCoutnString;
+        getId("xyz_in_last_pay").innerText = xy_yd.entPassCoutnString;
+        getId("hcz_in_last_pay").innerText = hc_yd.entPassCoutnString;
+        getId("xlz_in_last_pay").innerText = xl_yd.entPassCoutnString;
+        getId("xzzx_in_last_pay").innerText = xzzx_yd.entPassCoutnString;
+        getId("total_high_in_last_pay").innerText = xzzx_yd.entPassCoutn+xy.entPassCoutn+hc_yd.entPassCoutn+xl_yd.entPassCoutn+xmx_yd.entPassCoutn;
 
-        getId("xmxz_in_now_pay").innerText = "";
-        getId("xyz_in_now_pay").innerText = "";
-        getId("hcz_in_now_pay").innerText = "";
-        getId("xzzx_in_now_pay").innerText = "";
-        getId("jmdq_in_now_pay").innerText = "";
-        getId("total_high_in_now_pay").innerText = "";
+        getId("xmxz_in_now_pay").innerText = xmx.entPassCoutnString;
+        getId("xyz_in_now_pay").innerText = xy.entPassCoutnString;
+        getId("hcz_in_now_pay").innerText = hc.entPassCoutnString;;
+        getId("xzzx_in_now_pay").innerText = xl.entPassCoutnString;;
+        getId("jmdq_in_now_pay").innerText = xzzx.entPassCoutnString;;
+        getId("total_high_in_now_pay").innerText = xzzx.entPassCoutn+xy.entPassCoutn+hc.entPassCoutn+xl.entPassCoutn+xmx.entPassCoutn;
 
-        getId("xmxz_out_last_pay").innerText = "";
-        getId("xyz_out_last_pay").innerText = "";
-        getId("hcz_out_last_pay").innerText = "";
-        getId("jmdq_out_last_pay").innerText = "";
-        getId("xzzx_out_last_pay").innerText = "";
-        getId("total_high_out_last_pay").innerText = "";
+        getId("xmxz_out_last_pay").innerText = xmx_yd.outPassCountString;
+        getId("xyz_out_last_pay").innerText = xy_yd.outPassCountString;
+        getId("hcz_out_last_pay").innerText = hc_yd.outPassCountString;
+        getId("jmdq_out_last_pay").innerText = xl_yd.outPassCountString;
+        getId("xzzx_out_last_pay").innerText = xzzx_yd.outPassCountString;
+        getId("total_high_out_last_pay").innerText = xzzx_yd.outPassCoutn+xy_yd.outPassCoutn+hc_yd.outPassCoutn+xl_yd.outPassCoutn+xmx_yd.outPassCoutn;
 
-        getId("xmxz_total_out_now_pay").innerText = "";
-        getId("xyz_total_out_now_pay").innerText = "";
-        getId("hcz_total_out_now_pay").innerText = "";
-        getId("jmdq_total_out_now_pay").innerText = "";
-        getId("xzzx_total_out_now_pay").innerText = "";
-        getId("total_high_out_now_pay").innerText = "";
+        getId("xmxz_total_out_now_pay").innerText = xmx.outPassCountString;
+        getId("xyz_total_out_now_pay").innerText = xy.outPassCountString;
+        getId("hcz_total_out_now_pay").innerText = hc.outPassCountString;
+        getId("jmdq_total_out_now_pay").innerText = xl.outPassCountString;
+        getId("xzzx_total_out_now_pay").innerText = xzzx.outPassCountString;
+        getId("total_high_out_now_pay").innerText = xzzx.outPassCoutn+xy.outPassCoutn+hc.outPassCoutn+xl.outPassCoutn+xmx.outPassCoutn;
 
-        getId("xmxz_total_last_pay").innerText = "";
-        getId("xyz_total_last_pay").innerText = "";
-        getId("hcz_total_last_pay").innerText = "";
-        getId("jmdq_total_last_pay").innerText = "";
-        getId("xzzx_total_last_pay").innerText = "";
-        getId("total_high_fee_last_pay").innerText = "";
+        getId("xmxz_total_last_pay").innerText = xmx_yd.getFeeString;
+        getId("xyz_total_last_pay").innerText = xy_yd.getFeeString;
+        getId("hcz_total_last_pay").innerText = hc_yd.getFeeString;
+        getId("jmdq_total_last_pay").innerText = xl_yd.getFeeString;
+        getId("xzzx_total_last_pay").innerText = xzzx_yd.getFeeString;
+        getId("total_high_fee_last_pay").innerText = xzzx_yd.getFee+xy_yd.getFee+hc_yd.getFee+xl_yd.getFee+xmx_yd.getFee;
 
-        getId("xmxz_total_now_pay").innerText = "";
-        getId("xyz_total_now_pay").innerText = "";
-        getId("hcz_total_now_pay").innerText = "";
-        getId("jmdq_total_now_pay").innerText = "";
-        getId("xzzx_total_now_pay").innerText = "";
-        getId("total_high_fee_now_pay").innerText = "";
+        getId("xmxz_total_now_pay").innerText = xmx.getFeeString;
+        getId("xyz_total_now_pay").innerText = xy.getFeeString;
+        getId("hcz_total_now_pay").innerText = hc.getFeeString;
+        getId("jmdq_total_now_pay").innerText = xl.getFeeString;
+        getId("xzzx_total_now_pay").innerText = xzzx.getFeeString;
+        getId("total_high_fee_now_pay").innerText = xzzx.getFee+xy.getFee+hc.getFee+xl.getFee+xmx.getFee;
+        var option_fee_pay_bar = getOption(xzzx_yd.mtcFee+xy_yd.mtcFee+hc_yd.mtcFee+xl_yd.mtcFee+xmx_yd.mtcFee,xzzx_yd.etcFee+xy_yd.etcFee+hc_yd.etcFee+xl_yd.etcFee+xmx_yd.etcFee,xzzx.mtcFee+xy.mtcFee+hc.mtcFee+xl.mtcFee+xmx.mtcFee,xzzx.etcFee+xy.etcFee+hc.etcFee+xl.etcFee+xmx.etcFee,"MTC","ETC");
+        myChart_high_fee_pay_bar.setOption(option_fee_pay_bar);
     }
 
 </script>

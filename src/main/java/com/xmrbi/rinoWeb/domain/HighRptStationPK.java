@@ -19,4 +19,7 @@ public class HighRptStationPK implements Serializable {
         this.stationID = stationID;
         this.totalTime = totalTime;
     }
+
+    public HighRptStationPK() {
+    }
 }
