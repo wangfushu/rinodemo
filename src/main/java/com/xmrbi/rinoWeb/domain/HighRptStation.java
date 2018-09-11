@@ -3,7 +3,8 @@ package com.xmrbi.rinoWeb.domain;
 import com.xmrbi.rinoWeb.utils.StringUtil;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
+
 
 @Entity
 @Table(name = "high_rptstation")

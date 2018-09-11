@@ -2,8 +2,6 @@ package com.xmrbi.rinoWeb.vo;
 
 import com.xmrbi.rinoWeb.domain.HighRptStation;
 
-import java.util.List;
-
 /**
  * code is far away from bug with the animal protecting
  * ┏┓　　　┏┓
@@ -31,9 +29,12 @@ import java.util.List;
  * @Date: 2018-09-11 10:25
  */
 public class HighRptDailyInfoVo {
-    public List<HighRptStation> todayHighRptStation;
-    public List<HighRptStation> yesterdayHighRptStation;
+    public HighRptStation xzzx;
 
+
+   /* public List<HighRptStation> todayHighRptStation;
+    public List<HighRptStation> yesterdayHighRptStation;*/
+/*
     public List<HighRptStation> getTodayHighRptStation() {
         return todayHighRptStation;
     }
@@ -53,5 +54,5 @@ public class HighRptDailyInfoVo {
     public HighRptDailyInfoVo(List<HighRptStation> todayHighRptStation, List<HighRptStation> yesterdayHighRptStation) {
         this.todayHighRptStation = todayHighRptStation;
         this.yesterdayHighRptStation = yesterdayHighRptStation;
-    }
+    }*/
 }

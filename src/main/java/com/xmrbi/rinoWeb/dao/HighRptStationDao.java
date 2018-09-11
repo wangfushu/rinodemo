@@ -35,5 +35,5 @@ import java.util.Date;
  */
 public interface HighRptStationDao extends JpaRepository<HighRptStation, HighRptStationPK> {
     HighRptStation findTopByStationIDOrderByUpDateTimeDesc(String stationID);
-    HighRptStation findTopByStationIDAAndTotalTimeOrderByUpDateTimeDesc(String stationID, Date totalTime);
+    HighRptStation findTopByStationIDAndTotalTimeOrderByUpDateTimeDesc(String stationID, Date totalTime);
 }

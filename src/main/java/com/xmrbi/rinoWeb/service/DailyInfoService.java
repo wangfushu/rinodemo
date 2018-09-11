@@ -48,7 +48,7 @@ public class DailyInfoService {
     }
     public HighRptStation getYesterDayHighRptStationInfo(String stationID){
         Date totalTime = DateUtil.getYesterDayTime(new Date());
-        return highRptStationDao.findTopByStationIDAAndTotalTimeOrderByUpDateTimeDesc(stationID,totalTime);
+        return highRptStationDao.findTopByStationIDAndTotalTimeOrderByUpDateTimeDesc(stationID,totalTime);
     }
 
 }

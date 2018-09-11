@@ -532,7 +532,7 @@ public final class DateUtil {
 	}
 
 	public static Date fromDateStringToDate(String textTime) {
-		if (gmms.util.StringUtils.isNullBlank(textTime)) {
+		if (StringUtil.isEmpty(textTime)) {
 			return null;
 		}
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -550,7 +550,7 @@ public final class DateUtil {
 
 
 	public static Date fromDateStringToYMDDate(String textTime) {
-		if (gmms.util.StringUtils.isNullBlank(textTime)) {
+		if (StringUtil.isEmpty(textTime)) {
 			return null;
 		}
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
