@@ -16,7 +16,7 @@ public class TyphoonInfo implements Serializable {
     private long travelRate;
 
     @Id
-    @Column(name = "id",columnDefinition="bigint ")
+    @Column(name = "id",columnDefinition="bigint")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     public long getId() {
         return id;

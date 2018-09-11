@@ -1,5 +1,7 @@
 package com.xmrbi.rinoWeb.domain;
 
+import com.xmrbi.rinoWeb.utils.StringUtil;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -21,23 +23,23 @@ public class HighRptStation {
 
     @Basic
     @Column(name = "MTCFEE")
-    private double mtcFee;//MTC收费金额
+    private Double mtcFee;//MTC收费金额
 
     @Basic
     @Column(name = "ETCFEE")
-    private double etcFee;//ETC收费金额
+    private Double etcFee;//ETC收费金额
 
     @Basic
     @Column(name = "getfee")
-    private double getFee;//累计收费金额
+    private Double getFee;//累计收费金额
 
     @Basic
     @Column(name = "outpasscount")
-    private int outPassCount;//累计收费金额
+    private int outPassCount;//出口数量
 
     @Basic
     @Column(name = "entpasscoutn")
-    private int entPassCoutn;//累计收费金额
+    private int entPassCoutn;//进口数量
 
     @Basic
     @Column(name = "updatetime")
@@ -51,11 +53,11 @@ public class HighRptStation {
         this.stationName = stationName;
     }
 
-    public double getGetFee() {
+    public Double getGetFee() {
         return getFee;
     }
 
-    public void setGetFee(double getFee) {
+    public void setGetFee(Double getFee) {
         this.getFee = getFee;
     }
 
@@ -75,19 +77,19 @@ public class HighRptStation {
         this.entPassCoutn = entPassCoutn;
     }
 
-    public double getMtcFee() {
+    public Double getMtcFee() {
         return mtcFee;
     }
 
-    public void setMtcFee(double mtcFee) {
+    public void setMtcFee(Double mtcFee) {
         this.mtcFee = mtcFee;
     }
 
-    public double getEtcFee() {
+    public Double getEtcFee() {
         return etcFee;
     }
 
-    public void setEtcFee(double etcFee) {
+    public void setEtcFee(Double etcFee) {
         this.etcFee = etcFee;
     }
 
@@ -114,4 +116,71 @@ public class HighRptStation {
     public void setTotalTime(Date totalTime) {
         this.totalTime = totalTime;
     }
+
+
+    private String mtcFeeString;//MTC收费金额
+    private String etcFeeString;//ETC收费金额
+    private String getFeeString;//累计收费金额
+    private String outPassCountString;//出口数量
+    private String entPassCoutnString;//进口数量
+
+    public void setMtcFeeString(String mtcFeeString) {
+        this.mtcFeeString = StringUtil.getFormat(6,this.mtcFee.intValue());
+    }
+
+    public void setEtcFeeString(String etcFeeString) {
+        this.etcFeeString = StringUtil.getFormat(6,this.etcFee.intValue());
+    }
+
+    public void setGetFeeString(String getFeeString) {
+        this.getFeeString = StringUtil.getFormat(6,this.getFee.intValue());
+    }
+
+    public void setOutPassCountString(String outPassCountString) {
+        this.outPassCountString = StringUtil.getFormat(6,this.outPassCount);
+    }
+
+    public void setEntPassCoutnString(String entPassCoutnString) {
+        this.entPassCoutnString = StringUtil.getFormat(6,this.entPassCoutn);
+    }
+    @Transient
+    public String getMtcFeeString() {
+        return mtcFeeString;
+    }
+    @Transient
+    public String getEtcFeeString() {
+        return etcFeeString;
+    }
+    @Transient
+    public String getGetFeeString() {
+        return getFeeString;
+    }
+    @Transient
+    public String getOutPassCountString() {
+        return outPassCountString;
+    }
+    @Transient
+    public String getEntPassCoutnString() {
+        return entPassCoutnString;
+    }
+    /*  @Transient
+    public String  getOutPassCountString() {
+        return StringUtil.getFormat(6,this.outPassCount);
+    }
+    @Transient
+    public String  getEntPassCoutnString() {
+        return StringUtil.getFormat(6,this.entPassCoutn);
+    }
+    @Transient
+    public String  getMtcFeeString() {
+        return StringUtil.getFormat(6,mtcFee.intValue());
+    }
+    @Transient
+    public String  getGetFeeString() {
+        return StringUtil.getFormat(6,this.getFee.intValue());
+    }
+    @Transient
+    public String  getEtcFeeString() {
+        return StringUtil.getFormat(6,this.etcFee.intValue());
+    }*/
 }
