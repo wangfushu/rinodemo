@@ -41,3 +41,46 @@ function getWindGrade(windSpeed) {
     }
     return wind;
 }
+
+function getUserOption(num1,num2,num3) {
+    var app = {};
+    option = null;
+    app.title = '条形图';
+    option = {
+        xAxis: {
+            show:true,
+            type: 'category',
+
+        },
+        yAxis: {
+            type: 'value',
+            show:false,
+        },
+        legend:{
+            type:'plain',
+            align:'right',
+            top:0,
+        },
+        series: [{
+            label:true,
+            data: [num1],
+            type: 'bar',
+            color:["#10c469"],
+        },{
+            type: 'bar',
+            z: 10,
+            data: [num2],
+            color:["#00aff0"],
+        },{
+            type: 'bar',
+            z: 10,
+            data: [num3],
+            color:["#ffc028"],
+        }]
+    };
+    return option;
+}
+
+function getId(id) {
+    return document.getElementById(id);
+}

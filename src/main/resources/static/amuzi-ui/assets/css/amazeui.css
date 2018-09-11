@@ -2068,12 +2068,12 @@ th {
   padding: 0.7rem;
   line-height: 1.6;
   vertical-align: top;
-  border-top: 1px solid #ddd;
+  /*border-top: 1px solid #ddd;*/
   border-top:none;
 }
 .am-table > thead > tr > th {
   vertical-align: bottom;
-  border-bottom: 1px solid #ddd;
+  /*border-bottom: 1px solid #ddd;*/
 }
 .am-table > caption + thead > tr:first-child > th,
 .am-table > colgroup + thead > tr:first-child > th,
@@ -2109,7 +2109,7 @@ th {
 }
 .am-table-bordered > thead + tbody > tr:first-child > th,
 .am-table-bordered > thead + tbody > tr:first-child > td {
-  border-top: 1px solid #ddd;
+  /*border-top: 1px solid #ddd;*/
 }
 /* Border-radius version */
 .am-table-radius {

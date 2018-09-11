@@ -1,19 +1,20 @@
 .content-bg{
-    background:#fff url(/amuzi-ui/assets/img/bg_weather.jpg) no-repeat;
+    background:#fff url(/amuzi-ui/assets/img/bg_weather1.jpg) no-repeat;
     height: 100%;
     width: 100%;
     background-size:100%;
 }
 
 .content-table{
-    background: url(/amuzi-ui/assets/img/body_bg.png);
+    background: url(/amuzi-ui/assets/img/body_bg1.png);
     color: #ffffff;
     /*opacity: 0.2;*/
 }
 
 .content-map{
-    background: url(/amuzi-ui/assets/img/daily_info.png);
+    background: url(/amuzi-ui/assets/img/body_bg_table.png);
     color: #ffffff;
+    background-size: 100%;
     /*opacity: 0.2;*/
 }
 
@@ -31,4 +32,25 @@
 
 .content-span{
     font-size: 1.0rem;
+}
+
+.content-map-text{
+    background: #0a628f;
+    color: #ffffff;
+    font-size: 1.5vw;
+    font-weight: bold
+}
+
+.content-map-bg{
+    background: #3b3e47;
+}
+
+.content-map-table-td{
+    padding: 0;
+    line-height: 0;
+}
+
+.content-map-div-td{
+    padding: 2px;
+    line-height: 2px;
 }

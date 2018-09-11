@@ -14,13 +14,13 @@ public class SysPlaza {
     @Column(name = "PLANO")
     private String plaNo;
 
-    @Basic
+  /*  @Basic
     @Column(name = "PLAORDERNO")
-    private Long plaOrderNo;
+    private Long plaOrderNo;*/
     @Basic
     @Column(name = "PLANAME")
     private String plaName;
-    @Basic
+ /*   @Basic
     @Column(name = "PLACASHBANK")
     private String plaCashBank;
     @Basic
@@ -31,7 +31,7 @@ public class SysPlaza {
     private String plaRemark;
     @Basic
     @Column(name = "PLAZIPCODE")
-    private String plaZipCode;
+    private String plaZipCode;*/
 
     public String getPlaNo() {
         return plaNo;
@@ -41,13 +41,13 @@ public class SysPlaza {
         this.plaNo = plaNo;
     }
 
-    public Long getPlaOrderNo() {
+  /*  public Long getPlaOrderNo() {
         return plaOrderNo;
     }
 
     public void setPlaOrderNo(Long plaOrderNo) {
         this.plaOrderNo = plaOrderNo;
-    }
+    }*/
 
     public String getPlaName() {
         return plaName;
@@ -57,7 +57,7 @@ public class SysPlaza {
         this.plaName = plaName;
     }
 
-    public String getPlaCashBank() {
+   /* public String getPlaCashBank() {
         return plaCashBank;
     }
 
@@ -87,6 +87,6 @@ public class SysPlaza {
 
     public void setPlaZipCode(String plaZipCode) {
         this.plaZipCode = plaZipCode;
-    }
+    }*/
 
 }

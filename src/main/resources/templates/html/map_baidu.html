@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -21,7 +21,532 @@
 <body>
     <div id="allmap">
     </div>
-    <div class="content-map" style="position: fixed;top:0px;left:0px;width:30%;height: 40%">
+    <div class="content-map" style="position: fixed;top:0px;left:0px;">
+        <table class="am-table am-table-bordered am-table-centered" style="height: 100%;border: none">
+            <thead>
+            <tr >
+                <th colspan="7" class="content-map-bg">
+                    <h1 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">四桥一隧收费信息</h1>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr >
+                <th class="content-map-bg">
+                    <h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">海沧大桥</h2>
+                </th>
+                <th class="content-map-bg">
+                    <h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">杏林大桥</h2>
+                </th>
+                <th class="content-map-bg">
+                    <h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">厦门大桥</h2>
+                </th>
+                <th class="content-map-bg">
+                    <h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">集美大桥</h2>
+                </th>
+                <th class="content-map-bg">
+                    <h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">翔安隧道</h2>
+                </th>
+                <th class="content-map-bg">
+                    <h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">合计</h2>
+                </th>
+                <th class="content-map-bg">
+                    <h2  style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">收费数据统计</h2>
+                </th>
+            </tr>
+            <tr >
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;进&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="hcdq_in_last_pay">073588</span><br>
+                        <span>&nbsp;岛&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="hcdq_in_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;进&nbsp;&nbsp;&nbsp;</span><span id="xldq_in_last_pay">073588</span><br>
+                        <span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="xldq_in_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;进&nbsp;&nbsp;&nbsp;</span><span id="xmdq_in_last_pay">073588</span><br>
+                        <span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="xmdq_in_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;进&nbsp;&nbsp;&nbsp;</span><span id="jmdq_in_last_pay">073588</span><br>
+                        <span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="jmdq_in_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;进&nbsp;&nbsp;&nbsp;</span><span id="xasd_in_last_pay">073588</span><br>
+                        <span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="xasd_in_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;进&nbsp;&nbsp;&nbsp;</span><span id="total_in_last_pay">073588</span><br>
+                        <span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="total_in_now_pay">050747</span>
+                    </div>
+                </td>
+                <td rowspan="3">
+                    <div id="fee_pay_bar" style="height: 100%"></div>
+                </td>
+            </tr>
+            <tr >
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;出&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="hcdq_out_last_pay">073588</span><br>
+                        <span>&nbsp;岛&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="hcdq_out_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="xldq_out_last_pay">073588</span><br>
+                        <span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="xldq_out_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="xmdq_out_last_pay">073588</span><br>
+                        <span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="xmdq_out_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="jmdq_out_last_pay">073588</span><br>
+                        <span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="jmdq_out_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="xasd_out_last_pay">073588</span><br>
+                        <span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="xasd_out_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="total_out_last_pay">073588</span><br>
+                        <span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="total_out_now_pay">050747</span>
+                    </div>
+                </td>
+            </tr>
+            <tr >
+                <td class="content-map-text">
+                    <div >
+                        <span >累计&nbsp;</span><span id="hcdq_total_last_pay">073588</span><br>
+                        <span>全额&nbsp;</span><span id="hcdq_total_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >累计&nbsp;</span><span id="xldq_total_last_pay">073588</span><br>
+                        <span>全额&nbsp;</span><span id="xldq_total_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >累计&nbsp;</span><span id="xmdq_total_last_pay">073588</span><br>
+                        <span>全额&nbsp;</span><span id="xmdq_total_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >累计&nbsp;</span><span id="jmdq_total_last_pay">073588</span><br>
+                        <span>全额&nbsp;</span><span id="jmdq_total_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >累计&nbsp;</span><span id="xasd_total_last_pay">073588</span><br>
+                        <span>全额&nbsp;</span><span id="xasd_total_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >累计&nbsp;</span><span id="total_fee_last_pay">073588</span><br>
+                        <span>全额&nbsp;</span><span id="total_fee_now_pay">050747</span>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <!--<table class="am-table am-table-bordered am-table-centered" style="height: 100%;border: none">
+            <thead>
+            <tr >
+                <th colspan="7" class="content-map-bg">
+                    <h1 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">厦漳厦蓉高速收费信息</h1>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr >
+                <th class="content-map-bg">
+                    <h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">厦门西站</h2>
+                </th>
+                <th class="content-map-bg">
+                    <h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">新阳站</h2>
+                </th>
+                <th class="content-map-bg">
+                    <h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">海沧站</h2>
+                </th>
+                <th class="content-map-bg">
+                    <h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">杏林站</h2>
+                </th>
+                <th class="content-map-bg">
+                    <h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">厦漳主线</h2>
+                </th>
+                <th class="content-map-bg">
+                    <h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">合计</h2>
+                </th>
+                <th class="content-map-bg">
+                    <h2  style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">收费数据统计</h2>
+                </th>
+            </tr>
+            <tr >
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;入&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="xmxz_in_last_pay">073588</span><br>
+                        <span>&nbsp;口&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="xmxz_in_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;入&nbsp;&nbsp;&nbsp;</span><span id="xyz_in_last_pay">073588</span><br>
+                        <span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="xyz_in_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;入&nbsp;&nbsp;&nbsp;</span><span id="hcz_in_last_pay">073588</span><br>
+                        <span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="hcz_in_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;入&nbsp;&nbsp;&nbsp;</span><span id="xlz_in_last_pay">073588</span><br>
+                        <span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="xlz_in_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;入&nbsp;&nbsp;&nbsp;</span><span id="xzzx_in_last_pay">073588</span><br>
+                        <span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="xzzx_in_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;入&nbsp;&nbsp;&nbsp;</span><span id="total_high_in_last_pay">073588</span><br>
+                        <span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="total_high_in_now_pay">050747</span>
+                    </div>
+                </td>
+                <td rowspan="3">
+                    <div id="high_fee_pay_bar" style="height: 100%"></div>
+                </td>
+            </tr>
+            <tr >
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;出&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="xmxz_out_last_pay">073588</span><br>
+                        <span>&nbsp;口&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="xmxz_out_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="xyz_out_last_pay">073588</span><br>
+                        <span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="xyz_out_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="hcz_out_last_pay">073588</span><br>
+                        <span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="hcz_out_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="xlz_out_last_pay">073588</span><br>
+                        <span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="xlz_out_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="xzzx_out_last_pay">073588</span><br>
+                        <span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="xzzx_out_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="total_high_out_last_pay">073588</span><br>
+                        <span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="total_high_out_now_pay">050747</span>
+                    </div>
+                </td>
+            </tr>
+            <tr >
+                <td class="content-map-text">
+                    <div >
+                        <span >累计&nbsp;</span><span id="xmxz_total_last_pay">073588</span><br>
+                        <span>全额&nbsp;</span><span id="xmxz_total_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >累计&nbsp;</span><span id="xyz_total_last_pay">073588</span><br>
+                        <span>全额&nbsp;</span><span id="xyz_total_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >累计&nbsp;</span><span id="hcz_total_last_pay">073588</span><br>
+                        <span>全额&nbsp;</span><span id="hcz_total_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >累计&nbsp;</span><span id="xlz_total_last_pay">073588</span><br>
+                        <span>全额&nbsp;</span><span id="xlz_total_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >累计&nbsp;</span><span id="xzzx_total_last_pay">073588</span><br>
+                        <span>全额&nbsp;</span><span id="xzzx_total_now_pay">050747</span>
+                    </div>
+                </td>
+                <td class="content-map-text">
+                    <div >
+                        <span >累计&nbsp;</span><span id="total_high_fee_last_pay">073588</span><br>
+                        <span>全额&nbsp;</span><span id="total_high_fee_now_pay">050747</span>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>-->
+        <table class="am-table am-table-bordered am-table-centered" style="height: 100%;border: none;">
+            <thead>
+                <tr >
+                    <th class="content-map-bg" colspan="2">
+                        <h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">路桥通</h2>
+                    </th>
+                    <th class="content-map-bg" colspan="2">
+                        <h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">微信</h2>
+                    </th>
+                    <th class="content-map-bg" colspan="2">
+                        <h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">客服电话</h2>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr >
+                    <td rowspan="3" style="width: 16.66%">
+                        <div  id="lqt_total_bar" style="height: 100%;"></div>
+                    </td>
+                    <td class="content-map-table-td content-map-text" style="width: 16.66%;" >
+                        <div >
+                            <p style="margin: 0">
+                                总注册用户数
+                            </p>
+                            <p  style="text-align: center;margin: 0;color: #10c469">
+                                34411(人)
+                            </p>
+                        </div>
+                    </td>
+                    <td rowspan="3" style="width: 16.66%">
+                        <div  id="weixin_total_bar" style="height: 100%;"></div>
+                    </td>
+                    <td class="content-map-text content-map-table-td"  style="width: 16.66%;">
+                        <div  >
+                            <p  style="margin: 0">
+                                总注册用户数
+                            </p>
+                            <p  style="text-align: center;margin: 0;color: #10c469">
+                                25000(人)
+                            </p>
+                        </div>
+                    </td>
+                    <td rowspan="3" colspan="2">
+                        <div style="height: 10%"></div>
+                        <div style="display: table;">
+                            <div style="display: table-row">
+                            <div class="content-map-text content-map-div-td" style="display: table-cell">
+                                <div style="display:table-cell;width: 60%;font-size: 1vw">
+                                    <p  style="margin: 1px">
+                                        <span>坐席号</span>&nbsp;&nbsp;<span>001</span>
+                                    </p>
+                                    <p  style="margin: 1px">
+                                        <span>呼入量</span>&nbsp;&nbsp;<span>001</span>
+                                    </p>
+                                    <p  style="margin: 1px">
+                                        <span>呼出量</span>&nbsp;&nbsp;<span>001</span>
+                                    </p>
+                                </div>
+                                <div style="display:table-cell;width: 40%;vertical-align: middle;text-align: center">
+                                    <img src="amuzi-ui/assets/img/icon_service.png" th:width="50px" th:height="50px">
+                                </div>
+                            </div>
+                            <div class="content-map-text content-map-div-td" style="display: table-cell">
+                                <div style="display:table-cell;width: 60%;font-size: 1vw">
+                                    <p  style="margin: 1px">
+                                        <span>坐席号</span>&nbsp;&nbsp;<span>001</span>
+                                    </p>
+                                    <p  style="margin: 1px">
+                                        <span>呼入量</span>&nbsp;&nbsp;<span>001</span>
+                                    </p>
+                                    <p  style="margin: 1px">
+                                        <span>呼出量</span>&nbsp;&nbsp;<span>001</span>
+                                    </p>
+                                </div>
+                                <div style="display:table-cell;width: 40%;vertical-align: middle;text-align: center">
+                                    <img src="amuzi-ui/assets/img/icon_service.png" th:width="50px" th:height="50px">
+                                </div>
+                            </div>
+                            </div>
+                            <div style="display: table-row">
+                            <div style="display: table-cell" class="content-map-text content-map-div-td">
+                                <div style="display:table-cell;width: 60%;font-size: 1vw">
+                                    <p  style="margin: 1px">
+                                        <span>坐席号</span>&nbsp;&nbsp;<span>001</span>
+                                    </p>
+                                    <p  style="margin: 1px">
+                                        <span>呼入量</span>&nbsp;&nbsp;<span>001</span>
+                                    </p>
+                                    <p  style="margin: 1px">
+                                        <span>呼出量</span>&nbsp;&nbsp;<span>001</span>
+                                    </p>
+                                </div>
+                                <div style="display:table-cell;width: 40%;vertical-align: middle;text-align: center">
+                                    <img src="amuzi-ui/assets/img/icon_service.png" th:width="50px" th:height="50px">
+                                </div>
+                            </div>
+                            <div style="display: table-cell" class="content-map-text content-map-div-td">
+                                <div style="display:table-cell;width: 60%;font-size: 1vw">
+                                    <p  style="margin: 1px">
+                                        <span>坐席号</span>&nbsp;&nbsp;<span>001</span>
+                                    </p>
+                                    <p  style="margin: 1px">
+                                        <span>呼入量</span>&nbsp;&nbsp;<span>001</span>
+                                    </p>
+                                    <p  style="margin: 1px">
+                                        <span>呼出量</span>&nbsp;&nbsp;<span>001</span>
+                                    </p>
+                                </div>
+                                <div style="display:table-cell;width: 40%;vertical-align: middle;text-align: center">
+                                    <img src="amuzi-ui/assets/img/icon_service.png" th:width="50px" th:height="50px">
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                    </td>
+                    <!--<td style="width: 16.66%">
+
+                    </td>-->
+                </tr>
+                <tr >
+                    <td class="content-map-text content-map-table-td" >
+                        <div  >
+                            <p style="margin: 0">
+                                活跃用户数
+                            </p>
+                            <p  style="text-align: center;margin: 0;color: #00aff0">
+                                29331(人)
+                            </p>
+                        </div>
+                    </td>
+                    <td class="content-map-text content-map-table-td" >
+                        <div >
+                            <p  style="margin: 0">
+                               活跃用户数
+                            </p>
+                            <p  style="text-align: center;margin: 0;color: #00aff0">
+                                28000(人)
+                            </p>
+                        </div>
+                    </td>
+                    <!--<td class="content-map-text content-map-table-td" >
+                        <div style="display: table">
+                            <div style="display:table-cell;width: 60%;font-size: 1vw">
+                                <p  style="margin: 0">
+                                    <span>坐席号</span>&nbsp;&nbsp;<span>001</span>
+                                </p>
+                                <p  style="margin: 0">
+                                    <span>呼入量</span>&nbsp;&nbsp;<span>001</span>
+                                </p>
+                                <p  style="margin: 0">
+                                    <span>呼出量</span>&nbsp;&nbsp;<span>001</span>
+                                </p>
+                            </div>
+                            <div style="display:table-cell;width: 40%;vertical-align: middle;text-align: center">
+                                <img src="amuzi-ui/assets/img/icon_service.png" th:width="50px" th:height="50px">
+                            </div>
+                        </div>
+                    </td>
+                    <td class="content-map-text content-map-table-td" >
+
+                    </td>-->
+                </tr>
+                <tr >
+                    <td class="content-map-text content-map-table-td" >
+                        <div >
+                            <p  style="margin: 0">
+                                新增用户数
+                            </p>
+                            <p  style="text-align: center;margin: 0;color: #ffc028">
+                                10022(人)
+                            </p>
+                        </div>
+                    </td>
+                    <td class="content-map-text content-map-table-td" >
+                        <div >
+                            <p  style="margin: 0">
+                                新增用户数
+                            </p>
+                            <p  style="text-align: center;margin: 0;color: #ffc028">
+                                16000(人)
+                            </p>
+                        </div>
+                    </td>
+                    <!--<td class="content-map-text content-map-table-td" >
+                        <div style="display: table">
+                            <div style="display:table-cell;width: 60%;font-size: 1vw">
+                                <p  style="margin: 0">
+                                    <span>坐席号</span>&nbsp;&nbsp;<span>001</span>
+                                </p>
+                                <p  style="margin: 0">
+                                    <span>呼入量</span>&nbsp;&nbsp;<span>001</span>
+                                </p>
+                                <p  style="margin: 0">
+                                    <span>呼出量</span>&nbsp;&nbsp;<span>001</span>
+                                </p>
+                            </div>
+                            <div style="display:table-cell;width: 40%;vertical-align: middle;text-align: center">
+                                <img src="amuzi-ui/assets/img/icon_service.png" th:width="50px" th:height="50px">
+                            </div>
+                        </div>
+                    </td>
+                    <td class="content-map-text content-map-table-td" >
+                        <div style="display: table">
+                            <div style="display:table-cell;width: 60%;font-size: 1vw">
+                                <p  style="margin: 0">
+                                    <span>坐席号</span>&nbsp;&nbsp;<span>001</span>
+                                </p>
+                                <p  style="margin: 0">
+                                    <span>呼入量</span>&nbsp;&nbsp;<span>001</span>
+                                </p>
+                                <p  style="margin: 0">
+                                    <span>呼出量</span>&nbsp;&nbsp;<span>001</span>
+                                </p>
+                            </div>
+                            <div style="display:table-cell;width: 40%;vertical-align: middle;text-align: center">
+                                <img src="amuzi-ui/assets/img/icon_service.png" th:width="50px" th:height="50px">
+                            </div>
+                        </div>
+                    </td>-->
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
@@ -72,6 +597,143 @@
 <script type="text/javascript" src="amuzi-ui/assets/js/amazeui.min.js"></script>
 <script type="text/javascript" src="amuzi-ui/assets/js/app.js" ></script>
 <script type="text/javascript" src="amuzi-ui/assets/js/blockUI.js" ></script>
-<script type="text/javascript" src="amuzi-ui/assets/js/charts/echarts.min.js" ></script>
-<script type="text/javascript" src="amuzi-ui/assets/js/charts/indexChart.js" ></script>
+<script type="text/javascript" src="amuzi-ui/assets/js/charts/echarts.js"></script>
+<script type="text/javascript" src="amuzi-ui/assets/js/tool-utils.js"></script>
+<script>
+    var fee_pay_bar = getId("fee_pay_bar");
+    //var high_fee_pay_bar = getId("high_fee_pay_bar");
+    var weixin_total_bar = getId("weixin_total_bar");
+    var lqt_total_bar = getId("lqt_total_bar");
+    var myChart_fee_pay_bar = echarts.init(fee_pay_bar);
+    //var myChart_high_fee_pay_bar = echarts.init(high_fee_pay_bar);
+    var myChart_lqt_total_bar = echarts.init(lqt_total_bar);
+    var myChart_weixin_total_bar = echarts.init(weixin_total_bar);
+    var option_fee_pay_bar = getOption();
+    myChart_fee_pay_bar.setOption(option_fee_pay_bar);
+    //myChart_high_fee_pay_bar.setOption(option_fee_pay_bar);
+    myChart_weixin_total_bar.setOption(getUserOption(34491,29331,10022));
+    myChart_lqt_total_bar.setOption(getUserOption(25000,28000,16000));
+    function getOption() {
+        var app = {};
+        option = null;
+        app.title = '条形图';
+        option = {
+            xAxis: {
+                show:true,
+                type: 'category',
+
+            },
+            yAxis: {
+                type: 'value',
+                show:false,
+            },
+            legend:{
+                type:'plain',
+                align:'right',
+                top:0,
+            },
+            series: [{
+                label:true,
+                data: [120, 200],
+                type: 'bar',
+                color:["#f7b820"],
+            },{
+            type: 'bar',
+                z: 10,
+                data: [45, 60],
+                color:["#00aff0"],
+            }]
+        };
+        return option;
+    }
+    
+    function initBridgeData() {
+        getId("xmdq_in_last_pay").innerText = "";
+        getId("hcdq_in_last_pay").innerText = "";
+        getId("xldq_in_last_pay").innerText = "";
+        getId("xasd_in_last_pay").innerText = "";
+        getId("jmdq_in_last_pay").innerText = "";
+        getId("total_in_last_pay").innerText = "";
+
+        getId("xmdq_in_now_pay").innerText = "";
+        getId("hcdq_in_now_pay").innerText = "";
+        getId("xldq_in_now_pay").innerText = "";
+        getId("xasd_in_now_pay").innerText = "";
+        getId("jmdq_in_now_pay").innerText = "";
+        getId("total_in_now_pay").innerText = "";
+
+        getId("xmdq_out_last_pay").innerText = "";
+        getId("hcdq_out_last_pay").innerText = "";
+        getId("xldq_out_last_pay").innerText = "";
+        getId("jmdq_out_last_pay").innerText = "";
+        getId("xasd_out_last_pay").innerText = "";
+        getId("total_out_last_pay").innerText = "";
+
+        getId("xmdq_out_now_pay").innerText = "";
+        getId("hcdq_out_now_pay").innerText = "";
+        getId("xldq_out_now_pay").innerText = "";
+        getId("jmdq_out_now_pay").innerText = "";
+        getId("xasd_out_now_pay").innerText = "";
+        getId("total_out_now_pay").innerText = "";
+
+        getId("xmdq_total_last_pay").innerText = "";
+        getId("hcdq_total_last_pay").innerText = "";
+        getId("xldq_total_last_pay").innerText = "";
+        getId("jmdq_total_last_pay").innerText = "";
+        getId("xasd_total_last_pay").innerText = "";
+        getId("total_total_last_pay").innerText = "";
+
+        getId("xmdq_total_now_pay").innerText = "";
+        getId("hcdq_total_now_pay").innerText = "";
+        getId("xldq_total_now_pay").innerText = "";
+        getId("jmdq_total_now_pay").innerText = "";
+        getId("xasd_total_now_pay").innerText = "";
+        getId("total_total_now_pay").innerText = "";
+    }
+
+    function initHighSpeedData() {
+        getId("xmxz_in_last_pay").innerText = "";
+        getId("xyz_in_last_pay").innerText = "";
+        getId("hcz_in_last_pay").innerText = "";
+        getId("xlz_in_last_pay").innerText = "";
+        getId("xzzx_in_last_pay").innerText = "";
+        getId("total_high_in_last_pay").innerText = "";
+
+        getId("xmxz_in_now_pay").innerText = "";
+        getId("xyz_in_now_pay").innerText = "";
+        getId("hcz_in_now_pay").innerText = "";
+        getId("xzzx_in_now_pay").innerText = "";
+        getId("jmdq_in_now_pay").innerText = "";
+        getId("total_high_in_now_pay").innerText = "";
+
+        getId("xmxz_out_last_pay").innerText = "";
+        getId("xyz_out_last_pay").innerText = "";
+        getId("hcz_out_last_pay").innerText = "";
+        getId("jmdq_out_last_pay").innerText = "";
+        getId("xzzx_out_last_pay").innerText = "";
+        getId("total_high_out_last_pay").innerText = "";
+
+        getId("xmxz_total_out_now_pay").innerText = "";
+        getId("xyz_total_out_now_pay").innerText = "";
+        getId("hcz_total_out_now_pay").innerText = "";
+        getId("jmdq_total_out_now_pay").innerText = "";
+        getId("xzzx_total_out_now_pay").innerText = "";
+        getId("total_high_out_now_pay").innerText = "";
+
+        getId("xmxz_total_last_pay").innerText = "";
+        getId("xyz_total_last_pay").innerText = "";
+        getId("hcz_total_last_pay").innerText = "";
+        getId("jmdq_total_last_pay").innerText = "";
+        getId("xzzx_total_last_pay").innerText = "";
+        getId("total_high_fee_last_pay").innerText = "";
+
+        getId("xmxz_total_now_pay").innerText = "";
+        getId("xyz_total_now_pay").innerText = "";
+        getId("hcz_total_now_pay").innerText = "";
+        getId("jmdq_total_now_pay").innerText = "";
+        getId("xzzx_total_now_pay").innerText = "";
+        getId("total_high_fee_now_pay").innerText = "";
+    }
+
+</script>
 </html>
