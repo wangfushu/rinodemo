@@ -1,16 +1,15 @@
 package com.xmrbi.rinoWeb.controller;
 
-import com.google.common.collect.Lists;
 import com.xmrbi.rinoWeb.domain.HighRptStation;
 import com.xmrbi.rinoWeb.service.DailyInfoService;
 import com.xmrbi.rinoWeb.vo.FeePassDailyInfoVo;
-import com.xmrbi.rinoWeb.vo.HighRptDailyInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * code is far away from bug with the animal protecting
@@ -58,36 +57,35 @@ public class DailyInfoController {
     }
     @RequestMapping(value = "highRptlist")
     @ResponseBody
-    public HighRptDailyInfoVo highRptlist() {
+    public Map<String,Object> highRptlist() {
         try {
-            List<HighRptStation>  highRptStationList=Lists.newArrayList();
-            List<HighRptStation>  highRptStationList_yd=Lists.newArrayList();
+            Map<String,Object> map = new HashMap<>();
             HighRptStation xzzx=dailyInfoService.getHighRptStationInfo("3550");//厦漳主线
             HighRptStation xzzx_yd=dailyInfoService.getYesterDayHighRptStationInfo("3550");//厦漳主线
-            highRptStationList.add(xzzx);
-            highRptStationList_yd.add(xzzx_yd);
+            map.put("xzzx",xzzx);
+            map.put("xzzx_yd",xzzx_yd);
             HighRptStation xl=dailyInfoService.getHighRptStationInfo("3504");//杏林
             HighRptStation xl_yd=dailyInfoService.getYesterDayHighRptStationInfo("3504");//杏林
-            highRptStationList.add(xl);
-            highRptStationList_yd.add(xl_yd);
+            map.put("xl",xl);
+            map.put("xl_yd",xl_yd);
 
             HighRptStation hc=dailyInfoService.getHighRptStationInfo("3507");//海沧
             HighRptStation hc_yd=dailyInfoService.getYesterDayHighRptStationInfo("3507");//海沧
-            highRptStationList.add(hc);
-            highRptStationList_yd.add(hc_yd);
+            map.put("hc",hc);
+            map.put("hc_yd",hc_yd);
 
             HighRptStation xy=dailyInfoService.getHighRptStationInfo("3508");//新阳
             HighRptStation xy_yd=dailyInfoService.getYesterDayHighRptStationInfo("3508");//新阳
-            highRptStationList.add(xy);
-            highRptStationList_yd.add(xy_yd);
+            map.put("xy",xy);
+            map.put("xy_yd",xy_yd);
 
             HighRptStation xmx=dailyInfoService.getHighRptStationInfo("3509");//厦门西
             HighRptStation xmx_yd=dailyInfoService.getYesterDayHighRptStationInfo("3509");//厦门西
-            highRptStationList.add(xzzx);
-            highRptStationList_yd.add(xzzx_yd);
+            map.put("xmx",xmx);
+            map.put("xmx_yd",xmx_yd);
 
-            HighRptDailyInfoVo highRptDailyInfoVo=new HighRptDailyInfoVo(highRptStationList,highRptStationList_yd);
-            return highRptDailyInfoVo;
+            //HighRptDailyInfoVo highRptDailyInfoVo=new HighRptDailyInfoVo(highRptStationList,highRptStationList_yd);
+            return map;
         } catch (Exception e) {
             //logger.info("listSysPlaza查询出错" + e.getMessage());
             System.out.println("highRptlist查询出错" + e.getMessage());
