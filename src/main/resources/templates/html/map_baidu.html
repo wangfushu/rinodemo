@@ -628,20 +628,32 @@
                 show:false,
             },
             legend:{
-                type:'plain',
-                align:'right',
-                top:0,
+                data : [ '年费', '次费' ],
+                position:'bottom',
             },
             series: [{
-                label:true,
+                name:'年费',
+                label:{
+                    normal:{
+                        show:true,
+                        position:'bottom'
+                    }
+                },
                 data: [120, 200],
                 type: 'bar',
                 color:["#f7b820"],
             },{
             type: 'bar',
                 z: 10,
+                name:'次费',
                 data: [45, 60],
                 color:["#00aff0"],
+                label:{
+                    normal:{
+                        show:true,
+                        position:'bottom'
+                    }
+                },
             }]
         };
         return option;
