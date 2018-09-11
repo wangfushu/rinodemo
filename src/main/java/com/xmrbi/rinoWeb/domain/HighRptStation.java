@@ -150,20 +150,20 @@ public class HighRptStation {
     }
 
     public String getMtcFeeString() {
-        return mtcFeeString;
+        return StringUtil.getFormat(6,this.mtcFee.intValue());
     }
     public String getEtcFeeString() {
-        return etcFeeString;
+        return StringUtil.getFormat(6,this.etcFee.intValue());
     }
     public String getGetFeeString() {
-        return getFeeString;
+        return StringUtil.getFormat(6,this.getFee.intValue());
     }
     public String getOutPassCountString() {
-        return outPassCountString;
+        return StringUtil.getFormat(6,this.outPassCount);
     }
 
     public String getEntPassCoutnString() {
-        return entPassCoutnString;
+        return StringUtil.getFormat(6,this.entPassCoutn);
     }
     /*  @Transient
     public String  getOutPassCountString() {

@@ -1,7 +1,7 @@
 package com.xmrbi.rinoWeb.domain;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Table(name = "fee_passcounthour")
@@ -13,40 +13,21 @@ public class FeePassCountHour {
     private String plaNo;//路段
 
     @Id
-    @Column(name = "totaltime")
+    @Column(name = "totalTime")
     private Date totalTime;//统计时间
+
+    @Id
+    @Column(name = "direction")
+    private Integer direction;//进出方向
 
     @Column(name = "planame")
     private String plaName;//路段名称
 
-    @Column(name = "roadtype")
-    private Integer roadType;//车道类型:0-年费道,1-现金道
-
-    @Column(name = "inpasscounts")
-    private Integer inPassCounts;//进岛车流量(时)
-
-    @Column(name = "outpasscounts")
-    private Integer outPassCounts;//出岛车流量(时)
+    @Column(name = "passcounts")
+    private Integer passCounts;//进岛车流量(时)
 
     @Column(name = "updatetime")
     private Date upDateTime;//更新时间
-
-    public String getPlaName() {
-        return plaName;
-    }
-
-    public void setPlaName(String plaName) {
-        this.plaName = plaName;
-    }
-
-
-    public Date getUpDateTime() {
-        return upDateTime;
-    }
-
-    public void setUpDateTime(Date upDateTime) {
-        this.upDateTime = upDateTime;
-    }
 
     public String getPlaNo() {
         return plaNo;
@@ -64,27 +45,35 @@ public class FeePassCountHour {
         this.totalTime = totalTime;
     }
 
-    public Integer getRoadType() {
-        return roadType;
+    public String getPlaName() {
+        return plaName;
     }
 
-    public void setRoadType(Integer roadType) {
-        this.roadType = roadType;
+    public void setPlaName(String plaName) {
+        this.plaName = plaName;
     }
 
-    public Integer getInPassCounts() {
-        return inPassCounts;
+    public Integer getDirection() {
+        return direction;
     }
 
-    public void setInPassCounts(Integer inPassCounts) {
-        this.inPassCounts = inPassCounts;
+    public void setDirection(Integer direction) {
+        this.direction = direction;
     }
 
-    public Integer getOutPassCounts() {
-        return outPassCounts;
+    public Integer getPassCounts() {
+        return passCounts;
     }
 
-    public void setOutPassCounts(Integer outPassCounts) {
-        this.outPassCounts = outPassCounts;
+    public void setPassCounts(Integer passCounts) {
+        this.passCounts = passCounts;
+    }
+
+    public Date getUpDateTime() {
+        return upDateTime;
+    }
+
+    public void setUpDateTime(Date upDateTime) {
+        this.upDateTime = upDateTime;
     }
 }
