@@ -1,10 +1,9 @@
 package com.xmrbi.rinoWeb.dao;
 
-import com.xmrbi.rinoWeb.domain.FeePassCountHour;
-import com.xmrbi.rinoWeb.domain.FeePassCountHourPK;
+import com.xmrbi.rinoWeb.domain.FeeMTCFee;
+import com.xmrbi.rinoWeb.domain.FeeMTCFeePK;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.Date;
+import org.springframework.data.jpa.repository.Query;
 
 
 /**
@@ -33,8 +32,9 @@ import java.util.Date;
  * @Author: wangfushu
  * @Date: 2018-09-11 9:14
  */
-public interface FeePassCountHourDao extends JpaRepository<FeePassCountHour, FeePassCountHourPK> {
-    public FeePassCountHour findTopByPlaNoAndAndDirectionOrderByUpDateTimeDesc(String plaNo,String direction);
-    public FeePassCountHour findTopByPlaNoAndDirectionAndTotalTimeOrderByUpDateTimeDesc(String plaNo, String direction, Date totalTime);
+public interface FeeMTCFeeDao extends JpaRepository<FeeMTCFee, FeeMTCFeePK> {
+
+    @Query(value = "select sum(TotalFee) from Fee_MTCFee where PlaNo=? and TollDate=? ",nativeQuery = true)
+    public Double sumFeeMtcFee(String PlaNo,String tollDate);
 
 }

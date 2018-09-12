@@ -1,11 +1,4 @@
-package com.xmrbi.rinoWeb.dao;
-
-import com.xmrbi.rinoWeb.domain.FeePassCountHour;
-import com.xmrbi.rinoWeb.domain.FeePassCountHourPK;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.Date;
-
+package com.xmrbi.rinoWeb.vo;
 
 /**
  * code is far away from bug with the animal protecting
@@ -31,10 +24,25 @@ import java.util.Date;
  * @description :
  * ---------------------------------
  * @Author: wangfushu
- * @Date: 2018-09-11 9:14
+ * @Date: 2018-09-12 16:17
  */
-public interface FeePassCountHourDao extends JpaRepository<FeePassCountHour, FeePassCountHourPK> {
-    public FeePassCountHour findTopByPlaNoAndAndDirectionOrderByUpDateTimeDesc(String plaNo,String direction);
-    public FeePassCountHour findTopByPlaNoAndDirectionAndTotalTimeOrderByUpDateTimeDesc(String plaNo, String direction, Date totalTime);
+public class MonthFeeVo {
+    private Double etcfee;
+    private Double mtcfee;
 
+    public Double getEtcfee() {
+        return etcfee;
+    }
+
+    public void setEtcfee(Double etcfee) {
+        this.etcfee = etcfee;
+    }
+
+    public Double getMtcfee() {
+        return mtcfee;
+    }
+
+    public void setMtcfee(Double mtcfee) {
+        this.mtcfee = mtcfee;
+    }
 }
