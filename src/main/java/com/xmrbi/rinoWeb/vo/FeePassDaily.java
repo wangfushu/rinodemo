@@ -78,11 +78,12 @@ public class FeePassDaily {
     }
 
     public String getMtcFeeString() {
-        return mtcFeeString;
+        return StringUtil.getFormat(6,this.mtcFee.intValue());
     }
 
+
     public void setMtcFeeString(String mtcFeeString) {
-        this.mtcFeeString = StringUtil.getFormat(6,this.mtcFee.intValue());
+        this.mtcFeeString = mtcFeeString;
     }
 
     public Double getMtcFee() {
