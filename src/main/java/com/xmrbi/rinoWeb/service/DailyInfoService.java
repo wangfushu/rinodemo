@@ -94,9 +94,9 @@ public class DailyInfoService {
             if (null != obj[2])
                 feePassDaily.setTotalTime(String.valueOf(obj[2]));
             if (null != obj[3])
-                feePassDaily.setInPassCounts(String.valueOf(obj[3]));
+                feePassDaily.setInPassCounts(Integer.valueOf(String.valueOf(obj[3])));
             if (null != obj[4])
-                feePassDaily.setOutPassCounts(String.valueOf(obj[4]));
+                feePassDaily.setOutPassCounts(Integer.valueOf(String.valueOf(obj[4])));
             if (null != obj[5])
                 feePassDaily.setMtcFee(Double.valueOf(String.valueOf(obj[5])));
         }
@@ -106,7 +106,7 @@ public class DailyInfoService {
 
     public MonthFeeVo getFeeMonth(int year ,int month) {
         EntityManager em = emf.createEntityManager();
-        String sql = "select SUM(MTCFee),SUM(ETCFee) from High_FeeMonth where FYear="+year+" and FMonth="+month+" and TotalTime='(select MAX(TotalTime) from High_FeeMonth where FYear="+year+" and FMonth="+month+")' ";
+        String sql = "select SUM(MTCFee) as mtc ,SUM(ETCFee) as etc from High_FeeMonth where FYear="+year+" and FMonth="+month+" and TotalTime='(select MAX(TotalTime) from High_FeeMonth where FYear="+year+" and FMonth="+month+")' ";
         Query query = em.createNativeQuery(sql);
         //执行查询，返回的是对象数组(Object[])列表,
         //每一个对象数组存的是相应的实体属性

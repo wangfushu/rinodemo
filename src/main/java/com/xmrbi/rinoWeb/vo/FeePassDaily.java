@@ -31,8 +31,8 @@ import com.xmrbi.rinoWeb.utils.StringUtil;
 public class FeePassDaily {
     private String plaNo;//路段
     private String plaName;//路段名称
-    private String inPassCounts;//进岛车流量(时)
-    private String outPassCounts;//出岛车流量(时)
+    private Integer inPassCounts;//进岛车流量(时)
+    private Integer outPassCounts;//出岛车流量(时)
     private Double mtcFee;//累计金额（次费）
     private String mtcFeeString;//累计金额（次费）
     private String TotalTime;//时间
@@ -61,19 +61,19 @@ public class FeePassDaily {
         this.plaName = plaName;
     }
 
-    public String getInPassCounts() {
+    public Integer getInPassCounts() {
         return inPassCounts;
     }
 
-    public void setInPassCounts(String inPassCounts) {
+    public void setInPassCounts(Integer inPassCounts) {
         this.inPassCounts = inPassCounts;
     }
 
-    public String getOutPassCounts() {
+    public Integer getOutPassCounts() {
         return outPassCounts;
     }
 
-    public void setOutPassCounts(String outPassCounts) {
+    public void setOutPassCounts(Integer outPassCounts) {
         this.outPassCounts = outPassCounts;
     }
 
