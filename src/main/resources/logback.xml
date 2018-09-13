@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<evaluator name="CALLER_DISPLAY_EVAL">
+		<expression>event.getLevel().toInteger() != Level.INFO.toInteger() &amp;&amp; event.getLevel().toInteger() != Level.WARN.toInteger()</expression>
+	</evaluator>
+
+	<!-- Appenders -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%highlight(%-5p): [%d{yyyy-MM-dd HH:mm:ss:mmm}] %cyan(%c) - %m%n%caller{2, CALLER_DISPLAY_EVAL}</pattern>
+		</encoder>
+	</appender>
+
+	<!-- Appenders -->
+	<appender name="frameworkconsole" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%-5p: [%d{yyyy-MM-dd HH:mm:ss:mmm}] %c{36} - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="COM_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+		<prudent>true</prudent>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${XWS_HOME}/log/XWS_LOG.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%-5p: [%d{yyyy-MM-dd HH:mm:ss:SSS}] %c - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- Spring framewrok Loggers -->
+	<logger name="org.springframework" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="frameworkconsole" />
+		<appender-ref ref="COM_FILE"/>
+	</logger>
+
+	<!-- Hibernate logger -->
+	<logger name="org.hibernate" additivity="false">
+		<level value="info"/>
+		<appender-ref ref="frameworkconsole"/>
+	</logger>
+
+	<!-- Hibernate logger -->
+	<logger name="org.hibernate.type" additivity="false">
+		<level value="info"/>
+		<appender-ref ref="frameworkconsole"/>
+	</logger>
+
+	<!-- com.eseict logger -->
+	<logger name="com.eseict" additivity="false">
+		<level value="debug"/>
+		<appender-ref ref="console"/>
+		<appender-ref ref="COM_FILE"/>
+	</logger>
+
+	<logger name="jdbc" level="OFF"/>
+
+	<logger name="jdbc.sqlonly" level="DEBUG" additivity="false">>
+		<appender-ref ref="frameworkconsole" />
+	</logger>
+
+	<logger name="jdbc.resultsettable" level="DEBUG" additivity="false">>
+		<appender-ref ref="frameworkconsole" />
+	</logger>
+
+	<logger name="jdbc.sqltiming" level="DEBUG" additivity="false">>
+		<appender-ref ref="frameworkconsole" />
+	</logger>
+
+	<!-- Root Logger -->
+	<root level="info">
+		<appender-ref ref="frameworkconsole"/>
+		<appender-ref ref="COM_FILE"/>
+	</root>
+
+</configuration>
