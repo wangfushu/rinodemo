@@ -78,7 +78,7 @@ public class DailyInfoService {
                 "FROM Fee_PassCountHour a where a.Direction=0 and a.PlaNo=" + plaNo + " ";
         if (null != totalTime) {
             String date = DateUtil.formatDate(DateUtil.getYesterDayTime(new Date()), "yyyy-MM-dd HH:mm:ss");
-            sql += " and TotalTime= " + date;
+            sql += " and TotalTime= '" + date+"'";
         }
         sql += " order by a.UpDateTime desc";
         Query query = em.createNativeQuery(sql);
@@ -106,7 +106,7 @@ public class DailyInfoService {
 
     public MonthFeeVo getFeeMonth(int year ,int month) {
         EntityManager em = emf.createEntityManager();
-        String sql = "select SUM(MTCFee),SUM(ETCFee) from High_FeeMonth where FYear="+year+" and FMonth="+month+" and TotalTime=(select MAX(TotalTime) from High_FeeMonth where FYear="+year+" and FMonth="+month+") ";
+        String sql = "select SUM(MTCFee),SUM(ETCFee) from High_FeeMonth where FYear="+year+" and FMonth="+month+" and TotalTime='(select MAX(TotalTime) from High_FeeMonth where FYear="+year+" and FMonth="+month+")' ";
         Query query = em.createNativeQuery(sql);
         //执行查询，返回的是对象数组(Object[])列表,
         //每一个对象数组存的是相应的实体属性
