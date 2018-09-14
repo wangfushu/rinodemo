@@ -1,4 +1,4 @@
-package com.xmrbi.rinoWeb.utils;
+package com.xmrbi.rinoWeb.utils.socket.msgProc;
 
 import com.google.common.collect.Queues;
 

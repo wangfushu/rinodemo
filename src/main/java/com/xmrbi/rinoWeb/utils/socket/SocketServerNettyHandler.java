@@ -1,11 +1,11 @@
 package com.xmrbi.rinoWeb.utils.socket;
 
-import com.xmrbi.rinoWeb.utils.SocketMsgQueue;
+import com.xmrbi.rinoWeb.utils.socket.msgProc.SocketMsgQueue;
 import com.xmrbi.rinoWeb.vo.GeneralMessage;
 import com.xmrbi.rinoWeb.vo.XWSConstants;
 import io.netty.channel.AdaptiveRecvByteBufAllocator;
-import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.RecvByteBufAllocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +39,7 @@ import java.io.UnsupportedEncodingException;
  * @Date: 2018-09-13 16:26
 */
 
-public class SocketServerNettyHandler extends ChannelHandlerAdapter {
+public class SocketServerNettyHandler extends ChannelInboundHandlerAdapter {
     static Logger logger = LoggerFactory.getLogger(SocketServerNettyHandler.class);
     //private static final Logger logger = LoggerFactory.getLogger(SocketServerNettyHandler.class);
     private String localPort;

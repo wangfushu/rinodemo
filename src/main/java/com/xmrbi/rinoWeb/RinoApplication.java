@@ -1,5 +1,7 @@
 package com.xmrbi.rinoWeb;
 
+import com.xmrbi.rinoWeb.utils.socket.msgProc.SocketMsgQueuePolling;
+import com.xmrbi.rinoWeb.utils.webSocket.WebSocketServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -18,6 +20,10 @@ public class RinoApplication  implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		SocketMsgQueuePolling msgPolling = new SocketMsgQueuePolling();
+		Thread msgPollingThread = new Thread(msgPolling);
+		msgPollingThread.start();
+
 		int port;
 		if (args.length > 0) {
 			port = Integer.parseInt(args[0]);
@@ -25,6 +31,9 @@ public class RinoApplication  implements CommandLineRunner {
 			port = 8989;
 		}
 		new DiscardServer(port).run();
+		WebSocketServer.getInstance("8889").init();
+
+
 		System.out.println("server:run()");
 	}
 }
