@@ -3,7 +3,12 @@ package com.xmrbi.rinoWeb.utils.socket;
 import com.xmrbi.rinoWeb.utils.SocketMsgQueue;
 import com.xmrbi.rinoWeb.vo.GeneralMessage;
 import com.xmrbi.rinoWeb.vo.XWSConstants;
-import io.netty.channel.*;
+import io.netty.channel.AdaptiveRecvByteBufAllocator;
+import io.netty.channel.ChannelHandlerAdapter;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.RecvByteBufAllocator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
 
@@ -35,6 +40,7 @@ import java.io.UnsupportedEncodingException;
 */
 
 public class SocketServerNettyHandler extends ChannelHandlerAdapter {
+    static Logger logger = LoggerFactory.getLogger(SocketServerNettyHandler.class);
     //private static final Logger logger = LoggerFactory.getLogger(SocketServerNettyHandler.class);
     private String localPort;
     //ByteBuf 싸이즈 변경 replaying decoder 사용시 replay 횟수 감소
@@ -60,11 +66,11 @@ public class SocketServerNettyHandler extends ChannelHandlerAdapter {
 
         System.out.println("[MESSAGE RECEIVE SUCCESS]");
 
-        System.out.println("header Typ Cd = {}"+new String(message.getHeaderTyp() +"    "+ XWSConstants.CHAR_SET));
-        System.out.println("header = {}"+ new String(message.getHeader()+"  "+ XWSConstants.CHAR_SET));
-        System.out.println("body = {}"+new String(message.getBody()+"  "+XWSConstants.CHAR_SET));
+        logger.info("header Typ Cd = {}", new String(message.getHeaderTyp(), XWSConstants.CHAR_SET));
+        logger.info("header = {}"+ new String(message.getHeader(),  XWSConstants.CHAR_SET));
+        logger.info("body = {}"+new String(message.getBody(), XWSConstants.CHAR_SET));
 
-        System.out.println("[Socket Msg Queue] ( Message Receive ) {}"+ new String(message.getBody() +"         "+ XWSConstants.CHAR_SET));
+        logger.info("[Socket Msg Queue] ( Message Receive ) {}", new String(message.getBody(), XWSConstants.CHAR_SET));
 
         //MsgQueue에 메시지 add
         SocketMsgQueue.getInstance().put(new String(message.getBody(), XWSConstants.CHAR_SET));

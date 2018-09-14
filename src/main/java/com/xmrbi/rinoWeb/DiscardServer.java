@@ -1,6 +1,8 @@
 package com.xmrbi.rinoWeb;
 
 import com.xmrbi.rinoWeb.utils.socket.SocketServerNettyHandler;
+import com.xmrbi.rinoWeb.utils.socket.codec.ServerMessageDecoder;
+import com.xmrbi.rinoWeb.utils.socket.codec.ServerMessageEncoder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -82,7 +84,7 @@ public class DiscardServer {
             b = b.childHandler(new ChannelInitializer<SocketChannel>() { // (4)
                 @Override
                 public void initChannel(SocketChannel ch) throws Exception {
-                    ch.pipeline().addLast(new SocketServerNettyHandler());// demo1.discard
+                    ch.pipeline().addLast("encoder", new ServerMessageEncoder()).addLast("decoder", new ServerMessageDecoder()).addLast("handler", new SocketServerNettyHandler());// demo1.discard
                     // ch.pipeline().addLast(new
                     // ResponseServerHandler());//demo2.echo
                     // ch.pipeline().addLast(new
