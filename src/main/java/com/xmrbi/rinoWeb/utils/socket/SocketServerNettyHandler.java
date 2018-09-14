@@ -50,8 +50,8 @@ public class SocketServerNettyHandler extends ChannelHandlerAdapter {
     public void channelActive(ChannelHandlerContext ctx) {	// ChannelHandlerContext 오픈시 실행 ( 처음 접속시 )
         localPort = ctx.channel().localAddress().toString().split(":")[1];
         String remoteIp = ctx.channel().remoteAddress().toString().substring(1).split(":")[0];
-        System.out.println("localPort =[{}]"+localPort);
-        System.out.println("remoteIp =[{}]"+remoteIp);
+        logger.info("localPort =[{}]",localPort);
+        logger.info("remoteIp =[{}]",remoteIp);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class SocketServerNettyHandler extends ChannelHandlerAdapter {
 
         GeneralMessage message = (GeneralMessage) msg;
 
-        System.out.println("[MESSAGE RECEIVE SUCCESS]");
+        logger.info("[MESSAGE RECEIVE SUCCESS]");
 
         logger.info("header Typ Cd = {}", new String(message.getHeaderTyp(), XWSConstants.CHAR_SET));
         logger.info("header = {}"+ new String(message.getHeader(),  XWSConstants.CHAR_SET));
@@ -79,7 +79,7 @@ public class SocketServerNettyHandler extends ChannelHandlerAdapter {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        System.out.println(cause.getMessage());
+        logger.info(cause.getMessage());
         ctx.close();
     }
 
