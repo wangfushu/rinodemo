@@ -10,6 +10,11 @@
     color: #ffffff;
     /*opacity: 0.2;*/
 }
+.content-table{
+    background: url(/amuzi-ui/assets/img/body_bg.png)repeat;
+    color: #ffffff;
+    /*opacity: 0.2;*/
+}
 
 .content-map{
     background: url(/amuzi-ui/assets/img/body_bg_table.png);
