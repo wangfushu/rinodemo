@@ -32,7 +32,6 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * 　　　┃┫┫　┃┫┫
  * 　　　┗┻┛　┗┻┛
  *
- *
  * @description :
  * ---------------------------------
  * @Author: wangfushu
@@ -84,7 +83,10 @@ public class DiscardServer {
             b = b.childHandler(new ChannelInitializer<SocketChannel>() { // (4)
                 @Override
                 public void initChannel(SocketChannel ch) throws Exception {
-                    ch.pipeline().addLast("encoder", new ServerMessageEncoder()).addLast("decoder", new ServerMessageDecoder()).addLast("handler", new SocketServerNettyHandler());// demo1.discard
+                    ch.pipeline().addLast("encoder", new ServerMessageEncoder())
+                            .addLast("decoder", new ServerMessageDecoder())
+                            .addLast("handler", new SocketServerNettyHandler());
+                    // demo1.discard
                     // ch.pipeline().addLast(new
                     // ResponseServerHandler());//demo2.echo
                     // ch.pipeline().addLast(new
