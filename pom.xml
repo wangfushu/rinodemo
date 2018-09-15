@@ -9,7 +9,6 @@
 	<packaging>jar</packaging>
 
 	<name>rinoWeb</name>
-	<description>Demo project for Spring Boot</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -98,21 +97,27 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<!--打jar包启动类-->
 				<configuration>
-					<mainClass>com.wip.MyBlogApplication</mainClass>
+					<fork>true</fork>
+					<!-- 可执行的jar 必须有mainClass入口-->
+					<mainClass>com.xmrbi.rinoWeb.RinoApplication</mainClass>
 				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
-			<!--打jar包需要-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
+				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-					<encoding>UTF-8</encoding>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
+
 		</plugins>
 		<!--jar包名-->
 		<finalName>rinoSystem</finalName>
