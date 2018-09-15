@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="amuzi-ui/assets/css/amazeui.css" />
+	<link rel="stylesheet" href="amuzi-ui/assets/css/core.css" />
+	<link rel="stylesheet" href="amuzi-ui/assets/css/menu.css" />
+	<link rel="stylesheet" href="amuzi-ui/assets/css/index.css" />
+	<link rel="stylesheet" href="amuzi-ui/assets/css/admin.css" />
+	<link rel="stylesheet" href="amuzi-ui/assets/css/page/typography.css" />
+	<link rel="stylesheet" href="amuzi-ui/assets/css/page/form.css" />
+	<link rel="stylesheet" href="amuzi-ui/assets/css/component.css" />
+	<link rel="stylesheet" href="amuzi-ui/assets/dist/leaflet.css" />
+	<!--[if lte IE 8]>
+	<link rel="stylesheet" href="amuzi-ui/assets/dist/leaflet-ie.css" />
+	<link rel="stylesheet" href="amuzi-ui/assets/dist/locate-ie.css"/>
+	<![endif]-->
+	<link rel="stylesheet" href="amuzi-ui/assets/dist/mobile.css" />
+	<link rel="stylesheet" href="amuzi-ui/assets/dist/locate.css" />
+
+	<script src="amuzi-ui/assets/dist/leaflet.js"></script>
+	<script src="amuzi-ui/assets/dist/proj4js-compressed.js"></script>
+	<script src="amuzi-ui/assets/dist/proj4leaflet.js"></script>
+	<script src="amuzi-ui/assets/dist/locate.js" ></script>
+	<style type="text/css">
+		body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=dvn7vZYoUmALgo7Q9nTEMmqXUGbK9tHa"></script>-->
+	<!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=dvn7vZYoUmALgo7Q9nTEMmqXUGbK9tHa"></script>-->
+	<title>地图展示</title>
+</head>
+<body onload="asyHttp()">
+<div id="map">
+</div>
+<!--    <div class="content-map-right" style="position: fixed;top:0px;right:0px;width: 33%;height: 100%">-->
+</div>
+<div class="content-map" style="position: fixed;top:0px;left:0px;">
+	<table class="am-table am-table-bordered am-table-centered" style="height: 100%;border: none">
+		<thead>
+		<tr >
+			<th colspan="7" class="content-map-bg">
+				<h1 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">四桥一隧收费信息</h1>
+			</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr >
+			<th class="content-map-bg">
+				<h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">海沧大桥</h2>
+			</th>
+			<th class="content-map-bg">
+				<h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">杏林大桥</h2>
+			</th>
+			<th class="content-map-bg">
+				<h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">厦门大桥</h2>
+			</th>
+			<th class="content-map-bg">
+				<h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">集美大桥</h2>
+			</th>
+			<th class="content-map-bg">
+				<h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">翔安隧道</h2>
+			</th>
+			<th class="content-map-bg">
+				<h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">合计</h2>
+			</th>
+			<th class="content-map-bg">
+				<h2  style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">收费数据统计</h2>
+			</th>
+		</tr>
+		<tr >
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;进&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="hcdq_in_last_pay">073588</span><br>
+					<span>&nbsp;岛&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="hcdq_in_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;进&nbsp;&nbsp;&nbsp;</span><span id="xldq_in_last_pay">073588</span><br>
+					<span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="xldq_in_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;进&nbsp;&nbsp;&nbsp;</span><span id="xmdq_in_last_pay">073588</span><br>
+					<span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="xmdq_in_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;进&nbsp;&nbsp;&nbsp;</span><span id="jmdq_in_last_pay">073588</span><br>
+					<span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="jmdq_in_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;进&nbsp;&nbsp;&nbsp;</span><span id="xasd_in_last_pay">073588</span><br>
+					<span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="xasd_in_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;进&nbsp;&nbsp;&nbsp;</span><span id="total_in_last_pay">073588</span><br>
+					<span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="total_in_now_pay">050747</span>
+				</div>
+			</td>
+			<td rowspan="3">
+				<div id="fee_pay_bar" style="height: 100%"></div>
+			</td>
+		</tr>
+		<tr >
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;出&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="hcdq_out_last_pay">073588</span><br>
+					<span>&nbsp;岛&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="hcdq_out_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="xldq_out_last_pay">073588</span><br>
+					<span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="xldq_out_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="xmdq_out_last_pay">073588</span><br>
+					<span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="xmdq_out_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="jmdq_out_last_pay">073588</span><br>
+					<span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="jmdq_out_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="xasd_out_last_pay">073588</span><br>
+					<span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="xasd_out_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="total_out_last_pay">073588</span><br>
+					<span>&nbsp;岛&nbsp;&nbsp;&nbsp;</span><span id="total_out_now_pay">050747</span>
+				</div>
+			</td>
+		</tr>
+		<tr >
+			<td class="content-map-text">
+				<div >
+					<span >累计&nbsp;</span><span id="hcdq_total_last_pay">073588</span><br>
+					<span>金额&nbsp;</span><span id="hcdq_total_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >累计&nbsp;</span><span id="xldq_total_last_pay">073588</span><br>
+					<span>金额&nbsp;</span><span id="xldq_total_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >累计&nbsp;</span><span id="xmdq_total_last_pay">073588</span><br>
+					<span>金额&nbsp;</span><span id="xmdq_total_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >累计&nbsp;</span><span id="jmdq_total_last_pay">073588</span><br>
+					<span>金额&nbsp;</span><span id="jmdq_total_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >累计&nbsp;</span><span id="xasd_total_last_pay">073588</span><br>
+					<span>金额&nbsp;</span><span id="xasd_total_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >累计&nbsp;</span><span id="total_fee_last_pay">073588</span><br>
+					<span>金额&nbsp;</span><span id="total_fee_now_pay">050747</span>
+				</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	<table class="am-table am-table-bordered am-table-centered" style="height: 100%;border: none">
+		<thead>
+		<tr >
+			<th colspan="7" class="content-map-bg">
+				<h1 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">厦漳厦蓉高速收费信息</h1>
+			</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr >
+			<th class="content-map-bg">
+				<h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">厦门西站</h2>
+			</th>
+			<th class="content-map-bg">
+				<h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">新阳站</h2>
+			</th>
+			<th class="content-map-bg">
+				<h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">海沧站</h2>
+			</th>
+			<th class="content-map-bg">
+				<h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">杏林站</h2>
+			</th>
+			<th class="content-map-bg">
+				<h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">厦漳主线</h2>
+			</th>
+			<th class="content-map-bg">
+				<h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">合计</h2>
+			</th>
+			<th class="content-map-bg">
+				<h2  style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">收费数据统计</h2>
+			</th>
+		</tr>
+		<tr >
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;入&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="xmxz_in_last_pay">073588</span><br>
+					<span>&nbsp;口&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="xmxz_in_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;入&nbsp;&nbsp;&nbsp;</span><span id="xyz_in_last_pay">073588</span><br>
+					<span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="xyz_in_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;入&nbsp;&nbsp;&nbsp;</span><span id="hcz_in_last_pay">073588</span><br>
+					<span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="hcz_in_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;入&nbsp;&nbsp;&nbsp;</span><span id="xlz_in_last_pay">073588</span><br>
+					<span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="xlz_in_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;入&nbsp;&nbsp;&nbsp;</span><span id="xzzx_in_last_pay">073588</span><br>
+					<span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="xzzx_in_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;入&nbsp;&nbsp;&nbsp;</span><span id="total_high_in_last_pay">073588</span><br>
+					<span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="total_high_in_now_pay">050747</span>
+				</div>
+			</td>
+			<td rowspan="3">
+				<div id="high_fee_pay_bar" style="height: 100%"></div>
+			</td>
+		</tr>
+		<tr >
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;出&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="xmxz_out_last_pay">073588</span><br>
+					<span>&nbsp;口&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="xmxz_out_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="xyz_out_last_pay">073588</span><br>
+					<span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="xyz_out_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="hcz_out_last_pay">073588</span><br>
+					<span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="hcz_out_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="xlz_out_last_pay">073588</span><br>
+					<span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="xlz_out_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="xzzx_out_last_pay">073588</span><br>
+					<span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="xzzx_out_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >&nbsp;出&nbsp;&nbsp;&nbsp;</span><span id="total_high_out_last_pay">073588</span><br>
+					<span>&nbsp;口&nbsp;&nbsp;&nbsp;</span><span id="total_high_out_now_pay">050747</span>
+				</div>
+			</td>
+		</tr>
+		<tr >
+			<td class="content-map-text">
+				<div >
+					<span >累计&nbsp;</span><span id="xmxz_total_last_pay">073588</span><br>
+					<span>金额&nbsp;</span><span id="xmxz_total_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >累计&nbsp;</span><span id="xyz_total_last_pay">073588</span><br>
+					<span>金额&nbsp;</span><span id="xyz_total_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >累计&nbsp;</span><span id="hcz_total_last_pay">073588</span><br>
+					<span>金额&nbsp;</span><span id="hcz_total_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >累计&nbsp;</span><span id="xlz_total_last_pay">073588</span><br>
+					<span>金额&nbsp;</span><span id="xlz_total_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >累计&nbsp;</span><span id="xzzx_total_last_pay">073588</span><br>
+					<span>金额&nbsp;</span><span id="xzzx_total_now_pay">050747</span>
+				</div>
+			</td>
+			<td class="content-map-text">
+				<div >
+					<span >累计&nbsp;</span><span id="total_high_fee_last_pay">073588</span><br>
+					<span>金额&nbsp;</span><span id="total_high_fee_now_pay">050747</span>
+				</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	<table class="am-table am-table-bordered am-table-centered" style="height: 100%;border: none;">
+		<thead>
+		<tr >
+			<th class="content-map-bg" colspan="2">
+				<h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">路桥通</h2>
+			</th>
+			<th class="content-map-bg" colspan="2">
+				<h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">微信</h2>
+			</th>
+			<th class="content-map-bg" colspan="2">
+				<h2 style="color: #ffffff;font-size: 1.5vw;font-weight: bold;line-height: 0px">客服电话</h2>
+			</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr >
+			<td rowspan="3" style="width: 16.66%">
+				<div  id="lqt_total_bar" style="height: 100%;"></div>
+			</td>
+			<td class="content-map-table-td content-map-text" style="width: 16.66%;" >
+				<div >
+					<p style="margin: 0">
+						总注册用户数
+					</p>
+					<p  style="text-align: center;margin: 0;color: #10c469">
+						34411(人)
+					</p>
+				</div>
+			</td>
+			<td rowspan="3" style="width: 16.66%">
+				<div  id="weixin_total_bar" style="height: 100%;"></div>
+			</td>
+			<td class="content-map-text content-map-table-td"  style="width: 16.66%;">
+				<div  >
+					<p  style="margin: 0">
+						总注册用户数
+					</p>
+					<p  style="text-align: center;margin: 0;color: #10c469">
+						25000(人)
+					</p>
+				</div>
+			</td>
+			<td rowspan="3" colspan="2">
+				<div style="height: 10%"></div>
+				<div style="display: table;">
+					<div style="display: table-row">
+						<div class="content-map-text content-map-div-td" style="display: table-cell">
+							<div style="display:table-cell;width: 60%;font-size: 1vw">
+								<p  style="margin: 1px">
+									<span>坐席号</span>&nbsp;&nbsp;<span>001</span>
+								</p>
+								<p  style="margin: 1px">
+									<span>呼入量</span>&nbsp;&nbsp;<span>001</span>
+								</p>
+								<p  style="margin: 1px">
+									<span>呼出量</span>&nbsp;&nbsp;<span>001</span>
+								</p>
+							</div>
+							<div style="display:table-cell;width: 40%;vertical-align: middle;text-align: center">
+								<img src="amuzi-ui/assets/img/icon_service.png" th:width="50px" th:height="50px">
+							</div>
+						</div>
+						<div class="content-map-text content-map-div-td" style="display: table-cell">
+							<div style="display:table-cell;width: 60%;font-size: 1vw">
+								<p  style="margin: 1px">
+									<span>坐席号</span>&nbsp;&nbsp;<span>001</span>
+								</p>
+								<p  style="margin: 1px">
+									<span>呼入量</span>&nbsp;&nbsp;<span>001</span>
+								</p>
+								<p  style="margin: 1px">
+									<span>呼出量</span>&nbsp;&nbsp;<span>001</span>
+								</p>
+							</div>
+							<div style="display:table-cell;width: 40%;vertical-align: middle;text-align: center">
+								<img src="amuzi-ui/assets/img/icon_service.png" th:width="50px" th:height="50px">
+							</div>
+						</div>
+					</div>
+					<div style="display: table-row">
+						<div style="display: table-cell" class="content-map-text content-map-div-td">
+							<div style="display:table-cell;width: 60%;font-size: 1vw">
+								<p  style="margin: 1px">
+									<span>坐席号</span>&nbsp;&nbsp;<span>001</span>
+								</p>
+								<p  style="margin: 1px">
+									<span>呼入量</span>&nbsp;&nbsp;<span>001</span>
+								</p>
+								<p  style="margin: 1px">
+									<span>呼出量</span>&nbsp;&nbsp;<span>001</span>
+								</p>
+							</div>
+							<div style="display:table-cell;width: 40%;vertical-align: middle;text-align: center">
+								<img src="amuzi-ui/assets/img/icon_service.png" th:width="50px" th:height="50px">
+							</div>
+						</div>
+						<div style="display: table-cell" class="content-map-text content-map-div-td">
+							<div style="display:table-cell;width: 60%;font-size: 1vw">
+								<p  style="margin: 1px">
+									<span>坐席号</span>&nbsp;&nbsp;<span>001</span>
+								</p>
+								<p  style="margin: 1px">
+									<span>呼入量</span>&nbsp;&nbsp;<span>001</span>
+								</p>
+								<p  style="margin: 1px">
+									<span>呼出量</span>&nbsp;&nbsp;<span>001</span>
+								</p>
+							</div>
+							<div style="display:table-cell;width: 40%;vertical-align: middle;text-align: center">
+								<img src="amuzi-ui/assets/img/icon_service.png" th:width="50px" th:height="50px">
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</td>
+			<!--<td style="width: 16.66%">
+
+            </td>-->
+		</tr>
+		<tr >
+			<td class="content-map-text content-map-table-td" >
+				<div  >
+					<p style="margin: 0">
+						活跃用户数
+					</p>
+					<p  style="text-align: center;margin: 0;color: #00aff0">
+						29331(人)
+					</p>
+				</div>
+			</td>
+			<td class="content-map-text content-map-table-td" >
+				<div >
+					<p  style="margin: 0">
+						活跃用户数
+					</p>
+					<p  style="text-align: center;margin: 0;color: #00aff0">
+						28000(人)
+					</p>
+				</div>
+			</td>
+			<!--<td class="content-map-text content-map-table-td" >
+                <div style="display: table">
+                    <div style="display:table-cell;width: 60%;font-size: 1vw">
+                        <p  style="margin: 0">
+                            <span>坐席号</span>&nbsp;&nbsp;<span>001</span>
+                        </p>
+                        <p  style="margin: 0">
+                            <span>呼入量</span>&nbsp;&nbsp;<span>001</span>
+                        </p>
+                        <p  style="margin: 0">
+                            <span>呼出量</span>&nbsp;&nbsp;<span>001</span>
+                        </p>
+                    </div>
+                    <div style="display:table-cell;width: 40%;vertical-align: middle;text-align: center">
+                        <img src="amuzi-ui/assets/img/icon_service.png" th:width="50px" th:height="50px">
+                    </div>
+                </div>
+            </td>
+            <td class="content-map-text content-map-table-td" >
+
+            </td>-->
+		</tr>
+		<tr >
+			<td class="content-map-text content-map-table-td" >
+				<div >
+					<p  style="margin: 0">
+						新增用户数
+					</p>
+					<p  style="text-align: center;margin: 0;color: #ffc028">
+						10022(人)
+					</p>
+				</div>
+			</td>
+			<td class="content-map-text content-map-table-td" >
+				<div >
+					<p  style="margin: 0">
+						新增用户数
+					</p>
+					<p  style="text-align: center;margin: 0;color: #ffc028">
+						16000(人)
+					</p>
+				</div>
+			</td>
+			<!--<td class="content-map-text content-map-table-td" >
+                <div style="display: table">
+                    <div style="display:table-cell;width: 60%;font-size: 1vw">
+                        <p  style="margin: 0">
+                            <span>坐席号</span>&nbsp;&nbsp;<span>001</span>
+                        </p>
+                        <p  style="margin: 0">
+                            <span>呼入量</span>&nbsp;&nbsp;<span>001</span>
+                        </p>
+                        <p  style="margin: 0">
+                            <span>呼出量</span>&nbsp;&nbsp;<span>001</span>
+                        </p>
+                    </div>
+                    <div style="display:table-cell;width: 40%;vertical-align: middle;text-align: center">
+                        <img src="amuzi-ui/assets/img/icon_service.png" th:width="50px" th:height="50px">
+                    </div>
+                </div>
+            </td>
+            <td class="content-map-text content-map-table-td" >
+                <div style="display: table">
+                    <div style="display:table-cell;width: 60%;font-size: 1vw">
+                        <p  style="margin: 0">
+                            <span>坐席号</span>&nbsp;&nbsp;<span>001</span>
+                        </p>
+                        <p  style="margin: 0">
+                            <span>呼入量</span>&nbsp;&nbsp;<span>001</span>
+                        </p>
+                        <p  style="margin: 0">
+                            <span>呼出量</span>&nbsp;&nbsp;<span>001</span>
+                        </p>
+                    </div>
+                    <div style="display:table-cell;width: 40%;vertical-align: middle;text-align: center">
+                        <img src="amuzi-ui/assets/img/icon_service.png" th:width="50px" th:height="50px">
+                    </div>
+                </div>
+            </td>-->
+		</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+<script type="text/javascript">
+
+    var url_google = 'amuzi-ui/assets/47626774/{z}/{x}/{y}.png';
+    var glayer_google = new L.TileLayer(url_google, { maxZoom: 12, attribution: '百度卫星' });
+    var latlng = new L.LatLng(24.529, 118.099);
+    var map = new L.Map('map', { center: latlng, zoom: 12, layers: [glayer_google] });
+    /*var baseLayers =
+        {
+            "百度卫星": glayer_google,
+        };
+    L.control.layers(baseLayers).addTo(map);*/
+    /*var marker = new L.Marker(latlng);
+    map.addLayer(marker);
+    marker.bindPopup("<p>Hello! ;}</p>").openPopup();*/
+
+    /*L.control.locate({
+    position: 'topleft',  // set the location of the control
+    drawCircle: false,     // controls whether a circle is drawn that shows the uncertainty about the location
+    follow: false,    // follow the location if `watch` and `setView` are set to true in locateOptions
+    circleStyle: {},  // change the style of the circle around the user's location
+    markerStyle: {},
+    metric: true,     // use metric or imperial units
+    onLocationError: function(err) {alert(err.message)},  // define an error callback function
+    title: "Show me where I am",  // title of the locat control
+    popupText: ["You are within ", " from this point"],  // text to appear if user clicks on circle
+    setView: true,     // automatically sets the map view to the user's location
+    locateOptions: {}  // define location options e.g enableHighAccuracy: true
+    }).addTo(map);*/
+</script>
+<script type="text/javascript" src="amuzi-ui/assets/js/jquery-2.1.0.js" ></script>
+<script type="text/javascript" src="amuzi-ui/assets/js/amazeui.min.js"></script>
+<script type="text/javascript" src="amuzi-ui/assets/js/app.js" ></script>
+<script type="text/javascript" src="amuzi-ui/assets/js/blockUI.js" ></script>
+<script type="text/javascript" src="amuzi-ui/assets/js/charts/echarts.js"></script>
+<script type="text/javascript" src="amuzi-ui/assets/js/tool-utils.js"></script>
+<script>
+    //var fee_pay_bar = getId("fee_pay_bar");
+    var high_fee_pay_bar = getId("high_fee_pay_bar");
+    var weixin_total_bar = getId("weixin_total_bar");
+    var lqt_total_bar = getId("lqt_total_bar");
+    //var myChart_fee_pay_bar = echarts.init(fee_pay_bar);
+    var myChart_high_fee_pay_bar = echarts.init(high_fee_pay_bar);
+    var myChart_lqt_total_bar = echarts.init(lqt_total_bar);
+    var myChart_weixin_total_bar = echarts.init(weixin_total_bar);
+    //myChart_high_fee_pay_bar.setOption(option_fee_pay_bar);
+    myChart_weixin_total_bar.setOption(getUserOption(34491,29331,10022));
+    myChart_lqt_total_bar.setOption(getUserOption(25000,28000,16000));
+
+    function asyHttp() {
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+            // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {
+            // IE6, IE5 浏览器执行代码
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                if (xmlhttp.responseText != null) {
+                    initHighSpeedData(xmlhttp);
+                }
+            }
+        };
+        asyBridgeHttp(xmlhttp);
+        xmlhttp.open("POST", "dailyInfo/highRptlist", true);
+        xmlhttp.send();
+        setTimeout("asyHttp()", 50000);
+    }
+
+    function asyBridgeHttp() {
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+            // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {
+            // IE6, IE5 浏览器执行代码
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                if (xmlhttp.responseText != null) {
+                    initBridgeData(xmlhttp);
+                }
+            }
+        };
+        xmlhttp.open("POST", "dailyInfo/feePasslist", true);
+        xmlhttp.send();
+        setTimeout("asyBridgeHttp()", 50000);
+    }
+
+    function getOption(num1,num2,num3,num4,str1,str2) {
+        var app = {};
+        option = null;
+        app.title = '条形图';
+        option = {
+            xAxis: {
+                show:true,
+                type: 'category',
+
+            },
+            yAxis: {
+                type: 'value',
+                show:false,
+            },
+            legend:{
+                data : [ str1, str2 ],
+                color:["#fff"],
+                top: 'bottom',
+            },
+            series: [{
+                name:str1,
+                /*label:{
+                    normal:{
+                        show:true,
+                        position:'top'
+                    }
+                },*/
+                data: [num1, num2],
+                type: 'bar',
+                color:["#f7b820"],
+            },{
+                type: 'bar',
+                z: 10,
+                name:str2,
+                data: [num3, num4],
+                color:["#00aff0"],
+                /*label:{
+                    normal:{
+                        show:true,
+                        position:'top'
+                    }
+                },*/
+            }]
+        };
+        return option;
+    }
+
+    function initBridgeData(xmlhttp) {
+        var maps = JSON.parse(xmlhttp.responseText);
+        var xmdq = maps.xmdq;
+        var hcdq = maps.hcdq;
+        var xldq = maps.xldq;
+        var xasd = maps.xasd;
+        var jmdq = maps.jmdq;
+        var xmdq_yd = maps.xmdq_yd;
+        var hcdq_yd = maps.hcdq_yd;
+        var xldq_yd = maps.xldq_yd;
+        var xasd_yd = maps.xasd_yd;
+        var jmdq_yd = maps.jmdq_yd;
+        var monthFeeVo = maps.highmonthFeeVo;
+        var monthFeeVo_lastmonth = maps.highmonthFeeVo_lastmonth;
+        getId("xmdq_in_last_pay").innerText = isNull(xmdq_yd.inPassCounts);
+        getId("hcdq_in_last_pay").innerText = isNull(hcdq_yd.inPassCounts);
+        getId("xldq_in_last_pay").innerText = isNull(xldq_yd.inPassCounts);
+        getId("xasd_in_last_pay").innerText = isNull(xasd_yd.inPassCounts);
+        getId("jmdq_in_last_pay").innerText = isNull(jmdq_yd.inPassCounts);
+        var totalInLast = isNull(xmdq_yd.inPassCounts+hcdq_yd.inPassCounts+xldq_yd.inPassCounts+xasd_yd.inPassCounts+jmdq_yd.inPassCounts);
+        getId("total_in_last_pay").innerText = addSize(totalInLast);
+
+        getId("xmdq_in_now_pay").innerText = isNull(xmdq.inPassCounts);
+        getId("hcdq_in_now_pay").innerText = isNull(hcdq.inPassCounts);
+        getId("xldq_in_now_pay").innerText = isNull(xldq.inPassCounts);
+        getId("xasd_in_now_pay").innerText = isNull(xasd.inPassCounts);
+        getId("jmdq_in_now_pay").innerText = isNull(jmdq.inPassCounts);
+        var totalInNow = isNull(xmdq.inPassCounts+hcdq.inPassCounts+xldq.inPassCounts+xasd.inPassCounts+jmdq.inPassCounts);
+        getId("total_in_now_pay").innerText = addSize(totalInNow);
+
+        getId("xmdq_out_last_pay").innerText = isNull(xmdq_yd.outPassCounts);
+        getId("hcdq_out_last_pay").innerText = isNull(hcdq_yd.outPassCounts);
+        getId("xldq_out_last_pay").innerText = isNull(xldq_yd.outPassCounts);
+        getId("jmdq_out_last_pay").innerText = isNull(xasd_yd.outPassCounts);
+        getId("xasd_out_last_pay").innerText = isNull(jmdq_yd.outPassCounts);
+        var totalOutLast = isNull(xmdq_yd.outPassCounts+hcdq_yd.outPassCounts+xldq_yd.outPassCounts+xasd_yd.outPassCounts+jmdq_yd.outPassCounts);
+        getId("total_out_last_pay").innerText = addSize(totalOutLast);
+
+        getId("xmdq_out_now_pay").innerText = isNull(xmdq.outPassCounts);
+        getId("hcdq_out_now_pay").innerText = isNull(hcdq.outPassCounts);
+        getId("xldq_out_now_pay").innerText = isNull(xldq.outPassCounts);
+        getId("jmdq_out_now_pay").innerText = isNull(xasd.outPassCounts);
+        getId("xasd_out_now_pay").innerText = isNull(jmdq.outPassCounts);
+        var totalOutNow = isNull(xmdq.outPassCounts+hcdq.outPassCounts+xldq.outPassCounts+xasd.outPassCounts+jmdq.outPassCounts);
+        getId("total_out_now_pay").innerText = isNull(totalOutNow);
+
+        getId("xmdq_total_last_pay").innerText = isNull(xmdq_yd.mtcFeeString);
+        getId("hcdq_total_last_pay").innerText = isNull(hcdq_yd.mtcFeeString);
+        getId("xldq_total_last_pay").innerText = isNull(xldq_yd.mtcFeeString);
+        getId("jmdq_total_last_pay").innerText = isNull(xasd_yd.mtcFeeString);
+        getId("xasd_total_last_pay").innerText = isNull(jmdq_yd.mtcFeeString);
+        var totalPayLast = isNull(xmdq_yd.mtcFeeString+hcdq_yd.mtcFeeString+xldq_yd.mtcFeeString+xasd_yd.mtcFeeString+jmdq_yd.mtcFeeString);
+        getId("total_total_last_pay").innerText = addSize(totalPayLast);
+
+        getId("xmdq_total_now_pay").innerText = isNull(xmdq.mtcFeeString);
+        getId("hcdq_total_now_pay").innerText = isNull(hcdq.mtcFeeString);
+        getId("xldq_total_now_pay").innerText = isNull(xldq.mtcFeeString);
+        getId("jmdq_total_now_pay").innerText = isNull(xasd.mtcFeeString);
+        getId("xasd_total_now_pay").innerText = isNull(jmdq.mtcFeeString);
+        var totalPayNow = isNull(xmdq.mtcFeeString+hcdq.mtcFeeString+xldq.mtcFeeString+xasd.mtcFeeString+jmdq.mtcFeeString);
+        getId("total_total_now_pay").innerText = addSize(totalPayNow);
+
+        var option_fee_pay_bar = getOption(monthFeeVo_lastmonth.mtcfee,monthFeeVo_lastmonth.etcfee,monthFeeVo.mtcfee,monthFeeVo.etcfee,"MTC","ETC");
+        myChart_high_fee_pay_bar.setOption(option_fee_pay_bar);
+    }
+
+    function initHighSpeedData(xmlhttp) {
+        var maps = JSON.parse(xmlhttp.responseText);
+        var xzzx = maps.xzzx;
+        var xzzx_yd = maps.xzzx_yd;
+        var xl = maps.xl;
+        var xl_yd = maps.xl_yd;
+        var hc = maps.hc;
+        var hc_yd = maps.hc_yd;
+        var xy = maps.xy;
+        var xy_yd = maps.xy_yd;
+        var xmx = maps.xmx;
+        var xmx_yd = maps.xmx_yd;
+        var highmonthFeeVo = maps.highmonthFeeVo;
+        var highmonthFeeVo_lastmonth = maps.highmonthFeeVo_lastmonth;
+        getId("xmxz_in_last_pay").innerText =  isNull(xmx_yd.entPassCoutnString);
+        getId("xyz_in_last_pay").innerText = isNull(xy_yd.entPassCoutnString) ;
+        getId("hcz_in_last_pay").innerText = isNull(hc_yd.entPassCoutnString) ;
+        getId("xlz_in_last_pay").innerText = isNull(xl_yd.entPassCoutnString) ;
+        getId("xzzx_in_last_pay").innerText = isNull(xzzx_yd.entPassCoutnString) ;
+        var total_last = isNull(xzzx_yd.entPassCoutn) +isNull(xy.entPassCoutn)+isNull(hc_yd.entPassCoutn)+isNull(xl_yd.entPassCoutn)+isNull(xmx_yd.entPassCoutn);
+        getId("total_high_in_last_pay").innerText = addSize(total_last);
+
+        getId("xmxz_in_now_pay").innerText = isNull(xmx.entPassCoutnString);
+        getId("xyz_in_now_pay").innerText = isNull(xy.entPassCoutnString);
+        getId("hcz_in_now_pay").innerText = isNull(hc.entPassCoutnString);
+        getId("xlz_in_now_pay").innerText =isNull(xl.entPassCoutnString) ;
+        getId("xzzx_in_now_pay").innerText = isNull(xzzx.entPassCoutnString);
+        var total_now = isNull(xzzx.entPassCoutn)+isNull(xy.entPassCoutn)+isNull(hc.entPassCoutn)+isNull(xl.entPassCoutn)+isNull(xmx.entPassCoutn);
+        getId("total_high_in_now_pay").innerText = addSize(total_now);
+
+        getId("xmxz_out_last_pay").innerText = isNull(xmx_yd.outPassCountString);
+        getId("xyz_out_last_pay").innerText = isNull(xy_yd.outPassCountString);
+        getId("hcz_out_last_pay").innerText = isNull(hc_yd.outPassCountString);
+        getId("xlz_out_last_pay").innerText = isNull(xl_yd.outPassCountString);
+        getId("xzzx_out_last_pay").innerText = isNull(xzzx_yd.outPassCountString);
+        var total_last_pay = isNull(xzzx_yd.outPassCount)+isNull(xy_yd.outPassCount)+isNull(hc_yd.outPassCount)+isNull(xl_yd.outPassCount)+isNull(xmx_yd.outPassCount);
+        getId("total_high_out_last_pay").innerText = addSize(total_last_pay);
+
+        getId("xmxz_out_now_pay").innerText = isNull(xmx.outPassCountString);
+        getId("xyz_out_now_pay").innerText = isNull(xy.outPassCountString);
+        getId("hcz_out_now_pay").innerText = isNull(hc.outPassCountString);
+        getId("xlz_out_now_pay").innerText = isNull(xl.outPassCountString);
+        getId("xzzx_out_now_pay").innerText = isNull(xzzx.outPassCountString);
+        var total_now_pay = isNull(xzzx.outPassCount)+isNull(xy.outPassCount)+isNull(hc.outPassCount)+isNull(xl.outPassCount)+isNull(xmx.outPassCount);
+        getId("total_high_out_now_pay").innerText = addSize(total_now_pay);
+
+        getId("xmxz_total_last_pay").innerText = isNull(xmx_yd.getFeeString);
+        getId("xyz_total_last_pay").innerText =  isNull(xy_yd.getFeeString);
+        getId("hcz_total_last_pay").innerText =  isNull(hc_yd.getFeeString);
+        getId("xlz_total_last_pay").innerText =  isNull(xl_yd.getFeeString);
+        getId("xzzx_total_last_pay").innerText =  isNull(xzzx_yd.getFeeString);
+        var total_fee_last_pay = Math.round(isNull(xzzx_yd.getFee)+isNull(xy_yd.getFee)+isNull(hc_yd.getFee)+isNull(xl_yd.getFee)+isNull(xmx_yd.getFee))
+        getId("total_high_fee_last_pay").innerText = addSize(total_fee_last_pay);
+
+        getId("xmxz_total_now_pay").innerText = isNull(xmx.getFeeString);
+        getId("xyz_total_now_pay").innerText = isNull(xy.getFeeString);
+        getId("hcz_total_now_pay").innerText = isNull(hc.getFeeString);
+        getId("xlz_total_now_pay").innerText = isNull(xl.getFeeString);
+        getId("xzzx_total_now_pay").innerText = isNull(xzzx.getFeeString);
+        var total_fee_now_pay = Math.round(isNull(xzzx.getFee)+isNull(xy.getFee)+isNull(hc.getFee)+isNull(xl.getFee)+isNull(xmx.getFee));
+        getId("total_high_fee_now_pay").innerText = addSize(total_fee_now_pay);
+        var option_fee_pay_bar = getOption(highmonthFeeVo_lastmonth.mtcfee,highmonthFeeVo_lastmonth.etcfee,highmonthFeeVo.mtcfee,highmonthFeeVo.etcfee,"MTC","ETC");
+        myChart_high_fee_pay_bar.setOption(option_fee_pay_bar);
+    }
+
+</script>
+</html>

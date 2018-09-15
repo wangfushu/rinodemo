@@ -23,6 +23,13 @@
     /*opacity: 0.2;*/
 }
 
+.content-map-right{
+    background: url(/amuzi-ui/assets/img/map_table_right.png);
+    color: #ffffff;
+    background-size: 100%;
+    /*opacity: 0.2;*/
+}
+
 .content-td{
     color: #fff
 }

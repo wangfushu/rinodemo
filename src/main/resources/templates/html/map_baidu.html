@@ -21,6 +21,8 @@
 <body onload="asyHttp()">
     <div id="allmap">
     </div>
+<!--    <div class="content-map-right" style="position: fixed;top:0px;right:0px;width: 33%;height: 100%">-->
+    </div>
     <div class="content-map" style="position: fixed;top:0px;left:0px;">
         <table class="am-table am-table-bordered am-table-centered" style="height: 100%;border: none">
             <thead>
@@ -137,37 +139,37 @@
                 <td class="content-map-text">
                     <div >
                         <span >累计&nbsp;</span><span id="hcdq_total_last_pay">073588</span><br>
-                        <span>全额&nbsp;</span><span id="hcdq_total_now_pay">050747</span>
+                        <span>金额&nbsp;</span><span id="hcdq_total_now_pay">050747</span>
                     </div>
                 </td>
                 <td class="content-map-text">
                     <div >
                         <span >累计&nbsp;</span><span id="xldq_total_last_pay">073588</span><br>
-                        <span>全额&nbsp;</span><span id="xldq_total_now_pay">050747</span>
+                        <span>金额&nbsp;</span><span id="xldq_total_now_pay">050747</span>
                     </div>
                 </td>
                 <td class="content-map-text">
                     <div >
                         <span >累计&nbsp;</span><span id="xmdq_total_last_pay">073588</span><br>
-                        <span>全额&nbsp;</span><span id="xmdq_total_now_pay">050747</span>
+                        <span>金额&nbsp;</span><span id="xmdq_total_now_pay">050747</span>
                     </div>
                 </td>
                 <td class="content-map-text">
                     <div >
                         <span >累计&nbsp;</span><span id="jmdq_total_last_pay">073588</span><br>
-                        <span>全额&nbsp;</span><span id="jmdq_total_now_pay">050747</span>
+                        <span>金额&nbsp;</span><span id="jmdq_total_now_pay">050747</span>
                     </div>
                 </td>
                 <td class="content-map-text">
                     <div >
                         <span >累计&nbsp;</span><span id="xasd_total_last_pay">073588</span><br>
-                        <span>全额&nbsp;</span><span id="xasd_total_now_pay">050747</span>
+                        <span>金额&nbsp;</span><span id="xasd_total_now_pay">050747</span>
                     </div>
                 </td>
                 <td class="content-map-text">
                     <div >
                         <span >累计&nbsp;</span><span id="total_fee_last_pay">073588</span><br>
-                        <span>全额&nbsp;</span><span id="total_fee_now_pay">050747</span>
+                        <span>金额&nbsp;</span><span id="total_fee_now_pay">050747</span>
                     </div>
                 </td>
             </tr>
@@ -288,37 +290,37 @@
                 <td class="content-map-text">
                     <div >
                         <span >累计&nbsp;</span><span id="xmxz_total_last_pay">073588</span><br>
-                        <span>全额&nbsp;</span><span id="xmxz_total_now_pay">050747</span>
+                        <span>金额&nbsp;</span><span id="xmxz_total_now_pay">050747</span>
                     </div>
                 </td>
                 <td class="content-map-text">
                     <div >
                         <span >累计&nbsp;</span><span id="xyz_total_last_pay">073588</span><br>
-                        <span>全额&nbsp;</span><span id="xyz_total_now_pay">050747</span>
+                        <span>金额&nbsp;</span><span id="xyz_total_now_pay">050747</span>
                     </div>
                 </td>
                 <td class="content-map-text">
                     <div >
                         <span >累计&nbsp;</span><span id="hcz_total_last_pay">073588</span><br>
-                        <span>全额&nbsp;</span><span id="hcz_total_now_pay">050747</span>
+                        <span>金额&nbsp;</span><span id="hcz_total_now_pay">050747</span>
                     </div>
                 </td>
                 <td class="content-map-text">
                     <div >
                         <span >累计&nbsp;</span><span id="xlz_total_last_pay">073588</span><br>
-                        <span>全额&nbsp;</span><span id="xlz_total_now_pay">050747</span>
+                        <span>金额&nbsp;</span><span id="xlz_total_now_pay">050747</span>
                     </div>
                 </td>
                 <td class="content-map-text">
                     <div >
                         <span >累计&nbsp;</span><span id="xzzx_total_last_pay">073588</span><br>
-                        <span>全额&nbsp;</span><span id="xzzx_total_now_pay">050747</span>
+                        <span>金额&nbsp;</span><span id="xzzx_total_now_pay">050747</span>
                     </div>
                 </td>
                 <td class="content-map-text">
                     <div >
                         <span >累计&nbsp;</span><span id="total_high_fee_last_pay">073588</span><br>
-                        <span>全额&nbsp;</span><span id="total_high_fee_now_pay">050747</span>
+                        <span>金额&nbsp;</span><span id="total_high_fee_now_pay">050747</span>
                     </div>
                 </td>
             </tr>
@@ -549,7 +551,6 @@
         </table>
     </div>
 </body>
-</html>
 <script type="text/javascript">
     // 百度地图API功能
     /*var map = new BMap.Map("allmap");    // 创建Map实例
@@ -650,18 +651,18 @@
                 show:false,
             },
             legend:{
-                data : [ '年费', '次费' ],
+                data : [ str1, str2 ],
                 color:["#fff"],
                 top: 'bottom',
             },
             series: [{
                 name:str1,
-                label:{
+                /*label:{
                     normal:{
                         show:true,
                         position:'top'
                     }
-                },
+                },*/
                 data: [num1, num2],
                 type: 'bar',
                 color:["#f7b820"],
@@ -671,59 +672,76 @@
                 name:str2,
                 data: [num3, num4],
                 color:["#00aff0"],
-                label:{
+                /*label:{
                     normal:{
                         show:true,
                         position:'top'
                     }
-                },
+                },*/
             }]
         };
         return option;
     }
     
-    function initBridgeData() {
-        getId("xmdq_in_last_pay").innerText = "";
-        getId("hcdq_in_last_pay").innerText = "";
-        getId("xldq_in_last_pay").innerText = "";
-        getId("xasd_in_last_pay").innerText = "";
-        getId("jmdq_in_last_pay").innerText = "";
-        getId("total_in_last_pay").innerText = "";
+    function initBridgeData(xmlhttp) {
+        var maps = JSON.parse(xmlhttp.responseText);
+        var xmdq = maps.xmdq;
+        var hcdq = maps.hcdq;
+        var xldq = maps.xldq;
+        var xasd = maps.xasd;
+        var jmdq = maps.jmdq;
+        var xmdq_yd = maps.xmdq_yd;
+        var hcdq_yd = maps.hcdq_yd;
+        var xldq_yd = maps.xldq_yd;
+        var xasd_yd = maps.xasd_yd;
+        var jmdq_yd = maps.jmdq_yd;
+        getId("xmdq_in_last_pay").innerText = isNull(xmdq_yd.inPassCounts);
+        getId("hcdq_in_last_pay").innerText = isNull(hcdq_yd.inPassCounts);
+        getId("xldq_in_last_pay").innerText = isNull(xldq_yd.inPassCounts);
+        getId("xasd_in_last_pay").innerText = isNull(xasd_yd.inPassCounts);
+        getId("jmdq_in_last_pay").innerText = isNull(jmdq_yd.inPassCounts);
+        var totalInLast = isNull(xmdq_yd.inPassCounts+hcdq_yd.inPassCounts+xldq_yd.inPassCounts+ xasd_yd.inPassCounts+ mdq_yd.inPassCounts);
+        getId("total_in_last_pay").innerText = addSize(totalInLast);
 
-        getId("xmdq_in_now_pay").innerText = "";
-        getId("hcdq_in_now_pay").innerText = "";
-        getId("xldq_in_now_pay").innerText = "";
-        getId("xasd_in_now_pay").innerText = "";
-        getId("jmdq_in_now_pay").innerText = "";
-        getId("total_in_now_pay").innerText = "";
+        getId("xmdq_in_now_pay").innerText = isNull(xmdq.inPassCounts);
+        getId("hcdq_in_now_pay").innerText = isNull(hcdq.inPassCounts);
+        getId("xldq_in_now_pay").innerText = isNull(xldq.inPassCounts);
+        getId("xasd_in_now_pay").innerText = isNull(xasd.inPassCounts);
+        getId("jmdq_in_now_pay").innerText = isNull(jmdq.inPassCounts);
+        var totalInNow = isNull(xmdq.inPassCounts+hcdq.inPassCounts+xldq.inPassCounts+xasd.inPassCounts+jmdq.inPassCounts);
+        getId("total_in_now_pay").innerText = addSize(totalInNow);
 
-        getId("xmdq_out_last_pay").innerText = "";
-        getId("hcdq_out_last_pay").innerText = "";
-        getId("xldq_out_last_pay").innerText = "";
-        getId("jmdq_out_last_pay").innerText = "";
-        getId("xasd_out_last_pay").innerText = "";
-        getId("total_out_last_pay").innerText = "";
+        getId("xmdq_out_last_pay").innerText = isNull(xmdq_yd.outPassCounts);
+        getId("hcdq_out_last_pay").innerText = isNull(hcdq_yd.outPassCounts);
+        getId("xldq_out_last_pay").innerText = isNull(xldq_yd.outPassCounts);
+        getId("jmdq_out_last_pay").innerText = isNull(xasd_yd.outPassCounts);
+        getId("xasd_out_last_pay").innerText = isNull(jmdq_yd.outPassCounts);
+        var totalOutLast = isNull(xmdq_yd.outPassCounts+hcdq_yd.outPassCounts+xldq_yd.outPassCounts+xasd_yd.outPassCounts+jmdq_yd.outPassCounts)
+        getId("total_out_last_pay").innerText = addSize(totalOutLast);
 
-        getId("xmdq_out_now_pay").innerText = "";
-        getId("hcdq_out_now_pay").innerText = "";
-        getId("xldq_out_now_pay").innerText = "";
-        getId("jmdq_out_now_pay").innerText = "";
-        getId("xasd_out_now_pay").innerText = "";
-        getId("total_out_now_pay").innerText = "";
+        getId("xmdq_out_now_pay").innerText = isNull(xmdq.outPassCounts);
+        getId("hcdq_out_now_pay").innerText = isNull(hcdq.outPassCounts);
+        getId("xldq_out_now_pay").innerText = isNull(xldq.outPassCounts);
+        getId("jmdq_out_now_pay").innerText = isNull(xasd.outPassCounts);
+        getId("xasd_out_now_pay").innerText = isNull(jmdq.outPassCounts);
+        var totalOutNow = isNull(xmdq.outPassCounts+hcdq.outPassCounts+xldq.outPassCounts+xasd.outPassCounts+jmdq.outPassCounts);
+        getId("total_out_now_pay").innerText = isNull(totalOutNow);
 
-        getId("xmdq_total_last_pay").innerText = "";
-        getId("hcdq_total_last_pay").innerText = "";
-        getId("xldq_total_last_pay").innerText = "";
-        getId("jmdq_total_last_pay").innerText = "";
-        getId("xasd_total_last_pay").innerText = "";
-        getId("total_total_last_pay").innerText = "";
+        getId("xmdq_total_last_pay").innerText = isNull(xmdq_yd.mtcFeeString);
+        getId("hcdq_total_last_pay").innerText = isNull(hcdq_yd.mtcFeeString);
+        getId("xldq_total_last_pay").innerText = isNull(xldq_yd.mtcFeeString);
+        getId("jmdq_total_last_pay").innerText = isNull(xasd_yd.mtcFeeString);
+        getId("xasd_total_last_pay").innerText = isNull(jmdq_yd.mtcFeeString);
+        var totalPayLast = isNull(xmdq_yd.mtcFeeString+hcdq_yd.mtcFeeString+xldq_yd.mtcFeeString+xasd_yd.mtcFeeString+jmdq_yd.mtcFeeString);
+        getId("total_total_last_pay").innerText = addSize(totalPayLast);
 
-        getId("xmdq_total_now_pay").innerText = "";
-        getId("hcdq_total_now_pay").innerText = "";
-        getId("xldq_total_now_pay").innerText = "";
-        getId("jmdq_total_now_pay").innerText = "";
-        getId("xasd_total_now_pay").innerText = "";
-        getId("total_total_now_pay").innerText = "";
+        getId("xmdq_total_now_pay").innerText = isNull(xmdq.mtcFeeString);
+        getId("hcdq_total_now_pay").innerText = isNull(hcdq.mtcFeeString);
+        getId("xldq_total_now_pay").innerText = isNull(xldq.mtcFeeString);
+        getId("jmdq_total_now_pay").innerText = isNull(xasd.mtcFeeString);
+        getId("xasd_total_now_pay").innerText = isNull(jmdq.mtcFeeString);
+        var totalPayNow = isNull(xmdq.mtcFeeString+hcdq.mtcFeeString+xldq.mtcFeeString+xasd.mtcFeeString+jmdq.mtcFeeString);
+        getId("total_total_now_pay").innerText = addSize(totalPayNow);
     }
 
     function initHighSpeedData(xmlhttp) {
@@ -738,48 +756,54 @@
         var xy_yd = maps.xy_yd;
         var xmx = maps.xmx;
         var xmx_yd = maps.xmx_yd;
-        getId("xmxz_in_last_pay").innerText = xmx_yd.entPassCoutnString;
-        getId("xyz_in_last_pay").innerText = xy_yd.entPassCoutnString;
-        getId("hcz_in_last_pay").innerText = hc_yd.entPassCoutnString;
-        getId("xlz_in_last_pay").innerText = xl_yd.entPassCoutnString;
-        getId("xzzx_in_last_pay").innerText = xzzx_yd.entPassCoutnString;
-        getId("total_high_in_last_pay").innerText = xzzx_yd.entPassCoutn+xy.entPassCoutn+hc_yd.entPassCoutn+xl_yd.entPassCoutn+xmx_yd.entPassCoutn;
+        getId("xmxz_in_last_pay").innerText =  isNull(xmx_yd.entPassCoutnString);
+        getId("xyz_in_last_pay").innerText = isNull(xy_yd.entPassCoutnString) ;
+        getId("hcz_in_last_pay").innerText = isNull(hc_yd.entPassCoutnString) ;
+        getId("xlz_in_last_pay").innerText = isNull(xl_yd.entPassCoutnString) ;
+        getId("xzzx_in_last_pay").innerText = isNull(xzzx_yd.entPassCoutnString) ;
+        var total_last = isNull(xzzx_yd.entPassCoutn) +isNull(xy.entPassCoutn)+isNull(hc_yd.entPassCoutn)+isNull(xl_yd.entPassCoutn)+isNull(xmx_yd.entPassCoutn);
+        getId("total_high_in_last_pay").innerText = addSize(total_last);
 
-        getId("xmxz_in_now_pay").innerText = xmx.entPassCoutnString;
-        getId("xyz_in_now_pay").innerText = xy.entPassCoutnString;
-        getId("hcz_in_now_pay").innerText = hc.entPassCoutnString;;
-        getId("xzzx_in_now_pay").innerText = xl.entPassCoutnString;;
-        getId("jmdq_in_now_pay").innerText = xzzx.entPassCoutnString;;
-        getId("total_high_in_now_pay").innerText = xzzx.entPassCoutn+xy.entPassCoutn+hc.entPassCoutn+xl.entPassCoutn+xmx.entPassCoutn;
+        getId("xmxz_in_now_pay").innerText = isNull(xmx.entPassCoutnString);
+        getId("xyz_in_now_pay").innerText = isNull(xy.entPassCoutnString);
+        getId("hcz_in_now_pay").innerText = isNull(hc.entPassCoutnString);
+        getId("xlz_in_now_pay").innerText =isNull(xl.entPassCoutnString) ;
+        getId("xzzx_in_now_pay").innerText = isNull(xzzx.entPassCoutnString);
+        var total_now = isNull(xzzx.entPassCoutn)+isNull(xy.entPassCoutn)+isNull(hc.entPassCoutn)+isNull(xl.entPassCoutn)+isNull(xmx.entPassCoutn);
+        getId("total_high_in_now_pay").innerText = addSize(total_now);
 
-        getId("xmxz_out_last_pay").innerText = xmx_yd.outPassCountString;
-        getId("xyz_out_last_pay").innerText = xy_yd.outPassCountString;
-        getId("hcz_out_last_pay").innerText = hc_yd.outPassCountString;
-        getId("jmdq_out_last_pay").innerText = xl_yd.outPassCountString;
-        getId("xzzx_out_last_pay").innerText = xzzx_yd.outPassCountString;
-        getId("total_high_out_last_pay").innerText = xzzx_yd.outPassCoutn+xy_yd.outPassCoutn+hc_yd.outPassCoutn+xl_yd.outPassCoutn+xmx_yd.outPassCoutn;
+        getId("xmxz_out_last_pay").innerText = isNull(xmx_yd.outPassCountString);
+        getId("xyz_out_last_pay").innerText = isNull(xy_yd.outPassCountString);
+        getId("hcz_out_last_pay").innerText = isNull(hc_yd.outPassCountString);
+        getId("xlz_out_last_pay").innerText = isNull(xl_yd.outPassCountString);
+        getId("xzzx_out_last_pay").innerText = isNull(xzzx_yd.outPassCountString);
+        var total_last_pay = isNull(xzzx_yd.outPassCount)+isNull(xy_yd.outPassCount)+isNull(hc_yd.outPassCount)+isNull(xl_yd.outPassCount)+isNull(xmx_yd.outPassCount);
+        getId("total_high_out_last_pay").innerText = addSize(total_last_pay);
 
-        getId("xmxz_total_out_now_pay").innerText = xmx.outPassCountString;
-        getId("xyz_total_out_now_pay").innerText = xy.outPassCountString;
-        getId("hcz_total_out_now_pay").innerText = hc.outPassCountString;
-        getId("jmdq_total_out_now_pay").innerText = xl.outPassCountString;
-        getId("xzzx_total_out_now_pay").innerText = xzzx.outPassCountString;
-        getId("total_high_out_now_pay").innerText = xzzx.outPassCoutn+xy.outPassCoutn+hc.outPassCoutn+xl.outPassCoutn+xmx.outPassCoutn;
+        getId("xmxz_out_now_pay").innerText = isNull(xmx.outPassCountString);
+        getId("xyz_out_now_pay").innerText = isNull(xy.outPassCountString);
+        getId("hcz_out_now_pay").innerText = isNull(hc.outPassCountString);
+        getId("xlz_out_now_pay").innerText = isNull(xl.outPassCountString);
+        getId("xzzx_out_now_pay").innerText = isNull(xzzx.outPassCountString);
+        var total_now_pay = isNull(xzzx.outPassCount)+isNull(xy.outPassCount)+isNull(hc.outPassCount)+isNull(xl.outPassCount)+isNull(xmx.outPassCount);
+        getId("total_high_out_now_pay").innerText = addSize(total_now_pay);
 
-        getId("xmxz_total_last_pay").innerText = xmx_yd.getFeeString;
-        getId("xyz_total_last_pay").innerText = xy_yd.getFeeString;
-        getId("hcz_total_last_pay").innerText = hc_yd.getFeeString;
-        getId("jmdq_total_last_pay").innerText = xl_yd.getFeeString;
-        getId("xzzx_total_last_pay").innerText = xzzx_yd.getFeeString;
-        getId("total_high_fee_last_pay").innerText = xzzx_yd.getFee+xy_yd.getFee+hc_yd.getFee+xl_yd.getFee+xmx_yd.getFee;
+        getId("xmxz_total_last_pay").innerText = isNull(xmx_yd.getFeeString);
+        getId("xyz_total_last_pay").innerText =  isNull(xy_yd.getFeeString);
+        getId("hcz_total_last_pay").innerText =  isNull(hc_yd.getFeeString);
+        getId("xlz_total_last_pay").innerText =  isNull(xl_yd.getFeeString);
+        getId("xzzx_total_last_pay").innerText =  isNull(xzzx_yd.getFeeString);
+        var total_fee_last_pay = Math.round(isNull(xzzx_yd.getFee)+isNull(xy_yd.getFee)+isNull(hc_yd.getFee)+isNull(xl_yd.getFee)+isNull(xmx_yd.getFee))
+        getId("total_high_fee_last_pay").innerText = addSize(total_fee_last_pay);
 
-        getId("xmxz_total_now_pay").innerText = xmx.getFeeString;
-        getId("xyz_total_now_pay").innerText = xy.getFeeString;
-        getId("hcz_total_now_pay").innerText = hc.getFeeString;
-        getId("jmdq_total_now_pay").innerText = xl.getFeeString;
-        getId("xzzx_total_now_pay").innerText = xzzx.getFeeString;
-        getId("total_high_fee_now_pay").innerText = xzzx.getFee+xy.getFee+hc.getFee+xl.getFee+xmx.getFee;
-        var option_fee_pay_bar = getOption(xzzx_yd.mtcFee+xy_yd.mtcFee+hc_yd.mtcFee+xl_yd.mtcFee+xmx_yd.mtcFee,xzzx_yd.etcFee+xy_yd.etcFee+hc_yd.etcFee+xl_yd.etcFee+xmx_yd.etcFee,xzzx.mtcFee+xy.mtcFee+hc.mtcFee+xl.mtcFee+xmx.mtcFee,xzzx.etcFee+xy.etcFee+hc.etcFee+xl.etcFee+xmx.etcFee,"MTC","ETC");
+        getId("xmxz_total_now_pay").innerText = isNull(xmx.getFeeString);
+        getId("xyz_total_now_pay").innerText = isNull(xy.getFeeString);
+        getId("hcz_total_now_pay").innerText = isNull(hc.getFeeString);
+        getId("xlz_total_now_pay").innerText = isNull(xl.getFeeString);
+        getId("xzzx_total_now_pay").innerText = isNull(xzzx.getFeeString);
+        var total_fee_now_pay = Math.round(isNull(xzzx.getFee)+isNull(xy.getFee)+isNull(hc.getFee)+isNull(xl.getFee)+isNull(xmx.getFee));
+        getId("total_high_fee_now_pay").innerText = addSize(total_fee_now_pay);
+        var option_fee_pay_bar = getOption(,xzzx_yd.etcFee+xy_yd.etcFee+hc_yd.etcFee+xl_yd.etcFee+xmx_yd.etcFee,xzzx.mtcFee+xy.mtcFee+hc.mtcFee+xl.mtcFee+xmx.mtcFee,xzzx.etcFee+xy.etcFee+hc.etcFee+xl.etcFee+xmx.etcFee,"MTC","ETC");
         myChart_high_fee_pay_bar.setOption(option_fee_pay_bar);
     }
 

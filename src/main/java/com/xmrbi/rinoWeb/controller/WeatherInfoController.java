@@ -58,7 +58,7 @@ public class WeatherInfoController {
 
     @RequestMapping("/map")
     public ModelAndView map(HttpServletRequest request) {
-        ModelAndView model = new ModelAndView("html/map_baidu");
+        ModelAndView model = new ModelAndView("html/map_off_line");
         return model;
     }
 
@@ -69,7 +69,7 @@ public class WeatherInfoController {
         map.put("hcdq",weatherInfoService.findMonWeatherInfolist("0002"));
         map.put("jmdq",weatherInfoService.findMonWeatherInfolist("0003"));
         map.put("xasd",weatherInfoService.findMonWeatherInfolist("0005"));
-        map.put("typhoon_info",weatherInfoService.findTyphoonInfo("飞燕"));
+        map.put("typhoon_info",weatherInfoService.findTyphoonInfo("山竹"));
         /*model.addAttribute("xmdq",weatherInfoService.findMonWeatherInfolist("0001"));
         model.addAttribute("hcdq",weatherInfoService.findMonWeatherInfolist("0002"));
         model.addAttribute("jmdq",weatherInfoService.findMonWeatherInfolist("0003"));
@@ -81,6 +81,12 @@ public class WeatherInfoController {
     @RequestMapping("/frame_weather")
     public ModelAndView frameWeather(HttpServletRequest request) {
         ModelAndView model = new ModelAndView("html/frame_weather");
+        return model;
+    }
+
+    @RequestMapping("/gmap")
+    public ModelAndView mapDemo(HttpServletRequest request) {
+        ModelAndView model = new ModelAndView("html/gmap");
         return model;
     }
 

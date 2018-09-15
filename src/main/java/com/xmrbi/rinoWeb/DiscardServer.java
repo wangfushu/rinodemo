@@ -123,8 +123,4 @@ public class DiscardServer {
     }
 
 
-    //将规则跑起来
-    public static void main(String[] args) throws Exception {
-
-    }
 }

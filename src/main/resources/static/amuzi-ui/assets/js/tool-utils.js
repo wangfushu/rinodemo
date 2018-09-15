@@ -84,3 +84,20 @@ function getUserOption(num1,num2,num3) {
 function getId(id) {
     return document.getElementById(id);
 }
+
+function isNull(num) {
+    return num == null?"0":num;
+}
+
+function addSize(num) {
+    if(num != null ){
+        var str = num.toString();
+        var size = 6 - str.length;
+        if( size > 0){
+           for(var i = 0 ;i<size;i++){
+               num = "0" + num;
+           }
+        }
+    }
+    return num;
+}
