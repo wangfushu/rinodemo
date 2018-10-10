@@ -86,7 +86,7 @@ public class WeatherInfoController {
 
     @RequestMapping("/gmap")
     public ModelAndView mapDemo(HttpServletRequest request) {
-        ModelAndView model = new ModelAndView("html/gmap");
+        ModelAndView model = new ModelAndView("socket");
         return model;
     }
 

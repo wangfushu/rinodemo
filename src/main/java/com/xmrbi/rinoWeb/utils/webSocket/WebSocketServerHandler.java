@@ -36,7 +36,7 @@ public class WebSocketServerHandler extends ChannelInboundHandlerAdapter {
     	return channels;
     }
 
-    // Client Connect 시 호출
+    // Client Connect 请求连接
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws IllegalArgumentException , ClassCastException, UnsupportedOperationException  {
     	
@@ -45,7 +45,7 @@ public class WebSocketServerHandler extends ChannelInboundHandlerAdapter {
     	logger.info("[SERVER] : {} has joined", incoming.remoteAddress());
     }
     
-    // Client Disconnect 시 호출
+    // Client Disconnect 请求连接
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws ClassCastException, UnsupportedOperationException  {
     	
@@ -54,12 +54,12 @@ public class WebSocketServerHandler extends ChannelInboundHandlerAdapter {
     	channels.remove(incoming);
     }
     
-    // Client에서 송신 시 호출
+    // Client在传输时
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-		if (msg instanceof FullHttpRequest) {									// Client 최초 연결 시
+		if (msg instanceof FullHttpRequest) {									// Client 第一次连接
             handleHttpRequest(ctx, (FullHttpRequest) msg);
-        } else if (msg instanceof WebSocketFrame) {						// 데이터 받을때 와 연결 종료 시
+        } else if (msg instanceof WebSocketFrame) {						//接收数据和断开连接时
             handleWebSocketFrame(ctx, (WebSocketFrame) msg);
         }
     }

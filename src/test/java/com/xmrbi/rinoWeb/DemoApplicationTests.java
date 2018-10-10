@@ -1,18 +1,11 @@
 package com.xmrbi.rinoWeb;
 
 import com.xmrbi.rinoWeb.service.DailyInfoService;
-import com.xmrbi.rinoWeb.vo.FeePassDaily;
-import com.xmrbi.rinoWeb.vo.MonthFeeVo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -22,7 +15,7 @@ public class DemoApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		Map<String,Object> map = new HashMap<>();
+	/*	Map<String,Object> map = new HashMap<>();
 		FeePassDaily xmdq=dailyInfoService.getFeePassDaily("0001",null);
 		FeePassDaily xmdq_yd=dailyInfoService.getFeePassDaily("0001",new Date());
 		map.put("xmdq",xmdq);
@@ -59,7 +52,7 @@ public class DemoApplicationTests {
 		map.put("monthFeeVo",monthFeeVo);
 		map.put("monthFeeVo_lastmonth",monthFeeVo_lastmonth);
 		System.out.println("结束");
-
+*/
 	}
 
 }

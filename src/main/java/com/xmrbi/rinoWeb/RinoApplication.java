@@ -1,5 +1,9 @@
 package com.xmrbi.rinoWeb;
 
+import com.xmrbi.rinoWeb.common.MessageConfigConstant;
+import com.xmrbi.rinoWeb.utils.socket.SocketServerNettyMain;
+import com.xmrbi.rinoWeb.utils.socket.msgProc.SocketMsgQueuePolling;
+import com.xmrbi.rinoWeb.utils.webSocket.WebSocketServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -16,9 +20,22 @@ public class RinoApplication  implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		/*SocketMsgQueuePolling msgPolling = new SocketMsgQueuePolling();
+		SocketMsgQueuePolling msgPolling = new SocketMsgQueuePolling();
 		Thread msgPollingThread = new Thread(msgPolling);
-		msgPollingThread.start();*/
+		msgPollingThread.start();
+
+		SocketServerNettyMain.getinstance(MessageConfigConstant.socket_server_port).init();
+
+		WebSocketServer.getInstance(MessageConfigConstant.websocket_server_port).init();
+
+		/* 加载公共代码缓存 */
+		//xwsCache.loadCache();
+
+		logger.info("SOCKET RUN ......");
+		//tpmCache.startSocketServer();
+		logger.info("===========================================================================================================================");
+
+
 
 	/*	int port;
 		if (args.length > 0) {
@@ -27,7 +44,7 @@ public class RinoApplication  implements CommandLineRunner {
 			port = 8989;
 		}
 		new DiscardServer(port).run();
-		*//*WebSocketServer.getInstance("8889").init();*//*
+		WebSocketServer.getInstance(port).init();
 
 
 		System.out.println("server:run()");*/

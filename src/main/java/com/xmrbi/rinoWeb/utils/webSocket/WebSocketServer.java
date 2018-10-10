@@ -24,7 +24,6 @@ public final class WebSocketServer {
     }
     
     public static WebSocketServer getInstance(String serverPort){
-    	
     	return getInstance(Integer.parseInt(serverPort));
     }
     
@@ -38,16 +37,16 @@ public final class WebSocketServer {
     }
     
     public void init(){
-    	// NioEventLoopGroup 는 멀티 쓰레드 이벤트 루프
-		// bossGroup는 들어오는 연결을 수락
-		// workerGroup는 연결의 트레픽 처리
+    	// NioEventLoopGroup 是一个多线程事件循环
+		// bossGroup接受传入的连接
+		// workerGroup处理连接
     	bossGroup = new NioEventLoopGroup();
         workerGroup = new NioEventLoopGroup();
         try {
-        	// ServerBootstrap는 서버설정 도우미 클래스
+        	// ServerBootstrap服务器设置帮助程序类
         	serverBootstrap = new ServerBootstrap();
         	serverBootstrap.group(bossGroup, workerGroup)
-        	// NioServerSocketChannel클래스를 이용하여 새로운 채널 생성 (인스턴스화)
+        	// NioServerSocketChannel使用类创建新通道（实例化）
 		             .channel(NioServerSocketChannel.class)
 		             .childHandler(new ChannelInitializer<SocketChannel>(){
 		            	 @Override
@@ -57,8 +56,8 @@ public final class WebSocketServer {
 		            		 						.addLast(new HttpObjectAggregator(65536))
 		            		 						.addLast("handler", new WebSocketServerHandler());
 		            	 }
-		             }).option(ChannelOption.SO_BACKLOG, 128)	//worker thread 최대 겟수
-		             .childOption(ChannelOption.SO_KEEPALIVE, true); // 연결 유지 셋팅
+		             }).option(ChannelOption.SO_BACKLOG, 128)	//worker thread 最大数量
+		             .childOption(ChannelOption.SO_KEEPALIVE, true); //连接维护设置
 
         	ChannelFuture ch = serverBootstrap.bind(serverPort).sync();
         	
@@ -66,7 +65,7 @@ public final class WebSocketServer {
         	logger.info("[ {} ] WebSocket Server Bind", this.serverPort);
 
         }catch(Exception e){
-        	// 웹소켓 바인드 에러
+        	// Web套接字绑定错误
 			logger.trace("WEBSOCKET BIND ERROR [{}]", serverPort);
 			logger.error(e.getMessage(),e);
 			System.exit(1);
@@ -77,7 +76,7 @@ public final class WebSocketServer {
         }
     }
     
-    // 언바인드
+    // 解除绑定
     public void wsocServerStop(){
     	workerGroup.shutdownGracefully();
     	bossGroup.shutdownGracefully();

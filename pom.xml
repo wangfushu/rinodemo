@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>rinoWeb</name>
+	<name>rinoWebSocket</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -42,6 +42,7 @@
 			<artifactId>netty-all</artifactId>
 			<version>4.0.23.Final</version>
 		</dependency>
+
 
 <!--		<dependency>
 			<groupId>io.netty</groupId>

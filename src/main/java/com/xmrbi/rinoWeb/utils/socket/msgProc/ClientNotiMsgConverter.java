@@ -1,7 +1,7 @@
 package com.xmrbi.rinoWeb.utils.socket.msgProc;
 
 
-import com.xmrbi.rinoWeb.utils.ConfFileInfo;
+import com.xmrbi.rinoWeb.common.MessageConfigConstant;
 import com.xmrbi.rinoWeb.utils.DateTimeUtil;
 import com.xmrbi.rinoWeb.utils.DateTimeUtilException;
 import flexjson.JSONDeserializer;
@@ -40,7 +40,7 @@ public class ClientNotiMsgConverter {
 
 		Map<String, String> resMap = null;
 
-		Locale locale = new Locale(ConfFileInfo.get("langCode"), ConfFileInfo.get("countryCode"));
+		Locale locale = new Locale(MessageConfigConstant.langCode, MessageConfigConstant.countryCode);
 //		logger.debug("{}", msgTypNm);
 		switch(msgTypNm){
 			case EVENT_STAT	:
